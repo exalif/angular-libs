@@ -7,9 +7,11 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "clean": "rimraf ./dist",
+    "build:ngx-breadcrumbs": "npm run clean && npm run packagr:ngx-breadcrumbs",
+    "packagr:ngx-breadcrumbs": "ng-packagr -p projects/exalif/ngx-breadcrumbs/ng-package.prod.json"
   },
-  "private": true,
   "dependencies": {
     "@angular/common": "6.0.3",
     "@angular/core": "6.0.3",
