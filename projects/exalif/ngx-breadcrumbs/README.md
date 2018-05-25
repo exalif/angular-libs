@@ -3,6 +3,12 @@ An Angular (4+) module generating breadcrumbs based on the routing state.
 
 This package is a modified fork of original [ngx-breadcrumbs](https://github.com/McNull/ngx-breadcrumbs) package by McNull
 
+## Requirements
+
+**Caution**: Version **>=6.0.0** requires:
+ - `rxjs` **>=6.0.0**
+ - `@angular`  **>=6.0.0**
+
 ## Installation
 ```bash
 # install via npm
