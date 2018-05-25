@@ -1,0 +1,30 @@
+{
+  "name": "@exalif/ngx-breadcrumbs",
+  "version": "6.0.0",
+  "license": "MIT",
+  "description": "Angular 4+ breadcrumbs on top of native Angular router",
+  "author": {
+    "name": "Exalif",
+    "email": "noreply@nowebsite.com"
+  },
+  "homepage": "https://github.com/exalif/angular-libs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/exalif/angular-libs"
+  },
+  "keywords": [
+    "angular",
+    "angular6",
+    "breadcrumbs",
+    "routing"
+  ],
+  "dependencies": {
+    "lodash.template": "^4.4.0"
+  },
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/router": "^6.0.0-rc.0 || ^6.0.0",
+    "rxjs": "^6.0.0-rc.0 || ^6.0.0"
+  }
+}
