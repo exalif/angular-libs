@@ -18,7 +18,7 @@
     "@angular-devkit/core" "0.6.5"
     rxjs "^6.0.0"
 
-"@angular-devkit/build-angular@~0.10.0":
+"@angular-devkit/build-angular@0.10.1":
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/@angular-devkit/build-angular/-/build-angular-0.10.1.tgz#6eccfd2eec4778c65e6b38b20304bfa5f134a4f1"
   integrity sha512-yyXcM7Zk0+bmeEnmaJ/VtfhOfOoi0QCwoQD3NO3uHINdselxnrw/ng+L+i8Cp7/ow4jMjwQornBxBRUJ1G/NMQ==
@@ -6876,7 +6876,7 @@ source-map@0.5.x, source-map@^0.5.0, source-map@^0.5.6, source-map@^0.5.7, sourc
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
   integrity sha1-igOdLRAh0i0eoUyA2OpGi6LvP8w=
 
-source-map@0.7.3:
+source-map@0.7.3, source-map@^0.7.3:
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"
   integrity sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ==
@@ -7417,15 +7417,14 @@ ts-node@7.0.1:
     source-map-support "^0.5.6"
     yn "^2.0.0"
 
-tsickle@0.29.0:
-  version "0.29.0"
-  resolved "https://registry.yarnpkg.com/tsickle/-/tsickle-0.29.0.tgz#812806554bb46c1aa16eb0fe2a051da95ca8f5a4"
-  integrity sha512-JpID0Lv8/irRtPmqJJxb5fCwfZhjZeKmav9Zna7UjqVuJoSbI49Wue/c2PPybX1SbRrjl7bbI/JsCl0dSUJygA==
+tsickle@0.33.0:
+  version "0.33.0"
+  resolved "https://registry.yarnpkg.com/tsickle/-/tsickle-0.33.0.tgz#337a8a1abdbc8c9586010a566daf0cd135496fa7"
+  integrity sha512-ww4jhOaKhHHjZzs+dm381hffl1GOHhfA3LgbSoHMogWKm5mazpglVhMl1zJrSzOdhYHlZvrT7hRWCbGptzIpSA==
   dependencies:
     minimist "^1.2.0"
     mkdirp "^0.5.1"
-    source-map "^0.6.0"
-    source-map-support "^0.5.0"
+    source-map "^0.7.3"
 
 tsickle@^0.27.2:
   version "0.27.5"
