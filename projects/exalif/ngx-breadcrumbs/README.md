@@ -5,6 +5,10 @@ This package is a modified fork of original [ngx-breadcrumbs](https://github.com
 
 ## Requirements
 
+**Caution**: Version **>=7.0.0** requires:
+ - `rxjs` **>=6.3.0**
+ - `@angular`  **>=7.0.0**
+
 **Caution**: Version **>=6.0.0** requires:
  - `rxjs` **>=6.0.0**
  - `@angular`  **>=6.0.0**
