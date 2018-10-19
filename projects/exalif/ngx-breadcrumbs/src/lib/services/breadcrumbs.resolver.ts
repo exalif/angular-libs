@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot, UrlSegment } from '@angular/router';
 
 import { Observable, of } from 'rxjs';

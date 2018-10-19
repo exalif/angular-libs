@@ -1,7 +1,7 @@
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { BreadcrumbsService } from '../services/breadcrumbs.service';
 import { Breadcrumb } from '../models/breadcrumb';
