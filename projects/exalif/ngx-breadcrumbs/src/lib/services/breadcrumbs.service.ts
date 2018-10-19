@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router, RouterState } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 
-import { Observable, of, BehaviorSubject, Subscription, concat } from 'rxjs';
+import { Observable, of, BehaviorSubject, concat } from 'rxjs';
 
 import { filter, flatMap, distinct, toArray, first } from 'rxjs/operators';
 
