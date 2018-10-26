@@ -41,7 +41,7 @@ import { BreadcrumbsModule } from '@exalif/ngx-breadcrumbs';
 export class AppModule {}
 ```
 
-Place the `breadcrumbs` component, which will render the breadcrumbs, 
+Place the `lib-breadcrumbs` component, which will render the breadcrumbs, 
 somewhere in your markup.
 
 ```typescript
@@ -49,14 +49,14 @@ somewhere in your markup.
   selector: 'app-root',
   template: `
     <div class="container">
-      <breadcrumbs></breadcrumbs>
+      <lib-breadcrumbs></lib-breadcrumbs>
       <router-outlet></router-outlet>
     </div>`
 })
 export class AppComponent {}
 ```
 
-Usage of the `breadcrumbs` render component is optional. If a different 
+Usage of the `lib-breadcrumbs` render component is optional. If a different 
 markup output is desired, a custom component can be created that subscribes to 
 the `BreadcrumbsService.crumbs$` observable (also available through method `BreadcrumbsService.getCrumbs()`).
 
