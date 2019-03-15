@@ -1,0 +1,26 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "outDir": "./out-tsc/spec",
+    "module": "commonjs",
+    "target": "es5",
+    "baseUrl": "./",
+    "types": [
+      "jest",
+      "node"
+    ],
+    "paths": {
+      "@exalif/ngx-breadcrumbs": ["dist/exalif/ngx-breadcrumbs"],
+      "@exalif/ngx-breadcrumbs/*": ["dist/exalif/ngx-breadcrumbs/*"]
+    }
+  },
+  "include": [
+    "**/*.spec.ts",
+    "**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+

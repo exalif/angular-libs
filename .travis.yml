@@ -1,0 +1,18 @@
+sudo: required
+language: node_js
+node_js:
+  - "10"
+cache: yarn
+
+stages:
+  - test
+  - build
+
+jobs:
+  include:
+    - stage: test
+      script: npm run test:ci
+    - stage: build
+      script: npm run build:ngx-breadcrumbs
+    - stage: build
+      script: npm run build:demo
