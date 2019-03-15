@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build:demo": "ng build angular-libs-demo --prod",
     "build:ngx-breadcrumbs": "ng build @exalif/ngx-breadcrumbs",
+    "build:ngx-test-utils": "ng build @exalif/ngx-test-utils",
     "test": "jest --clearCache && jest --colors  --coverage",
     "test:ci": "jest --colors --coverage --silent",
     "test:watch": "jest --clearCache && jest --watch --colors --verbose false",
