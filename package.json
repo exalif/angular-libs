@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build:demo": "ng build angular-libs-demo",
+    "build:demo": "ng build angular-libs-demo --prod",
     "build:ngx-breadcrumbs": "ng build @exalif/ngx-breadcrumbs",
     "test": "jest --clearCache && jest --colors  --coverage",
     "test:ci": "jest --colors --coverage --silent",

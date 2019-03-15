@@ -1,0 +1,16 @@
+sudo: required
+language: node_js
+node_js:
+  - "10"
+
+stages:
+  - compile
+  - build
+
+jobs:
+  include:
+    - stage: test
+      script: npm run test:ci
+    - stage: build
+      script: npm run build:ngx-breadcrumbs
+      script: npm run build:demo
