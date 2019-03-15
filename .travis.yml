@@ -3,9 +3,9 @@ language: node_js
 node_js:
   - "10"
 
-stages:
-  - test
-  - build
+# stages:
+#   - test
+#   - build
 
 jobs:
   include:
