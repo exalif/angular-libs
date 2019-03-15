@@ -1,6 +1,7 @@
 sudo: required
 language: node_js
 node_js:
+  - "8"
   - "10"
 cache: yarn
 
@@ -18,5 +19,7 @@ jobs:
       script: npm run test:ci
     - stage: build
       script: npm run build:ngx-breadcrumbs
+    - stage: build
+      script: npm run build:ngx-test-utils
     - stage: build
       script: npm run build:demo
