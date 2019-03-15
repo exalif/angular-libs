@@ -18,37 +18,40 @@ export class JestUtils {
   }
 
   public static initJestBed = (configurationFunction) => {
-    const resetTestingModule = TestBed.resetTestingModule;
-    const preventAngularFromResetting = () => TestBed.resetTestingModule = () => TestBed;
-    let destroyFixture = null;
-    let init = false;
+    const originalAngularResetTestingModule = TestBed.resetTestingModule;
+    const preventAngularFromResettingTestBed = () => TestBed.resetTestingModule = () => TestBed;
+
+    let forceDestroyFixture = null;
+    let wasPreviouslyInitialized = false;
 
     beforeAll(async(() => {
-      resetTestingModule();
-      preventAngularFromResetting();
+      originalAngularResetTestingModule();
+      preventAngularFromResettingTestBed();
     }));
 
     beforeEach(async(() => {
-      if (!init) {
-        if (destroyFixture) {
-          destroyFixture();
+      if (!wasPreviouslyInitialized) {
+        if (forceDestroyFixture) {
+          forceDestroyFixture();
         }
 
         const fixture = configurationFunction();
 
-        destroyFixture = fixture.destroy.bind(fixture);
+        forceDestroyFixture = fixture.destroy.bind(fixture);
+
+        // Make original destroy inoperative
         fixture.destroy = () => { };
 
-        init = true;
+        wasPreviouslyInitialized = true;
       }
     }));
 
     afterAll(() => {
-      if (destroyFixture) {
-        destroyFixture();
+      if (forceDestroyFixture) {
+        forceDestroyFixture();
       }
 
-      resetTestingModule();
+      originalAngularResetTestingModule();
     });
   }
 
