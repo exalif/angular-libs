@@ -11,7 +11,8 @@ stages:
 jobs:
   include:
     - stage: test
-      - script: npm run test:ci
+      script: npm run test:ci
     - stage: build
-      - script: npm run build:ngx-breadcrumbs
-      - script: npm run build:demo
+      script: npm run build:ngx-breadcrumbs
+    - stage: build
+      script: npm run build:demo
