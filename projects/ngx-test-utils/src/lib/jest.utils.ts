@@ -9,7 +9,7 @@ export class JestUtils {
     }, {} as any);
   }
 
-  public static resetSpies = (...mockInstances: jest.Mocked<any>[]) => {
+  public static resetSpies = (...mockInstances: jest.Mocked<any>[]): void => {
     mockInstances.forEach(instance => {
       JestUtils.getAllMethodNames(instance).forEach((method) => {
         instance[method].mockClear();
@@ -17,7 +17,7 @@ export class JestUtils {
     });
   }
 
-  public static initJestBed = (configurationFunction) => {
+  public static initJestBed = (configurationFunction: Function): void => {
     const originalAngularResetTestingModule = TestBed.resetTestingModule;
     const preventAngularFromResettingTestBed = () => TestBed.resetTestingModule = () => TestBed;
 
@@ -55,11 +55,11 @@ export class JestUtils {
     });
   }
 
-  public static getAllMethodNames = (instance) => {
+  public static getAllMethodNames = (instance: object): Set<string | number | symbol> => {
     return new Set(Reflect.ownKeys(instance));
   }
 
-  public static getCallsSingleArgs = (...args: any[]) => {
+  public static getCallsSingleArgs = (...args: any[]): any[] => {
     const callsArgs = [];
 
     args.forEach(arg => {
