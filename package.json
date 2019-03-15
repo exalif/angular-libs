@@ -8,8 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:ngx-breadcrumbs": "npm run clean && npm run packagr:ngx-breadcrumbs",
-    "packagr:ngx-breadcrumbs": "ng-packagr -p projects/exalif/ngx-breadcrumbs/ng-package.prod.json"
+    "build:ngx-breadcrumbs": "ng-packagr -p projects/exalif/ngx-breadcrumbs/ng-package.prod.json"
   },
   "dependencies": {
     "@angular/common": "7.2.9",
