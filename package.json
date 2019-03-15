@@ -4,11 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build:demo": "ng build angular-libs-demo",
+    "build:ngx-breadcrumbs": "ng build @exalif/ngx-breadcrumbs",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "build:ngx-breadcrumbs": "ng-packagr -p projects/exalif/ngx-breadcrumbs/ng-package.prod.json"
+    "lint": "ng lint"
   },
   "dependencies": {
     "@angular/common": "7.2.9",
