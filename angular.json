@@ -3,24 +3,24 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "@exalif/ngx-breadcrumbs": {
-      "root": "projects/exalif/ngx-breadcrumbs",
-      "sourceRoot": "projects/exalif/ngx-breadcrumbs/src",
+    "ngx-breadcrumbs": {
+      "root": "projects/ngx-breadcrumbs",
+      "sourceRoot": "projects/ngx-breadcrumbs/src",
       "projectType": "library",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/exalif/ngx-breadcrumbs/tsconfig.lib.json",
-            "project": "projects/exalif/ngx-breadcrumbs/ng-package.json"
+            "tsConfig": "projects/ngx-breadcrumbs/tsconfig.lib.json",
+            "project": "projects/ngx-breadcrumbs/ng-package.json"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/exalif/ngx-breadcrumbs/tsconfig.lib.json"
+              "projects/ngx-breadcrumbs/tsconfig.lib.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -51,8 +51,7 @@
             "styles": [
               "projects/angular-libs-demo/src/styles.css"
             ],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -97,6 +96,33 @@
           "options": {
             "tsConfig": [
               "projects/angular-libs-demo/tsconfig.app.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-test-utils": {
+      "root": "projects/ngx-test-utils",
+      "sourceRoot": "projects/ngx-test-utils/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-test-utils/tsconfig.lib.json",
+            "project": "projects/ngx-test-utils/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-test-utils/tsconfig.lib.json",
+              "projects/ngx-test-utils/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

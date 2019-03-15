@@ -1,7 +1,7 @@
 {
-  "extends": "../../../tsconfig.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../out-tsc/lib",
+    "outDir": "../../out-tsc/lib",
     "target": "es2015",
     "module": "es2015",
     "moduleResolution": "node",
@@ -10,7 +10,6 @@
     "inlineSources": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
     "importHelpers": true,
     "types": [],
     "lib": [
@@ -19,19 +18,15 @@
     ]
   },
   "angularCompilerOptions": {
-    "annotateForClosureCompiler": false,
+    "annotateForClosureCompiler": true,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true,
-    "enableResourceInlining": true,
-    "preserveWhitespaces": false
+    "enableResourceInlining": true
   },
   "exclude": [
     "setupJest.ts",
-    "src/test.ts",
-    "**/*.spec.ts",
-    "**/*.stub.ts",
-    "**/*.mock.ts"
+    "**/*.spec.ts"
   ]
 }
