@@ -8,6 +8,10 @@ stages:
   - test
   - build
 
+branches:
+  only:
+  - master
+
 jobs:
   include:
     - stage: test
