@@ -48,6 +48,7 @@ export class JestUtils {
 
     afterAll(() => {
       if (forceDestroyFixture) {
+        // Force destroy fixture by calling stored original Angular destroy
         forceDestroyFixture();
       }
 
