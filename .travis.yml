@@ -4,7 +4,7 @@ node_js:
   - "10"
 
 stages:
-  - compile
+  - test
   - build
 
 jobs:
