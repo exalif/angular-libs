@@ -25,14 +25,15 @@ module.exports = {
     'html'
   ],
   moduleNameMapper: {
-    '@exalif/ngx-breadcrumbs/(.*)': '<rootDir>/dist/exalif/ngx-breadcrumbs/$1',
+    '@exalif/ngx-breadcrumbs/(.*)': '<rootDir>/dist/ngx-breadcrumbs/$1',
   },
   transformIgnorePatterns: [
     'node_modules/(?!@ngrx|@ngx-translate)'
   ],
   coverageReporters: ['html', 'text-summary', 'text'],
   collectCoverageFrom: [
-    'projects/exalif/ngx-breadcrumbs/src/**/*.ts',
+    'projects/ngx-breadcrumbs/src/**/*.ts',
+    'projects/ngx-test-utils/src/**/*.ts',
     'projects/angular-libs-demo/src/app/**/*.ts',
 
     // Exclusions

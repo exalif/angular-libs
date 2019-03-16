@@ -11,8 +11,10 @@
       "node"
     ],
     "paths": {
-      "@exalif/ngx-breadcrumbs": ["dist/exalif/ngx-breadcrumbs"],
-      "@exalif/ngx-breadcrumbs/*": ["dist/exalif/ngx-breadcrumbs/*"]
+      "@exalif/ngx-breadcrumbs": ["dist/ngx-breadcrumbs"],
+      "@exalif/ngx-breadcrumbs/*": ["dist/ngx-breadcrumbs/*"],
+      "@exalif/ngx-test-utils": ["dist/ngx-test-utils"],
+      "@exalif/ngx-test-utils/*": ["dist/ngx-test-utils/*"]
     }
   },
   "include": [
