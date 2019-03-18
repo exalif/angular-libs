@@ -17,7 +17,7 @@ export class JestUtils {
     });
   }
 
-  public static initJestBed = (configurationFunction: Function): void => {
+  public static initJestBed = (configurationFunction): void => {
     const originalAngularResetTestingModule = TestBed.resetTestingModule;
     const preventAngularFromResettingTestBed = () => TestBed.resetTestingModule = () => TestBed;
 
