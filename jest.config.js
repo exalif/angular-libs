@@ -26,6 +26,8 @@ module.exports = {
   ],
   moduleNameMapper: {
     '@exalif/ngx-breadcrumbs/(.*)': '<rootDir>/dist/ngx-breadcrumbs/$1',
+    '@exalif/ngx-test-utils/(.*)': '<rootDir>/dist/ngx-test-utils/$1',
+    '@exalif/ngx-file-upload/(.*)': '<rootDir>/dist/ngx-file-upload/$1',
   },
   transformIgnorePatterns: [
     'node_modules/(?!@ngrx|@ngx-translate)'
@@ -34,6 +36,7 @@ module.exports = {
   collectCoverageFrom: [
     'projects/ngx-breadcrumbs/src/**/*.ts',
     'projects/ngx-test-utils/src/**/*.ts',
+    'projects/ngx-file-upload/src/**/*.ts',
     'projects/angular-libs-demo/src/app/**/*.ts',
 
     // Exclusions

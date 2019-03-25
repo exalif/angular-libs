@@ -29,10 +29,10 @@
       "@exalif/ngx-test-utils/*": [
         "dist/ngx-test-utils/*"
       ],
-      "ngx-file-upload": [
+      "@exalif/ngx-file-upload": [
         "dist/ngx-file-upload"
       ],
-      "ngx-file-upload/*": [
+      "@exalif/ngx-file-upload/*": [
         "dist/ngx-file-upload/*"
       ]
     }
