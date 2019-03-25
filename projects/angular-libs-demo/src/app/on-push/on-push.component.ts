@@ -2,8 +2,13 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { Uploader, UploadState, UploadxOptions, UploadxService } from '../../uploadx';
+
 import { AuthService } from '../auth.service';
+
+import { UploadState } from 'projects/ngx-file-upload/src/lib/models/upload-state';
+import { Uploader } from 'projects/ngx-file-upload/src/lib/utils/uploader';
+import { UploadxOptions } from 'projects/ngx-file-upload/src/lib/models/upload-options';
+import { UploadxService } from 'projects/ngx-file-upload/src/lib/uploadx.service';
 
 @Component({
   selector: 'app-on-push',
@@ -11,36 +16,41 @@ import { AuthService } from '../auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OnPushComponent implements OnInit {
-  state: Observable<UploadState>;
-  uploads$: Observable<Uploader[]>;
-  options: UploadxOptions = {
+  public state: Observable<UploadState>;
+  public uploads$: Observable<Uploader[]>;
+  public options: UploadxOptions = {
     url: `${environment.api}/upload?uploadType=uploadx`,
     token: 'sometoken',
     chunkSize: 1024 * 256 * 8
   };
-  constructor(private uploadService: UploadxService, private auth: AuthService) {}
 
-  ngOnInit() {
+  constructor(
+    private uploadService: UploadxService,
+    private auth: AuthService
+  ) { }
+
+  public ngOnInit(): void {
     this.state = this.uploadService.init(this.options);
     this.uploads$ = this.state.pipe(map(() => this.uploadService.queue));
   }
-  cancelAll() {
+
+  public cancelAll(): void {
     this.uploadService.control({ action: 'cancelAll' });
   }
 
-  uploadAll() {
+  public uploadAll(): void {
     this.uploadService.control({ action: 'uploadAll' });
   }
 
-  pauseAll() {
+  public pauseAll(): void {
     this.uploadService.control({ action: 'pauseAll' });
   }
 
-  pause(uploadId: string) {
+  public pause(uploadId: string): void {
     this.uploadService.control({ action: 'pause', uploadId });
   }
 
-  upload(uploadId: string) {
+  public upload(uploadId: string): void {
     this.uploadService.control({ action: 'upload', uploadId });
   }
 }
