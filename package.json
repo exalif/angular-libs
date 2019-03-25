@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:all": "concurrently --kill-others -s \"first\" \"npm run server:dev\" \"npm run start\"",
     "build:demo": "ng build angular-libs-demo --prod",
     "build:ngx-breadcrumbs": "ng build ngx-breadcrumbs",
     "build:ngx-test-utils": "ng build ngx-test-utils",
@@ -11,7 +12,9 @@
     "test": "jest --clearCache && jest --colors  --coverage",
     "test:ci": "jest --colors --coverage --silent",
     "test:watch": "jest --clearCache && jest --watch --colors --verbose false",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "upload-server": "node ./server/index.js",
+    "upload-server:dev": "cd ./server && NODE_ENV=development nodemon ."
   },
   "dependencies": {
     "@angular/animations": "7.2.9",
@@ -35,7 +38,12 @@
     "@angular/language-service": "7.2.9",
     "@types/jest": "24.0.11",
     "@types/node": "11.11.3",
+    "body-parser": "1.18.3",
+    "bytes": "3.1.0",
     "codelyzer": "4.5.0",
+    "concurrently": "4.1.0",
+    "cors": "2.8.5",
+    "express": "4.16.4",
     "istanbul-reports": "2.1.1",
     "jest": "24.5.0",
     "jest-environment-jsdom-thirteen": "1.0.0",
@@ -44,7 +52,9 @@
     "jest-resolve": "24.5.0",
     "mocha": "6.0.2",
     "mochawesome": "3.1.1",
+    "morgan": "1.9.1",
     "ng-packagr": "4.7.1",
+    "nodemon": "1.18.10",
     "ts-node": "7.0.1",
     "tsickle": "0.34.0",
     "tslib": "1.9.3",
