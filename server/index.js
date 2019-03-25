@@ -54,11 +54,13 @@ const server = app.listen(PORT, () => {
   console.log('MAX_FILE_SIZE: ', MAX_FILE_SIZE);
   console.log('MAX_CHUNK_SIZE: ', MAX_CHUNK_SIZE);
 });
+
 process.on('SIGTERM', () => {
   server.close(() => {
     process.exit(0);
   });
 });
+
 // ----------------------------  MDLWRs  ----------------------------
 
 /**
@@ -68,50 +70,64 @@ async function fileChunk(req, res, next) {
   if (!req.query.upload_id) {
     return next();
   }
+
   const upload_id = req.query.upload_id;
   const upload = uploadsDB.findById(upload_id);
+
   if (!upload) {
     return next(404);
   }
+
   // check file/chunk size limit
   if (+req.get('content-length') > MAX_CHUNK_SIZE) {
     return next(413);
   }
+
   res.set('Cache-Control', 'no-store');
+
   const contentRange = req.get('content-range');
   // -------- non chunking upload --------
   if (!contentRange) {
     return upload.fileStream.write(req.body, async () => {
       upload.fileStream.end();
       const md5 = await uploadsDB.ready(upload_id);
+
       res.json({ ...upload.metadata, md5 });
     });
   }
+
   // ---------- return offset for next chunk ----------
   if (contentRange.includes('*')) {
     const [, total] = contentRange.match(/\*\/(\d+)/g);
     if (+total === upload.fileStream.bytesWritten) {
       const md5 = await uploadsDB.ready(upload_id);
+
       res.json({ ...upload.metadata, md5 });
     } else {
       res.set('Range', `bytes=0-${upload.fileStream.bytesWritten - 1}`);
+
       return res.status(308).send('Resume Incomplete');
     }
   }
+
   // --------- append chunk data to file ---------
   const [fm, start, end, total] = contentRange.match(/(\d+)-(\d+)\/(\d+)/).map(s => +s);
+
   if (total !== upload.size) {
     return next(400);
   }
+
   if (end + 1 < total) {
     upload.fileStream.write(req.body, () => {
       res.set('Range', `bytes=0-${upload.fileStream.bytesWritten - 1}`);
+
       return res.status(308).send('Resume Incomplete');
     });
   } else {
     return upload.fileStream.write(req.body, async () => {
       upload.fileStream.end();
       const md5 = await uploadsDB.ready(upload_id);
+
       res.json({ ...upload.metadata, md5 });
     });
   }
@@ -125,11 +141,14 @@ function newFile(req, res, next) {
   if (+req.get('x-upload-content-length') > MAX_FILE_SIZE) {
     return next(413);
   }
+
   // optional: check  mime type
   if (!new RegExp(ALLOWED_MIME.join('|')).test(req.get('x-upload-content-type'))) {
     return next(415);
   }
+
   const dstpath = path.join(UPLOAD_DIR, req.body.name || req.body.title);
+
   // overwrite file
   try {
     fs.unlinkSync(dstpath);
@@ -146,6 +165,7 @@ function newFile(req, res, next) {
   const upload_id = uploadsDB.save(upload).id;
   const query = `?upload_id=${upload_id}`;
   const location = `${req.protocol}://${req.hostname}:${PORT}${req.baseUrl}/${query}`;
+
   res.location(location);
   res.status(200).json({ location });
 }
@@ -157,11 +177,14 @@ function del(req, res, next) {
   if (!req.query.upload_id) {
     return next(404);
   }
+
   const upload_id = req.query.upload_id;
   const upload = uploadsDB.findById(upload_id);
+
   if (!upload) {
     return next(404);
   }
+
   try {
     fs.unlinkSync(upload.dstpath);
     uploadsDB.deleted(upload_id);
@@ -180,6 +203,7 @@ function errorHandler(err, req, res, next) {
     413: 'Request Entity Too Large',
     415: 'Unsupported Media Type'
   };
+
   if (typeof err === 'number') {
     res.status(err).json({
       error: {

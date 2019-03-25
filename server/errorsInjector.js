@@ -8,6 +8,7 @@ function errorsInjector(req, res, next) {
   if (Math.random() < 0.1) {
     // return req.socket.end();
     res.setHeader('Connection', 'close');
+
     return res.end();
   }
   if (Math.random() < 0.1) {
