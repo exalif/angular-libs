@@ -86,6 +86,7 @@ async function fileChunk(req, res, next) {
   res.set('Cache-Control', 'no-store');
 
   const contentRange = req.get('content-range');
+
   // -------- non chunking upload --------
   if (!contentRange) {
     return upload.fileStream.write(req.body, async () => {
@@ -99,6 +100,7 @@ async function fileChunk(req, res, next) {
   // ---------- return offset for next chunk ----------
   if (contentRange.includes('*')) {
     const [, total] = contentRange.match(/\*\/(\d+)/g);
+
     if (+total === upload.fileStream.bytesWritten) {
       const md5 = await uploadsDB.ready(upload_id);
 
