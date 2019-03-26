@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, timer } from 'rxjs';
 
 import { Uploader } from './utils/uploader';
 import { NgxFileUploadState } from './models/upload-state';
@@ -31,7 +31,7 @@ export class NgxFileUploadService {
   }
 
   public stateChange = (evt: NgxFileUploadState): void => {
-    setTimeout(() => {
+    timer().subscribe(() => {
       this.eventsStream.next(evt);
     });
   }
@@ -77,7 +77,6 @@ export class NgxFileUploadService {
   }
 
   /**
-   *
    * Create Uploader for the file and add to the queue
    */
   public handleFile(file: File): void {
@@ -86,6 +85,16 @@ export class NgxFileUploadService {
     uploader.status = 'added';
 
     this.autoUploadFiles();
+  }
+
+  /**
+   * Get running processes number
+   */
+
+  public runningProcess(): number {
+    return this.queue.filter(
+      (uploader: Uploader) => uploader.status === 'uploading' || uploader.status === 'retry'
+    ).length;
   }
 
   /**
@@ -147,11 +156,5 @@ export class NgxFileUploadService {
       .forEach((uploader: Uploader) => {
         uploader.upload();
       });
-  }
-
-  public runningProcess(): number {
-    return this.queue.filter(
-      (uploader: Uploader) => uploader.status === 'uploading' || uploader.status === 'retry'
-    ).length;
   }
 }
