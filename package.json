@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:all": "concurrently --kill-others -s \"first\" \"npm run server:dev\" \"npm run start\"",
+    "start:all": "concurrently --kill-others -s \"first\" \"npm run upload-server:dev\" \"npm run start\"",
     "build:demo": "ng build angular-libs-demo --prod",
     "build:ngx-breadcrumbs": "ng build ngx-breadcrumbs",
     "build:ngx-test-utils": "ng build ngx-test-utils",
