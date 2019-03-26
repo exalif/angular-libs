@@ -8,7 +8,7 @@ import { Ufile } from '../ufile';
 import { AuthService, tokenGetter } from '../auth.service';
 import { UploadState } from 'projects/ngx-file-upload/src/lib/models/upload-state';
 import { UploadxOptions } from 'projects/ngx-file-upload/src/lib/models/upload-options';
-import { UploadxService } from 'projects/ngx-file-upload/src/lib/uploadx.service';
+import { NgxFileUploadService } from 'projects/ngx-file-upload/src/lib/ngx-file-upload.service';
 
 @Component({
   selector: 'app-service-way',
@@ -27,7 +27,7 @@ export class ServiceWayComponent implements OnDestroy, OnInit {
   private ngUnsubscribe: Subject<any> = new Subject();
 
   constructor(
-    private uploadService: UploadxService,
+    private uploadService: NgxFileUploadService,
     private auth: AuthService
   ) { }
 

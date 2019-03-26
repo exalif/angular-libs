@@ -8,7 +8,7 @@ import { AuthService } from '../auth.service';
 import { UploadState } from 'projects/ngx-file-upload/src/lib/models/upload-state';
 import { Uploader } from 'projects/ngx-file-upload/src/lib/utils/uploader';
 import { UploadxOptions } from 'projects/ngx-file-upload/src/lib/models/upload-options';
-import { UploadxService } from 'projects/ngx-file-upload/src/lib/uploadx.service';
+import { NgxFileUploadService } from 'projects/ngx-file-upload/src/lib/ngx-file-upload.service';
 
 @Component({
   selector: 'app-on-push',
@@ -25,7 +25,7 @@ export class OnPushComponent implements OnInit {
   };
 
   constructor(
-    private uploadService: UploadxService,
+    private uploadService: NgxFileUploadService,
     private auth: AuthService
   ) { }
 

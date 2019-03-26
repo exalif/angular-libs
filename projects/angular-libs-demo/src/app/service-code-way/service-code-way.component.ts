@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 import { Ufile } from '../ufile';
 import { UploadState } from 'projects/ngx-file-upload/src/lib/models/upload-state';
 import { UploadxOptions } from 'projects/ngx-file-upload/src/lib/models/upload-options';
-import { UploadxService } from 'projects/ngx-file-upload/src/lib/uploadx.service';
+import { NgxFileUploadService } from 'projects/ngx-file-upload/src/lib/ngx-file-upload.service';
 
 @Component({
   selector: 'app-service-way',
@@ -30,7 +30,7 @@ export class ServiceCodeWayComponent implements OnDestroy, OnInit {
   @ViewChild('file', { read: ElementRef }) public fileInput: ElementRef;
 
   constructor(
-    private uploadService: UploadxService
+    private uploadService: NgxFileUploadService
   ) { }
 
   public ngOnInit(): void {

@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
-import { NgxFileUploadComponent } from './ngx-file-upload.component';
+import { CommonModule } from '@angular/common';
+
+import { NgxFileUploadDirective } from './ngx-file-upload.directive';
 
 @NgModule({
-  declarations: [NgxFileUploadComponent],
   imports: [
+    CommonModule
   ],
-  exports: [NgxFileUploadComponent]
+  declarations: [NgxFileUploadDirective],
+  exports: [NgxFileUploadDirective]
 })
 export class NgxFileUploadModule { }

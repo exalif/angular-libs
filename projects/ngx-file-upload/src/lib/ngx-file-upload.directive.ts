@@ -11,44 +11,51 @@ import {
 
 import { Observable } from 'rxjs';
 
-import { UploadxService } from './uploadx.service';
+import { NgxFileUploadService } from './ngx-file-upload.service';
 import { UploadxOptions } from './models/upload-options';
 import { UploadxControlEvent } from './models/control-event';
 import { UploadState } from './models/upload-state';
 
 @Directive({
-  selector: '[uploadx]'
+  selector: '[ngxfileupload]'
 })
-export class UploadxDirective implements OnInit, OnDestroy {
-  listenerFn: () => void;
-  @Output()
-  uploadxState = new EventEmitter();
+export class NgxFileUploadDirective implements OnInit, OnDestroy {
   @Input()
-  uploadx: UploadxOptions;
+  public ngxfileupload: UploadxOptions;
+
   @Input()
-  set uploadxAction(ctrlEvent: UploadxControlEvent) {
+  set uploadAction(ctrlEvent: UploadxControlEvent) {
     if (ctrlEvent && this.uploadService) {
       this.uploadService.control(ctrlEvent);
     }
   }
+
+  @Output()
+  public uploadState: EventEmitter<Observable<UploadState>> = new EventEmitter();
+
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
-    private uploadService: UploadxService
-  ) {}
+    private uploadService: NgxFileUploadService
+  ) { }
 
-  ngOnInit() {
-    if (this.uploadx) {
-      if (this.uploadx.allowedTypes) {
+  public listenerFn: () => void;
+
+  public ngOnInit(): void {
+    if (this.ngxfileupload) {
+      if (this.ngxfileupload.allowedTypes) {
         this.renderer.setAttribute(
           this.elementRef.nativeElement,
           'accept',
-          this.uploadx.allowedTypes
+          this.ngxfileupload.allowedTypes
         );
       }
-      this.uploadService.init(this.uploadx);
+
+      this.uploadService.init(this.ngxfileupload);
     }
-    this.uploadxState.emit(<Observable<UploadState>>this.uploadService.eventsStream.asObservable());
+
+    this.uploadState.emit(this.uploadService.eventsStream.asObservable());
+
     this.listenerFn = this.renderer.listen(
       this.elementRef.nativeElement,
       'change',
@@ -56,15 +63,15 @@ export class UploadxDirective implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     if (this.listenerFn) {
       this.listenerFn();
     }
   }
 
-  fileListener = () => {
+  public fileListener(): void {
     if (this.elementRef.nativeElement.files) {
       this.uploadService.handleFileList(this.elementRef.nativeElement.files);
     }
-  };
+  }
 }

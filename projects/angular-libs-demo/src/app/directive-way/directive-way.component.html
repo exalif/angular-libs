@@ -7,9 +7,9 @@
           #files
           (click)="files.value = ''"
           type="file"
-          [uploadx]="options"
-          [uploadxAction]="control"
-          (uploadxState)="onUpload($event)"
+          [ngxfileupload]="options"
+          [uploadAction]="control"
+          (uploadState)="onUpload($event)"
           multiple
           style="display:none"
         />
