@@ -1,6 +1,6 @@
-import { UploadStatus } from './upload-status';
+import { NgxFileUploadStatus } from './upload-status';
 
-export interface UploadState {
+export interface NgxFileUploadState {
   file: File;
   name: string;
   progress: number;
@@ -10,7 +10,7 @@ export interface UploadState {
   responseStatus: number;
   size: number;
   speed: number;
-  status: UploadStatus;
+  status: NgxFileUploadStatus;
   uploadId: string;
   URI: string;
 }

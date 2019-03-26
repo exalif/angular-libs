@@ -1,6 +1,6 @@
-import { UploadState } from './upload-state';
+import { NgxFileUploadState } from './upload-state';
 
 /**
  *  Read only upload stream events
  */
-export type UploadEvent = UploadState;
+export type NgxFileUploadEvent = NgxFileUploadState;

@@ -1,7 +1,7 @@
 /**
  * Global Options
  */
-export class UploadxOptions {
+export class NgxFileUploadOptions {
   /**
    *  Set "accept" attribute
    * @example
@@ -59,7 +59,7 @@ export class UploadxOptions {
   /**
    * Upload API URL
    * @defaultValue '/upload/'
-   * @deprecated Use {@link UploadxOptions.endpoint} instead.
+   * @deprecated Use {@link NgxFileUploadOptions.endpoint} instead.
    */
   url?: string;
 

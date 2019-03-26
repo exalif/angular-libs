@@ -11,51 +11,44 @@ import {
 
 import { Observable } from 'rxjs';
 
-import { NgxFileUploadService } from './ngx-file-upload.service';
-import { UploadxOptions } from './models/upload-options';
-import { UploadxControlEvent } from './models/control-event';
-import { UploadState } from './models/upload-state';
+import { UploadxService } from './ngx-file-upload.service';
+import { NgxFileUploadOptions } from './models/upload-options';
+import { NgxFileUploadControlEvent } from './models/control-event';
+import { NgxFileUploadState } from './models/upload-state';
 
 @Directive({
-  selector: '[ngxfileupload]'
+  selector: '[ngxFileUpload]'
 })
 export class NgxFileUploadDirective implements OnInit, OnDestroy {
+  listenerFn: () => void;
+  @Output()
+  fileUploadState = new EventEmitter();
   @Input()
-  public ngxfileupload: UploadxOptions;
-
+  ngxFileUpload: NgxFileUploadOptions;
   @Input()
-  set uploadAction(ctrlEvent: UploadxControlEvent) {
+  set fileUploadAction(ctrlEvent: NgxFileUploadControlEvent) {
     if (ctrlEvent && this.uploadService) {
       this.uploadService.control(ctrlEvent);
     }
   }
-
-  @Output()
-  public uploadState: EventEmitter<Observable<UploadState>> = new EventEmitter();
-
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
-    private uploadService: NgxFileUploadService
+    private uploadService: UploadxService
   ) { }
 
-  public listenerFn: () => void;
-
-  public ngOnInit(): void {
-    if (this.ngxfileupload) {
-      if (this.ngxfileupload.allowedTypes) {
+  ngOnInit() {
+    if (this.ngxFileUpload) {
+      if (this.ngxFileUpload.allowedTypes) {
         this.renderer.setAttribute(
           this.elementRef.nativeElement,
           'accept',
-          this.ngxfileupload.allowedTypes
+          this.ngxFileUpload.allowedTypes
         );
       }
-
-      this.uploadService.init(this.ngxfileupload);
+      this.uploadService.init(this.ngxFileUpload);
     }
-
-    this.uploadState.emit(this.uploadService.eventsStream.asObservable());
-
+    this.fileUploadState.emit(<Observable<NgxFileUploadState>>this.uploadService.eventsStream.asObservable());
     this.listenerFn = this.renderer.listen(
       this.elementRef.nativeElement,
       'change',
@@ -63,13 +56,13 @@ export class NgxFileUploadDirective implements OnInit, OnDestroy {
     );
   }
 
-  public ngOnDestroy(): void {
+  ngOnDestroy() {
     if (this.listenerFn) {
       this.listenerFn();
     }
   }
 
-  public fileListener(): void {
+  fileListener = () => {
     if (this.elementRef.nativeElement.files) {
       this.uploadService.handleFileList(this.elementRef.nativeElement.files);
     }

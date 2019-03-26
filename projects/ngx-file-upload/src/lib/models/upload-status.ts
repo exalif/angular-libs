@@ -1,4 +1,4 @@
-export type UploadStatus =
+export type NgxFileUploadStatus =
   | 'added'
   | 'queue'
   | 'uploading'

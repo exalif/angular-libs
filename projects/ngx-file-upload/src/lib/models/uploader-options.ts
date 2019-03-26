@@ -1,6 +1,6 @@
-import { UploadItem } from './upload-item';
+import { NgxFileUploadItem } from './upload-item';
 
-export interface UploaderOptions extends UploadItem {
+export interface NgxFileUploaderOptions extends NgxFileUploadItem {
   maxRetryAttempts: number;
   chunkSize?: number;
   withCredentials?: boolean;

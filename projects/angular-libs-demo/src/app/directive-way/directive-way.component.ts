@@ -3,31 +3,26 @@ import { Component, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { environment } from '../../environments/environment';
-
 import { Ufile } from '../ufile';
-import { UploadxOptions } from 'projects/ngx-file-upload/src/lib/models/upload-options';
-import { UploadxControlEvent } from 'projects/ngx-file-upload/src/lib/models/control-event';
-import { UploadState } from 'projects/ngx-file-upload/src/lib/models/upload-state';
+import { NgxFileUploadOptions, NgxFileUploadControlEvent, NgxFileUploadState } from '../../../../ngx-file-upload/src/public_api';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-directive-way',
   templateUrl: './directive-way.component.html'
 })
 export class DirectiveWayComponent implements OnDestroy {
-  public control: UploadxControlEvent;
-  public state: Observable<UploadState>;
-  public uploads: Ufile[];
-  public options: UploadxOptions;
-
+  control: NgxFileUploadControlEvent;
+  state: Observable<NgxFileUploadState>;
+  uploads: Ufile[];
+  options: NgxFileUploadOptions;
   private ngUnsubscribe: Subject<any> = new Subject();
-
   constructor() {
     this.uploads = [];
     this.options = {
       concurrency: 2,
       allowedTypes: 'image/*,video/*',
-      url: `${environment.api}/upload?uploadType=uploadx`,
+      url: `${environment.api}/upload?uploadType=ngx-file-upload`,
       token: () => {
         return 'sometoken';
       },
@@ -41,37 +36,29 @@ export class DirectiveWayComponent implements OnDestroy {
     };
   }
 
-  public ngOnDestroy(): void {
+  ngOnDestroy() {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
-
-  public cancelAll(): void {
+  cancelAll() {
     this.control = { action: 'cancelAll' };
   }
-
-  public uploadAll(): void {
+  uploadAll() {
     this.control = { action: 'uploadAll' };
   }
-
-  public pauseAll(): void {
+  pauseAll() {
     this.control = { action: 'pauseAll' };
   }
-
-  public pause(uploadId: string): void {
+  pause(uploadId: string) {
     this.control = { action: 'pause', uploadId };
   }
-
-  public upload(uploadId: string): void {
+  upload(uploadId: string) {
     this.control = { action: 'upload', uploadId };
   }
-
-  public onUpload(uploadsOutStream: Observable<UploadState>): void {
+  onUpload(uploadsOutStream: Observable<NgxFileUploadState>) {
     this.state = uploadsOutStream;
-
-    uploadsOutStream.pipe(takeUntil(this.ngUnsubscribe)).subscribe((ufile: UploadState) => {
+    uploadsOutStream.pipe(takeUntil(this.ngUnsubscribe)).subscribe((ufile: NgxFileUploadState) => {
       const index = this.uploads.findIndex(f => f.uploadId === ufile.uploadId);
-
       if (ufile.status === 'added') {
         this.uploads.push(new Ufile(ufile));
       } else {

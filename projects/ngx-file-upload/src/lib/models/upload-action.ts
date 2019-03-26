@@ -1,4 +1,4 @@
-export type UploadAction =
+export type NgxFileUploadAction =
   | 'create'
   | 'refreshToken'
   | 'uploadAll'

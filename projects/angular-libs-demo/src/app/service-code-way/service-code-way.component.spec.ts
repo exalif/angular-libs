@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { UploadxService } from '../../uploadx';
+import { UploadxService } from '../../../../ngx-file-upload/src/lib';
 import { ServiceCodeWayComponent } from './service-code-way.component';
 
 describe('ServiceCodeWayComponent', () => {

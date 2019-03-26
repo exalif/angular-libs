@@ -1,14 +1,14 @@
-import { UploadAction } from './upload-action';
-import { UploadItem } from './upload-item';
+import { NgxFileUploadItem } from './upload-item';
+import { NgxFileUploadAction } from './upload-action';
 
-export interface UploadxControlEvent {
+export interface NgxFileUploadControlEvent {
   token?: string | (() => string);
-  action: UploadAction;
+  action: NgxFileUploadAction;
 
   /**
    * override global options
    */
-  itemOptions?: UploadItem;
+  itemOptions?: NgxFileUploadItem;
 
   /** Upload unique identifier */
   uploadId?: string;

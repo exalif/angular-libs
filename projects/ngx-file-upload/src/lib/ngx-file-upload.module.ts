@@ -4,9 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NgxFileUploadDirective } from './ngx-file-upload.directive';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [NgxFileUploadDirective],
   exports: [NgxFileUploadDirective]
 })

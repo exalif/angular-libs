@@ -1,4 +1,4 @@
-export interface UploadItem {
+export interface NgxFileUploadItem {
   /**
    * Upload API initial method
    * @defaultValue 'POST'
@@ -19,7 +19,7 @@ export interface UploadItem {
   /**
    * Upload API URL
    * @defaultValue '/upload/'
-   * @deprecated Use {@link UploadItem.endpoint} instead.
+   * @deprecated Use {@link NgxFileUploadItem.endpoint} instead.
    */
   url?: string;
 

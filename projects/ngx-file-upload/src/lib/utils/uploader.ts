@@ -11,16 +11,16 @@ import { unfunc } from './unfunc';
 import { parseJson } from './parse-json';
 import { getKeyFromResponse } from './get-key-from-response';
 
-import { UploadStatus } from '../models/upload-status';
-import { UploadItem } from '../models/upload-item';
-import { UploadState } from '../models/upload-state';
-import { UploaderOptions } from '../models/uploader-options';
+import { NgxFileUploadStatus } from '../models/upload-status';
+import { NgxFileUploadItem } from '../models/upload-item';
+import { NgxFileUploadState } from '../models/upload-state';
+import { NgxFileUploaderOptions } from '../models/uploader-options';
 
 export class Uploader {
   headers: { [key: string]: string } | null;
   metadata: { [key: string]: any };
   endpoint: string;
-  private _status: UploadStatus;
+  private _status: NgxFileUploadStatus;
   private retry = new BackoffRetry();
   private startTime: number;
   progress: number;
@@ -39,9 +39,9 @@ export class Uploader {
   private _xhr_: XMLHttpRequest;
   private chunkSize = 1_048_576;
   private maxRetryAttempts = 3;
-  private stateChange: (evt: UploadState) => void;
+  private stateChange: (evt: NgxFileUploadState) => void;
 
-  set status(s: UploadStatus) {
+  set status(s: NgxFileUploadStatus) {
     if (this._status === 'cancelled' || this._status === 'complete') {
       return;
     }
@@ -64,7 +64,7 @@ export class Uploader {
   /**
    * Creates an instance of Uploader.
    */
-  constructor(private readonly file: File, public options: UploaderOptions) {
+  constructor(private readonly file: File, public options: NgxFileUploaderOptions) {
     this.uploadId = Math.random()
       .toString(36)
       .substring(2, 15);
@@ -78,7 +78,7 @@ export class Uploader {
   /**
    * configure or reconfigure uploader
    */
-  configure(item = {} as UploadItem): void {
+  configure(item = {} as NgxFileUploadItem): void {
     const { metadata, headers, token, endpoint } = item;
     this.metadata = {
       name: this.name,
@@ -98,7 +98,7 @@ export class Uploader {
    * Emit current state
    */
   private notifyState(): void {
-    const state: UploadState = {
+    const state: NgxFileUploadState = {
       file: this.file,
       name: this.name,
       progress: this.progress,
@@ -172,7 +172,7 @@ export class Uploader {
   /**
    * Initiate upload
    */
-  async upload(item?: UploadItem | undefined): Promise<void> {
+  async upload(item?: NgxFileUploadItem | undefined): Promise<void> {
     if (item) this.configure(item);
     if (this._status === 'cancelled' || this._status === 'complete' || this._status === 'paused') {
       return;
