@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { UploadxService } from '../../../../ngx-file-upload/src/lib';
+import { NgxFileUploadService } from '../../../../ngx-file-upload/src/lib';
 import { ServiceWayComponent } from './service-way.component';
 
 describe('ServiceWayComponent', () => {
@@ -21,7 +21,7 @@ describe('ServiceWayComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: Observable, useValue: observableStub },
-        { provide: UploadxService, useValue: uploadServiceStub }
+        { provide: NgxFileUploadService, useValue: uploadServiceStub }
       ]
     });
     fixture = TestBed.createComponent(ServiceWayComponent);
@@ -35,8 +35,8 @@ describe('ServiceWayComponent', () => {
   // xdescribe('onUpload', () => {
   //   it('makes expected calls', () => {
   //     const observableStub: Observable<any> = fixture.debugElement.injector.get(Observable);
-  //     const uploadServiceStub: UploadxService =
-  //       fixture.debugElement.injector.get(UploadxService);
+  //     const uploadServiceStub: NgxFileUploadService =
+  //       fixture.debugElement.injector.get(NgxFileUploadService);
   //     spyOn(uploadServiceStub, 'control');
   //     comp.onUpload(observableStub);
   //     expect(uploadServiceStub.control).toHaveBeenCalled();
@@ -45,7 +45,7 @@ describe('ServiceWayComponent', () => {
 
   describe('cancelAll', () => {
     it('makes expected calls', () => {
-      const uploadServiceStub: UploadxService = fixture.debugElement.injector.get(UploadxService);
+      const uploadServiceStub: NgxFileUploadService = fixture.debugElement.injector.get(NgxFileUploadService);
       spyOn(uploadServiceStub, 'control');
       comp.cancelAll();
       expect(uploadServiceStub.control).toHaveBeenCalled();
@@ -54,7 +54,7 @@ describe('ServiceWayComponent', () => {
 
   describe('uploadAll', () => {
     it('makes expected calls', () => {
-      const uploadServiceStub: UploadxService = fixture.debugElement.injector.get(UploadxService);
+      const uploadServiceStub: NgxFileUploadService = fixture.debugElement.injector.get(NgxFileUploadService);
       spyOn(uploadServiceStub, 'control');
       comp.uploadAll();
       expect(uploadServiceStub.control).toHaveBeenCalled();
@@ -63,7 +63,7 @@ describe('ServiceWayComponent', () => {
 
   describe('pauseAll', () => {
     it('makes expected calls', () => {
-      const uploadServiceStub: UploadxService = fixture.debugElement.injector.get(UploadxService);
+      const uploadServiceStub: NgxFileUploadService = fixture.debugElement.injector.get(NgxFileUploadService);
       spyOn(uploadServiceStub, 'control');
       comp.pauseAll();
       expect(uploadServiceStub.control).toHaveBeenCalled();

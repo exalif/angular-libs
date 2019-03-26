@@ -3,13 +3,13 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { UploadxService } from '../../../../ngx-file-upload/src/lib';
+import { NgxFileUploadService } from '../../../../ngx-file-upload/src/lib';
 import { ServiceCodeWayComponent } from './service-code-way.component';
 
 describe('ServiceCodeWayComponent', () => {
   let comp: ServiceCodeWayComponent;
   let fixture: ComponentFixture<ServiceCodeWayComponent>;
-  let uploadService: UploadxService;
+  let uploadService: NgxFileUploadService;
 
   beforeEach(() => {
     const observableStub = {};
@@ -23,11 +23,11 @@ describe('ServiceCodeWayComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: Observable, useValue: observableStub },
-        { provide: UploadxService, useValue: uploadServiceStub }
+        { provide: NgxFileUploadService, useValue: uploadServiceStub }
       ]
     });
     fixture = TestBed.createComponent(ServiceCodeWayComponent);
-    uploadService = TestBed.get(UploadxService);
+    uploadService = TestBed.get(NgxFileUploadService);
     comp = fixture.componentInstance;
   });
 

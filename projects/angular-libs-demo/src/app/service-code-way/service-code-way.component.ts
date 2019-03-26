@@ -3,7 +3,7 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { NgxFileUploadOptions, NgxFileUploadState, UploadxService, NgxFileUploadItem } from '../../../../ngx-file-upload/src/public_api';
+import { NgxFileUploadOptions, NgxFileUploadState, NgxFileUploadService } from '../../../../ngx-file-upload/src/public_api';
 import { environment } from '../../environments/environment';
 import { Ufile } from '../ufile';
 
@@ -12,68 +12,66 @@ import { Ufile } from '../ufile';
   templateUrl: './service-code-way.component.html'
 })
 export class ServiceCodeWayComponent implements OnDestroy, OnInit {
-  state: Observable<NgxFileUploadState>;
-  uploads: Ufile[] = [];
-  options: NgxFileUploadOptions = {
+  public state: Observable<NgxFileUploadState>;
+  public uploads: Ufile[] = [];
+  public options: NgxFileUploadOptions = {
     concurrency: 2,
     url: `${environment.api}/upload?uploadType=ngx-file-upload`,
     token: 'someToken',
     autoUpload: true,
     chunkSize: 1024 * 256 * 8
   };
+  public numberOfCopies: number = 0;
+
   private ngUnsubscribe: Subject<any> = new Subject();
-  numberOfCopies = 0;
 
-  @ViewChild('file', { read: ElementRef }) fileInput: ElementRef;
+  @ViewChild('file', { read: ElementRef }) public fileInput: ElementRef;
 
-  constructor(private uploadService: UploadxService) { }
+  constructor(private uploadService: NgxFileUploadService) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     const uploadsProgress = this.uploadService.init(this.options);
     this.onUpload(uploadsProgress);
   }
 
-  ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
-  }
-
-  cancelAll() {
+  public cancelAll(): void {
     this.uploadService.control({ action: 'cancelAll' });
   }
 
-  uploadAll() {
+  public uploadAll(): void {
     this.uploadService.control({ action: 'uploadAll' });
   }
 
-  pauseAll() {
+  public pauseAll(): void {
     this.uploadService.control({ action: 'pauseAll' });
   }
 
-  pause(uploadId: string) {
+  public pause(uploadId: string): void {
     this.uploadService.control({ action: 'pause', uploadId });
   }
 
-  upload(uploadId: string) {
+  public upload(uploadId: string): void {
     this.uploadService.control({ action: 'upload', uploadId });
   }
 
-  onChange() {
+  public onChange(): void {
     const files = this.getFiles();
     for (let i = 0; i < files.length; i++) {
       this.uploadService.handleFile(files[i]);
     }
   }
 
-  getFiles(): FileList {
+  public getFiles(): FileList {
     return this.fileInput.nativeElement.files;
   }
 
-  onUpload(uploadsOutStream: Observable<NgxFileUploadState>) {
+  public onUpload(uploadsOutStream: Observable<NgxFileUploadState>): void {
     this.state = uploadsOutStream;
+
     uploadsOutStream.pipe(takeUntil(this.ngUnsubscribe)).subscribe((item: NgxFileUploadState) => {
       this.numberOfCopies = this.uploadService.runningProcess();
       const index = this.uploads.findIndex(f => f.uploadId === item.uploadId);
+
       if (item.status === 'added') {
         this.uploads.push(new Ufile(item));
       } else {
@@ -81,5 +79,10 @@ export class ServiceCodeWayComponent implements OnDestroy, OnInit {
         this.uploads[index].status = item.status;
       }
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

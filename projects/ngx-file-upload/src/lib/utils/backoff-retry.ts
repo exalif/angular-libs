@@ -4,10 +4,10 @@ import { timer } from 'rxjs';
  *  Exponential Backoff Retries
  */
 export class BackoffRetry {
-  public retryAttempts = 1;
+  public retryAttempts: number = 1;
 
   private delay: number;
-  private code = -1;
+  private code: number = -1;
 
   /**
    * @param min  Initial retry delay

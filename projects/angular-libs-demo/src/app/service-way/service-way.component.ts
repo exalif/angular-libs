@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { NgxFileUploadOptions, NgxFileUploadState, UploadxService, NgxFileUploadItem } from '../../../../ngx-file-upload/src/public_api';
+import { NgxFileUploadOptions, NgxFileUploadState, NgxFileUploadService } from '../../../../ngx-file-upload/src/public_api';
 import { environment } from '../../environments/environment';
 import { Ufile } from '../ufile';
 import { AuthService, tokenGetter } from '../auth.service';
@@ -13,52 +13,58 @@ import { AuthService, tokenGetter } from '../auth.service';
   templateUrl: './service-way.component.html'
 })
 export class ServiceWayComponent implements OnDestroy, OnInit {
-  state: Observable<NgxFileUploadState>;
-  uploads: Ufile[] = [];
-  options: NgxFileUploadOptions = {
+  public state: Observable<NgxFileUploadState>;
+  public uploads: Ufile[] = [];
+  public options: NgxFileUploadOptions = {
     url: `${environment.api}/upload`,
     token: tokenGetter(), // string
     // token: tokenGetter,
     chunkSize: 1024 * 256 * 8
   };
+
   private ngUnsubscribe: Subject<any> = new Subject();
 
-  constructor(private uploadService: UploadxService, private auth: AuthService) { }
+  constructor(
+    private uploadService: NgxFileUploadService,
+    private auth: AuthService
+  ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     const uploadsProgress = this.uploadService.init(this.options);
     this.onUpload(uploadsProgress);
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
 
-  cancelAll() {
+  public cancelAll(): void {
     this.uploadService.control({ action: 'cancelAll' });
   }
 
-  uploadAll() {
+  public uploadAll(): void {
     this.uploadService.control({ action: 'uploadAll' });
   }
 
-  pauseAll() {
+  public pauseAll(): void {
     this.uploadService.control({ action: 'pauseAll' });
   }
 
-  pause(uploadId: string) {
+  public pause(uploadId: string): void {
     this.uploadService.control({ action: 'pause', uploadId });
   }
 
-  upload(uploadId: string) {
+  public upload(uploadId: string): void {
     this.uploadService.control({ action: 'upload', uploadId });
   }
 
-  onUpload(uploadsOutStream: Observable<NgxFileUploadState>) {
+  public onUpload(uploadsOutStream: Observable<NgxFileUploadState>): void {
     this.state = uploadsOutStream;
+
     uploadsOutStream.pipe(takeUntil(this.ngUnsubscribe)).subscribe((item: NgxFileUploadState) => {
       const index = this.uploads.findIndex(f => f.uploadId === item.uploadId);
+
       if (item.status === 'added') {
         this.uploads.push(new Ufile(item));
       } else {

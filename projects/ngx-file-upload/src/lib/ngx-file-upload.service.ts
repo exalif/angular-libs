@@ -14,21 +14,31 @@ import { NgxFileUploadStatus } from './models/upload-status';
  *
  */
 @Injectable({ providedIn: 'root' })
-export class UploadxService {
-  eventsStream: Subject<NgxFileUploadState> = new Subject();
-  queue: Uploader[] = [];
-  private concurrency = 2;
-  private autoUpload = true;
+export class NgxFileUploadService {
+  public eventsStream: Subject<NgxFileUploadState> = new Subject();
+  public queue: Uploader[] = [];
+
+  private concurrency: number = 2;
+  private autoUpload: boolean = true;
   private options: NgxFileUploadOptions;
-  stateChange = (evt: NgxFileUploadState) => {
+
+  constructor() {
+    this.eventsStream.subscribe((evt: NgxFileUploadEvent) => {
+      if (evt.status !== 'uploading' && evt.status !== 'added') {
+        this.processQueue();
+      }
+    });
+  }
+
+  public stateChange = (evt: NgxFileUploadState): void => {
     setTimeout(() => {
       this.eventsStream.next(evt);
     });
   }
-  get uploaderOptions(): NgxFileUploaderOptions {
+
+  public get uploaderOptions(): NgxFileUploaderOptions {
     return {
       method: this.options.method || 'POST',
-      // tslint:disable-next-line: deprecation
       endpoint: this.options.endpoint || this.options.url || '/upload/',
       headers: this.options.headers,
       metadata: this.options.metadata,
@@ -40,61 +50,61 @@ export class UploadxService {
     };
   }
 
-  constructor() {
-    this.eventsStream.subscribe((evt: NgxFileUploadEvent) => {
-      if (evt.status !== 'uploading' && evt.status !== 'added') {
-        this.processQueue();
-      }
-    });
-  }
   /**
    * Set global options
    */
-  init(options: NgxFileUploadOptions): Observable<NgxFileUploadState> {
+  public init(options: NgxFileUploadOptions): Observable<NgxFileUploadState> {
     this.queue = [];
     this.options = options;
     this.concurrency = options.concurrency || this.concurrency;
     this.autoUpload = !(options.autoUpload === false);
+
     return this.eventsStream.asObservable();
   }
+
   /**
    *
    * Create Uploader and add to the queue
    */
-  handleFileList(fileList: FileList) {
+  public handleFileList(fileList: FileList) {
     for (let i = 0; i < fileList.length; i++) {
       const uploader: Uploader = new Uploader(fileList.item(i), this.uploaderOptions);
       this.queue.push(uploader);
       uploader.status = 'added';
     }
+
     this.autoUploadFiles();
   }
+
   /**
    *
    * Create Uploader for the file and add to the queue
    */
-  handleFile(file: File) {
+  public handleFile(file: File): void {
     const uploader: Uploader = new Uploader(file, this.uploaderOptions);
     this.queue.push(uploader);
     uploader.status = 'added';
+
     this.autoUploadFiles();
   }
+
   /**
    *
    * Auto upload the files if the flag is true
    */
-  private autoUploadFiles() {
+  private autoUploadFiles(): void {
     if (this.autoUpload) {
       this.queue.filter(f => f.status === 'added').forEach(f => (f.status = 'queue'));
     }
   }
+
   /**
    * Control uploads status
    * @example
    * this.uploadService.control({ action: 'pauseAll' });
    *
    */
-  control(event: NgxFileUploadControlEvent) {
+  public control(event: NgxFileUploadControlEvent): void {
     switch (event.action) {
       case 'cancelAll':
         this.queue.forEach(f => (f.status = 'cancelled'));
@@ -128,7 +138,7 @@ export class UploadxService {
   /**
    * Queue management
    */
-  private processQueue() {
+  private processQueue(): void {
     const running = this.runningProcess();
 
     this.queue
@@ -139,7 +149,7 @@ export class UploadxService {
       });
   }
 
-  runningProcess(): number {
+  public runningProcess(): number {
     return this.queue.filter(
       (uploader: Uploader) => uploader.status === 'uploading' || uploader.status === 'retry'
     ).length;

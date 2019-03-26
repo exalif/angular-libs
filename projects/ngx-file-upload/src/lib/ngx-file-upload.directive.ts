@@ -11,7 +11,7 @@ import {
 
 import { Observable } from 'rxjs';
 
-import { UploadxService } from './ngx-file-upload.service';
+import { NgxFileUploadService } from './ngx-file-upload.service';
 import { NgxFileUploadOptions } from './models/upload-options';
 import { NgxFileUploadControlEvent } from './models/control-event';
 import { NgxFileUploadState } from './models/upload-state';
@@ -20,24 +20,28 @@ import { NgxFileUploadState } from './models/upload-state';
   selector: '[ngxFileUpload]'
 })
 export class NgxFileUploadDirective implements OnInit, OnDestroy {
-  listenerFn: () => void;
-  @Output()
-  fileUploadState = new EventEmitter();
   @Input()
-  ngxFileUpload: NgxFileUploadOptions;
+  public ngxFileUpload: NgxFileUploadOptions;
+
   @Input()
   set fileUploadAction(ctrlEvent: NgxFileUploadControlEvent) {
     if (ctrlEvent && this.uploadService) {
       this.uploadService.control(ctrlEvent);
     }
   }
+
+  @Output()
+  public fileUploadState: EventEmitter<Observable<NgxFileUploadState>> = new EventEmitter();
+
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
-    private uploadService: UploadxService
+    private uploadService: NgxFileUploadService
   ) { }
 
-  ngOnInit() {
+  public listenerFn: () => void;
+
+  public ngOnInit(): void {
     if (this.ngxFileUpload) {
       if (this.ngxFileUpload.allowedTypes) {
         this.renderer.setAttribute(
@@ -46,9 +50,11 @@ export class NgxFileUploadDirective implements OnInit, OnDestroy {
           this.ngxFileUpload.allowedTypes
         );
       }
+
       this.uploadService.init(this.ngxFileUpload);
     }
-    this.fileUploadState.emit(<Observable<NgxFileUploadState>>this.uploadService.eventsStream.asObservable());
+
+    this.fileUploadState.emit(this.uploadService.eventsStream.asObservable());
     this.listenerFn = this.renderer.listen(
       this.elementRef.nativeElement,
       'change',
@@ -56,15 +62,15 @@ export class NgxFileUploadDirective implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy() {
-    if (this.listenerFn) {
-      this.listenerFn();
+  public fileListener = () => {
+    if (this.elementRef.nativeElement.files) {
+      this.uploadService.handleFileList(this.elementRef.nativeElement.files);
     }
   }
 
-  fileListener = () => {
-    if (this.elementRef.nativeElement.files) {
-      this.uploadService.handleFileList(this.elementRef.nativeElement.files);
+  public ngOnDestroy(): void {
+    if (this.listenerFn) {
+      this.listenerFn();
     }
   }
 }

@@ -12,11 +12,13 @@ import { environment } from '../../environments/environment';
   templateUrl: './directive-way.component.html'
 })
 export class DirectiveWayComponent implements OnDestroy {
-  control: NgxFileUploadControlEvent;
-  state: Observable<NgxFileUploadState>;
-  uploads: Ufile[];
-  options: NgxFileUploadOptions;
+  public control: NgxFileUploadControlEvent;
+  public state: Observable<NgxFileUploadState>;
+  public uploads: Ufile[];
+  public options: NgxFileUploadOptions;
+
   private ngUnsubscribe: Subject<any> = new Subject();
+
   constructor() {
     this.uploads = [];
     this.options = {
@@ -36,29 +38,32 @@ export class DirectiveWayComponent implements OnDestroy {
     };
   }
 
-  ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
-  }
-  cancelAll() {
+  public cancelAll(): void {
     this.control = { action: 'cancelAll' };
   }
-  uploadAll() {
+
+  public uploadAll(): void {
     this.control = { action: 'uploadAll' };
   }
-  pauseAll() {
+
+  public pauseAll(): void {
     this.control = { action: 'pauseAll' };
   }
-  pause(uploadId: string) {
+
+  public pause(uploadId: string): void {
     this.control = { action: 'pause', uploadId };
   }
-  upload(uploadId: string) {
+
+  public upload(uploadId: string): void {
     this.control = { action: 'upload', uploadId };
   }
-  onUpload(uploadsOutStream: Observable<NgxFileUploadState>) {
+
+  public onUpload(uploadsOutStream: Observable<NgxFileUploadState>) {
     this.state = uploadsOutStream;
+
     uploadsOutStream.pipe(takeUntil(this.ngUnsubscribe)).subscribe((ufile: NgxFileUploadState) => {
       const index = this.uploads.findIndex(f => f.uploadId === ufile.uploadId);
+
       if (ufile.status === 'added') {
         this.uploads.push(new Ufile(ufile));
       } else {
@@ -66,5 +71,11 @@ export class DirectiveWayComponent implements OnDestroy {
         this.uploads[index].status = ufile.status;
       }
     });
+  }
+
+
+  public ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }
