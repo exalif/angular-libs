@@ -49,7 +49,7 @@
               "projects/angular-libs-demo/src/assets"
             ],
             "styles": [
-              "projects/angular-libs-demo/src/styles.css"
+              "projects/angular-libs-demo/src/styles.scss"
             ],
             "scripts": []
           },
