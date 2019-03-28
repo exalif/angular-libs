@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/ngx-test-utils",
+  "dest": "../../dist/ngx-file-upload",
   "lib": {
     "entryFile": "src/public_api.ts"
   }

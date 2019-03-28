@@ -29,10 +29,16 @@
       "@exalif/ngx-test-utils/*": [
         "dist/ngx-test-utils/*"
       ],
-      "ngx-k-code": [
+      "@exalif/ngx-file-upload": [
+        "dist/ngx-file-upload"
+      ],
+      "@exalif/ngx-file-upload/*": [
+        "dist/ngx-file-upload/*"
+      ],
+      "@exalif/ngx-k-code": [
         "dist/ngx-k-code"
       ],
-      "ngx-k-code/*": [
+      "@exalif/ngx-k-code/*": [
         "dist/ngx-k-code/*"
       ]
     }

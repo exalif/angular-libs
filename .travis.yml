@@ -21,6 +21,8 @@ jobs:
     - stage: build
       script: npm run build:ngx-test-utils
     - stage: build
+      script: npm run build:ngx-file-upload
+    - stage: build
       script: npm run build:ngx-k-code
     - stage: build
       script: npm run build:demo
