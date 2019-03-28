@@ -28,6 +28,12 @@
       ],
       "@exalif/ngx-test-utils/*": [
         "dist/ngx-test-utils/*"
+      ],
+      "ngx-k-code": [
+        "dist/ngx-k-code"
+      ],
+      "ngx-k-code/*": [
+        "dist/ngx-k-code/*"
       ]
     }
   }
