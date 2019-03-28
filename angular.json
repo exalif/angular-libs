@@ -130,6 +130,41 @@
           }
         }
       }
+    },
+    "ngx-k-code": {
+      "root": "projects/ngx-k-code",
+      "sourceRoot": "projects/ngx-k-code/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-k-code/tsconfig.lib.json",
+            "project": "projects/ngx-k-code/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-k-code/src/test.ts",
+            "tsConfig": "projects/ngx-k-code/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-k-code/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-k-code/tsconfig.lib.json",
+              "projects/ngx-k-code/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular-libs-demo"
