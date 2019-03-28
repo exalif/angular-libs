@@ -34,6 +34,12 @@
       ],
       "@exalif/ngx-file-upload/*": [
         "dist/ngx-file-upload/*"
+      ],
+      "@exalif/ngx-k-code": [
+        "dist/ngx-k-code"
+      ],
+      "@exalif/ngx-k-code/*": [
+        "dist/ngx-k-code/*"
       ]
     }
   }
