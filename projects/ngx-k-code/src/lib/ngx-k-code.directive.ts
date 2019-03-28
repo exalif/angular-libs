@@ -16,16 +16,18 @@ export class NgxKCodeDirective {
 
   @HostListener('document:keydown', ['$event'])
   public handleKeyboardEvent(event: KeyboardEvent): void {
-    if (event.keyCode) {
-      this.sequence.push(event.keyCode.toString());
+    if (!event.keyCode) {
+      return;
+    }
 
-      if (this.sequence.length > this.konamiCode.length) {
-        this.sequence.shift();
-      }
+    this.sequence.push(event.keyCode.toString());
 
-      if (this.isKonamiCode()) {
-        this.kCode.emit(true);
-      }
+    if (this.sequence.length > this.konamiCode.length) {
+      this.sequence.shift();
+    }
+
+    if (this.isKonamiCode()) {
+      this.kCode.emit(true);
     }
   }
 
