@@ -7,7 +7,7 @@ export class NgxKCodeDirective {
   private sequence: string[];
   private konamiCode: string[];
 
-  @Output() private kCode: EventEmitter<boolean> = new EventEmitter();
+  @Output() private kCode: EventEmitter<void> = new EventEmitter();
 
   constructor() {
     this.sequence = [];
@@ -27,11 +27,12 @@ export class NgxKCodeDirective {
     }
 
     if (this.isKonamiCode()) {
-      this.kCode.emit(true);
+      this.kCode.emit();
     }
   }
 
   private isKonamiCode(): boolean {
-    return this.konamiCode.every((code: string, index: number) => code === this.sequence[index]);
+    return this.sequence.length === this.konamiCode.length &&
+      this.konamiCode.every((code: string, index: number) => code === this.sequence[index]);
   }
 }
