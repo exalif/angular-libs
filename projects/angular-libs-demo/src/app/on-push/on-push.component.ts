@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { Uploader, NgxFileUploadState, NgxFileUploadOptions, NgxFileUploadService } from '../../../../ngx-file-upload/src/public_api';
+import { Uploader, NgxFileUploadState, NgxFileUploadOptions, NgxFileUploadService } from '../../../../ngx-file-upload/src/public-api';
 import { AuthService } from '../auth.service';
 
 @Component({

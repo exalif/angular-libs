@@ -3,7 +3,7 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { NgxFileUploadOptions, NgxFileUploadState, NgxFileUploadService } from '../../../../ngx-file-upload/src/public_api';
+import { NgxFileUploadOptions, NgxFileUploadState, NgxFileUploadService } from '../../../../ngx-file-upload/src/public-api';
 import { environment } from '../../environments/environment';
 import { Ufile } from '../ufile';
 

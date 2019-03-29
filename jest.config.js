@@ -49,7 +49,7 @@ module.exports = {
     '!**/models/*.ts',
     '!**/models/**/*.ts',
     '!**/index.ts',
-    '!**/public_api.ts',
+    '!**/public-api.ts',
   ],
   modulePathIgnorePatterns: [
     '<rootDir>/coverage/',

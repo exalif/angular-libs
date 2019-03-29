@@ -7,7 +7,7 @@ export class NgxKCodeDirective {
   private sequence: string[];
   private konamiCode: string[];
 
-  @Output() private kCode: EventEmitter<void> = new EventEmitter();
+  @Output() public kCode: EventEmitter<void> = new EventEmitter();
 
   constructor() {
     this.sequence = [];
