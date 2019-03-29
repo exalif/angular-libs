@@ -8,7 +8,7 @@ export function getKeyFromResponse(xhr: XMLHttpRequest, key: string): string {
   }
 
   const response = parseJson(xhr) || {};
-  // const resKey = Object.keys(response).find(k => k.toLowerCase() === key.toLowerCase());
+  const resKey = Object.keys(response).find(k => k.toLowerCase() === key.toLowerCase());
 
-  return response;
+  return response[resKey];
 }
