@@ -3,8 +3,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { NgxFileUploadService } from '../../../../ngx-file-upload/src/lib';
 import { ServiceWayComponent } from './service-way.component';
+import { NgxFileUploadService } from '../../../../ngx-file-upload/src/lib/ngx-file-upload.service';
 
 describe('ServiceWayComponent', () => {
   let comp: ServiceWayComponent;
@@ -31,17 +31,6 @@ describe('ServiceWayComponent', () => {
   it('can load instance', () => {
     expect(comp).toBeTruthy();
   });
-
-  // xdescribe('onUpload', () => {
-  //   it('makes expected calls', () => {
-  //     const observableStub: Observable<any> = fixture.debugElement.injector.get(Observable);
-  //     const uploadServiceStub: NgxFileUploadService =
-  //       fixture.debugElement.injector.get(NgxFileUploadService);
-  //     spyOn(uploadServiceStub, 'control');
-  //     comp.onUpload(observableStub);
-  //     expect(uploadServiceStub.control).toHaveBeenCalled();
-  //   });
-  // });
 
   describe('cancelAll', () => {
     it('makes expected calls', () => {

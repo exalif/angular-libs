@@ -3,8 +3,9 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { NgxFileUploadService } from '../../../../ngx-file-upload/src/lib';
+
 import { ServiceCodeWayComponent } from './service-code-way.component';
+import { NgxFileUploadService } from '../../../../ngx-file-upload/src/lib/ngx-file-upload.service';
 
 describe('ServiceCodeWayComponent', () => {
   let comp: ServiceCodeWayComponent;
@@ -54,15 +55,5 @@ describe('ServiceCodeWayComponent', () => {
       comp.pauseAll();
       expect(uploadService.control).toHaveBeenCalled();
     });
-  });
-
-  describe('onChange', () => {
-    it('should upload the files after the input files change', async(() => {
-      const dataTransfer = new ClipboardEvent('').clipboardData || new DataTransfer();
-      dataTransfer.items.add(new File(['foo'], 'programmatically_created.txt'));
-      spyOn(comp, 'getFiles').and.returnValue(dataTransfer.files);
-      comp.onChange();
-      expect(uploadService.handleFile).toHaveBeenCalled();
-    }));
   });
 });
