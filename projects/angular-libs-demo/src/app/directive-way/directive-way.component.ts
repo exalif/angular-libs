@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { Ufile } from '../ufile';
-import { NgxFileUploadOptions, NgxFileUploadControlEvent, NgxFileUploadState } from '../../../../ngx-file-upload/src/public_api';
+import { NgxFileUploadOptions, NgxFileUploadControlEvent, NgxFileUploadState } from '../../../../ngx-file-upload/src/public-api';
 import { environment } from '../../environments/environment';
 
 @Component({

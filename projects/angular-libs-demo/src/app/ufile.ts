@@ -1,4 +1,4 @@
-import { NgxFileUploadState } from '../../../ngx-file-upload/src/public_api';
+import { NgxFileUploadState } from '../../../ngx-file-upload/src/public-api';
 
 export class Ufile {
   name: string;
