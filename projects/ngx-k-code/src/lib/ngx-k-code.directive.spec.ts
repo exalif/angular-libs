@@ -58,7 +58,7 @@ describe('ngx-k-code directive ', () => {
   });
 
   describe('when improper sequence is entered', () => {
-    it('should trigger konami event', () => {
+    it('should NOT trigger konami event', () => {
       const spy = jest.fn();
       directive.kCode.subscribe(spy);
 
