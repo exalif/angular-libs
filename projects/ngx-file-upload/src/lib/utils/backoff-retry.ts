@@ -21,6 +21,7 @@ export class BackoffRetry {
   /**
    * Delay Retry
    * @param code
+   * @returns retryAttempts
    */
   public wait(code: number): Promise<number> {
     return new Promise(resolve => {

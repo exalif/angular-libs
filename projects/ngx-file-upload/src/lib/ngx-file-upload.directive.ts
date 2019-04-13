@@ -54,7 +54,7 @@ export class NgxFileUploadDirective implements OnInit, OnDestroy {
       this.uploadService.init(this.ngxFileUpload);
     }
 
-    this.fileUploadState.emit(this.uploadService.eventsStream.asObservable());
+    this.fileUploadState.emit(this.uploadService.events);
     this.listenerFn = this.renderer.listen(
       this.elementRef.nativeElement,
       'change',

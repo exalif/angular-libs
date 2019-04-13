@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Observable, Subject, timer } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 import { Uploader } from './utils/uploader';
 import { NgxFileUploadState } from './models/upload-state';
@@ -15,19 +16,23 @@ import { NgxFileUploadStatus } from './models/upload-status';
  */
 @Injectable({ providedIn: 'root' })
 export class NgxFileUploadService {
-  public eventsStream: Subject<NgxFileUploadState> = new Subject();
   public queue: Uploader[] = [];
 
+  private readonly eventsStream: Subject<NgxFileUploadState> = new Subject();
   private concurrency: number = 2;
   private autoUpload: boolean = true;
   private options: NgxFileUploadOptions;
 
   constructor() {
-    this.eventsStream.subscribe((evt: NgxFileUploadEvent) => {
+    this.events.subscribe((evt: NgxFileUploadEvent) => {
       if (evt.status !== 'uploading' && evt.status !== 'added') {
         this.processQueue();
       }
     });
+  }
+
+  public get events() {
+    return this.eventsStream.asObservable();
   }
 
   public stateChange = (evt: NgxFileUploadState): void => {
@@ -39,7 +44,7 @@ export class NgxFileUploadService {
   public get uploaderOptions(): NgxFileUploaderOptions {
     return {
       method: this.options.method || 'POST',
-      endpoint: this.options.endpoint || this.options.url || '/upload/',
+      endpoint: this.options.endpoint || this.options.url || '/upload',
       headers: this.options.headers,
       metadata: this.options.metadata,
       token: this.options.token,
@@ -51,15 +56,36 @@ export class NgxFileUploadService {
   }
 
   /**
-   * Set global options
+   * Initializes service
+   * @param options global options
+   * @returns Observable that emits a new value on progress or status changes
    */
   public init(options: NgxFileUploadOptions): Observable<NgxFileUploadState> {
-    this.queue = [];
     this.options = options;
     this.concurrency = options.concurrency || this.concurrency;
     this.autoUpload = !(options.autoUpload === false);
 
-    return this.eventsStream.asObservable();
+    return this.events;
+  }
+
+  /**
+   * Initializes service
+   * @param options global options
+   * @returns Observable that emits the current queue
+   */
+  public connect(options?: NgxFileUploadOptions): Observable<Uploader[]> {
+    return this.init(options || this.options).pipe(
+      startWith(0),
+      map(() => this.queue)
+    );
+  }
+
+  /**
+   * Terminate all uploads and clears the queue
+   */
+  public disconnect(): void {
+    this.queue.forEach(f => (f.status = 'paused'));
+    this.queue = [];
   }
 
   /**
@@ -89,6 +115,7 @@ export class NgxFileUploadService {
 
   /**
    * Get running processes number
+   * @returns  number of active uploads
    */
 
   public runningProcess(): number {
@@ -98,8 +125,8 @@ export class NgxFileUploadService {
   }
 
   /**
-   *
    * Auto upload the files if the flag is true
+   * @internal
    */
   private autoUploadFiles(): void {
     if (this.autoUpload) {
@@ -122,7 +149,7 @@ export class NgxFileUploadService {
         this.queue.forEach(f => (f.status = 'paused'));
         break;
       case 'refreshToken':
-        this.queue.forEach(f => (f.options.token = event.token));
+        this.queue.forEach(f => f.refreshToken(event.token));
         break;
       case 'uploadAll':
         this.queue.filter(f => f.status !== 'uploading').forEach(f => (f.status = 'queue'));
@@ -146,8 +173,12 @@ export class NgxFileUploadService {
 
   /**
    * Queue management
+   * @internal
    */
   private processQueue(): void {
+    // Remove Cancelled Items from local queue
+    this.queue = this.queue.filter(f => f.status !== 'cancelled');
+
     const running = this.runningProcess();
 
     this.queue

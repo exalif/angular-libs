@@ -17,8 +17,7 @@ export class ServiceWayComponent implements OnDestroy, OnInit {
   public uploads: Ufile[] = [];
   public options: NgxFileUploadOptions = {
     url: `${environment.api}/upload`,
-    token: tokenGetter(), // string
-    // token: tokenGetter,
+    token: tokenGetter,
     chunkSize: 1024 * 256 * 8
   };
 
@@ -67,6 +66,8 @@ export class ServiceWayComponent implements OnDestroy, OnInit {
 
       if (item.status === 'added') {
         this.uploads.push(new Ufile(item));
+      } else if (item.status === 'retry' && item.responseStatus === 401) {
+        this.auth.refresh().subscribe(token => console.log('refreshed token: ', token));
       } else {
         this.uploads[index].progress = item.progress;
         this.uploads[index].status = item.status;
