@@ -1,6 +1,24 @@
 {
   "name": "@exalif/ngx-file-upload",
   "version": "1.0.0",
+  "license": "MIT",
+  "description": "Angular 7+ file uploader with resume and chunks",
+  "author": {
+    "name": "Exalif",
+    "email": "noreply@nowebsite.com"
+  },
+  "homepage": "https://github.com/exalif/angular-libs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/exalif/angular-libs"
+  },
+  "keywords": [
+    "angular",
+    "angular7",
+    "upload",
+    "file",
+    "file-upload"
+  ],
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0",

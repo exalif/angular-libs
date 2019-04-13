@@ -1,6 +1,23 @@
 {
   "name": "@exalif/ngx-k-code",
   "version": "1.0.0",
+  "license": "MIT",
+  "description": "Angular 6+ konami code directive",
+  "author": {
+    "name": "Exalif",
+    "email": "noreply@nowebsite.com"
+  },
+  "homepage": "https://github.com/exalif/angular-libs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/exalif/angular-libs"
+  },
+  "keywords": [
+    "angular",
+    "konami",
+    "code",
+    "konami-code"
+  ],
   "peerDependencies": {
     "@angular/common": ">= 6.0.0 < 8.0.0",
     "@angular/core": ">= 6.0.0 < 8.0.0"
