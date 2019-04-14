@@ -74,4 +74,9 @@ export class NgxFileUploadOptions {
    * @defaultValue 3
    */
   maxRetryAttempts?: number;
+
+  /**
+   * Checksum Hash method
+   */
+  checksumHashMethod?: (file: File) => Promise<string>
 }

@@ -92,9 +92,15 @@ export class NgxFileUploadService {
    *
    * Create Uploader and add to the queue
    */
-  public handleFileList(fileList: FileList) {
+  public async handleFileList(fileList: FileList) {
     for (let i = 0; i < fileList.length; i++) {
-      const uploader: Uploader = new Uploader(fileList.item(i), this.uploaderOptions);
+      let checkSum: string = null;
+
+      if (!!this.options.checksumHashMethod) {
+        checkSum = await this.options.checksumHashMethod(fileList.item(i));
+      }
+
+      const uploader: Uploader = new Uploader(fileList.item(i), this.uploaderOptions, checkSum);
       this.queue.push(uploader);
       uploader.status = 'added';
     }

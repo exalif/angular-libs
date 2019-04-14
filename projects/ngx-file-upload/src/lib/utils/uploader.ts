@@ -70,10 +70,10 @@ export class Uploader {
   /**
    * Creates an instance of Uploader.
    */
-  constructor(private readonly file: File, public options: NgxFileUploaderOptions) {
+  constructor(private readonly file: File, public options: NgxFileUploaderOptions, checkSum: string = null) {
     this.name = file.name;
     this.size = file.size;
-    this.checkSum = null;
+    this.checkSum = checkSum;
     this.mimeType = file.type || 'application/octet-stream';
     this.stateChange = options.stateChange || noop;
 
@@ -372,5 +372,15 @@ export class Uploader {
 
   private calculateChunksSize(chunksCount: number): void {
     this.chunkSize = Math.floor(this.size / chunksCount);
+  }
+
+  private async calculateCheckSum(file: File): Promise<void> {
+    let checkSum = null;
+
+    if (!!this.options.checksumHashMethod) {
+      checkSum = <string>await this.options.checksumHashMethod(file);
+    }
+
+    return checkSum;
   }
 }
