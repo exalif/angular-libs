@@ -94,7 +94,6 @@ export class Uploader {
 
     this.metadata = {
       name: this.name,
-      fileName: this.name,
       checksum: this.checkSum,
       mimeType: this.mimeType,
       size: this.file.size,
