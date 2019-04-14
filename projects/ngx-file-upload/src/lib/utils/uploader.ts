@@ -26,12 +26,13 @@ export class Uploader {
   public responseStatus: number;
   public speed: number;
   public URI: string;
+  public uploadId: string;
   public token: string | (() => string);
 
   public readonly mimeType: string;
   public readonly name: string;
   public readonly size: number;
-  public readonly uploadId: string;
+  public readonly checkSum: string;
 
   private _status: NgxFileUploadStatus;
   private retry = new BackoffRetry();
@@ -39,23 +40,25 @@ export class Uploader {
   private statusType: number;
   private _token: string;
   private _xhr_: XMLHttpRequest;
-  private chunkSize = 1_048_576;
+  private chunkSize;
+  private useBackendUploadId: boolean;
+  private useUploadIdAsUrlPath: boolean;
   private maxRetryAttempts = 3;
   private stateChange: (evt: NgxFileUploadState) => void;
 
-  set status(s: NgxFileUploadStatus) {
+  set status(status: NgxFileUploadStatus) {
     // Return if State is cancelled or complete (but allow cancel of an complete upload to remove from list and from server)
-    if (this._status === 'cancelled' || (this._status === 'complete' && s !== 'cancelled')) {
+    if (this._status === 'cancelled' || (this._status === 'complete' && status !== 'cancelled')) {
       return;
     }
-    if (s !== this._status) {
-      if (this._xhr_ && (s === 'cancelled' || s === 'paused')) {
+    if (status !== this._status) {
+      if (this._xhr_ && (status === 'cancelled' || status === 'paused')) {
         this._xhr_.abort();
       }
-      if (s === 'cancelled' && this.URI) {
+      if (status === 'cancelled' && this.URI) {
         this.request('delete');
       }
-      this._status = s;
+      this._status = status;
       this.notifyState();
     }
   }
@@ -68,11 +71,9 @@ export class Uploader {
    * Creates an instance of Uploader.
    */
   constructor(private readonly file: File, public options: NgxFileUploaderOptions) {
-    this.uploadId = Math.random()
-      .toString(36)
-      .substring(2, 15);
     this.name = file.name;
     this.size = file.size;
+    this.checkSum = null;
     this.mimeType = file.type || 'application/octet-stream';
     this.stateChange = options.stateChange || noop;
 
@@ -84,15 +85,26 @@ export class Uploader {
    */
   public configure(item = {} as NgxFileUploadItem): void {
     const { metadata, headers, token, endpoint } = item;
+
+    if (!this.useBackendUploadId) {
+      this.uploadId = Math.random()
+        .toString(36)
+        .substring(2, 15);
+    }
+
     this.metadata = {
       name: this.name,
+      fileName: this.name,
+      checksum: this.checkSum,
       mimeType: this.mimeType,
       size: this.file.size,
       lastModified: this.file.lastModified,
       ...unfunc(metadata || this.metadata, this.file)
     };
     this.endpoint = endpoint || this.options.endpoint;
-    this.chunkSize = this.options.chunkSize || this.chunkSize;
+    this.useBackendUploadId = this.options.useBackendUploadId || false;
+    this.useUploadIdAsUrlPath = this.options.useUploadIdAsUrlPath || false;
+    this.chunkSize = this.options.chunkSize || null;
     this.maxRetryAttempts = this.options.maxRetryAttempts || this.maxRetryAttempts;
     this.refreshToken(token);
     this.headers = { ...this.headers, ...unfunc(headers, this.file) };
@@ -202,15 +214,39 @@ export class Uploader {
         xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
         xhr.setRequestHeader('X-Upload-Content-Length', this.size.toString());
         xhr.setRequestHeader('X-Upload-Content-Type', this.mimeType);
+
         xhr.onload = () => {
           this.processResponse(xhr);
-          const location = this.statusType === 200 && getKeyFromResponse(xhr, 'location');
-          if (!location) {
+          const location: string = getKeyFromResponse(xhr, 'location');
+          const uploadId: string = getKeyFromResponse(xhr, 'uploadId');
+          const chunksCount: number = +getKeyFromResponse(xhr, 'chunksCount');
+
+          const shouldReturnError = this.statusType !== 200
+            || (!location && !this.useUploadIdAsUrlPath)
+            || (!uploadId && this.useBackendUploadId)
+            || (!this.uploadId && !uploadId && this.useUploadIdAsUrlPath);
+
+          if (shouldReturnError) {
             // limit attempts
             this.statusType = 400;
             reject();
           } else {
-            this.URI = resolveUrl(location, this.endpoint);
+            if (!this.chunkSize && !!chunksCount) {
+              this.calculateChunksSize(chunksCount);
+            } else {
+              this.calculateChunksSize(1);
+            }
+
+            if (this.useBackendUploadId) {
+              this.uploadId = uploadId;
+            }
+
+            if (this.useUploadIdAsUrlPath) {
+              this.URI = `${this.endpoint}/${this.uploadId}`;
+            } else {
+              this.URI = resolveUrl(location, this.endpoint);
+            }
+
             this.retry.reset();
 
             resolve();
@@ -332,5 +368,9 @@ export class Uploader {
 
     // tslint:disable-next-line: no-unused-expression
     this._token && xhr.setRequestHeader('Authorization', `Bearer ${this._token}`);
+  }
+
+  private calculateChunksSize(chunksCount: number): void {
+    this.chunkSize = Math.floor(this.size / chunksCount);
   }
 }
