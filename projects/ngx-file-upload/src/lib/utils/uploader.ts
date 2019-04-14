@@ -104,7 +104,7 @@ export class Uploader {
     this.endpoint = endpoint || this.options.endpoint;
     this.useBackendUploadId = this.options.useBackendUploadId || false;
     this.useUploadIdAsUrlPath = this.options.useUploadIdAsUrlPath || false;
-    this.chunkSize = this.options.chunkSize || null;
+    this.chunkSize = this.options.chunkSize || this.calculateChunksSize(1);
     this.maxRetryAttempts = this.options.maxRetryAttempts || this.maxRetryAttempts;
     this.refreshToken(token);
     this.headers = { ...this.headers, ...unfunc(headers, this.file) };
@@ -233,8 +233,6 @@ export class Uploader {
           } else {
             if (!this.chunkSize && !!chunksCount) {
               this.calculateChunksSize(chunksCount);
-            } else {
-              this.calculateChunksSize(1);
             }
 
             if (this.useBackendUploadId) {
