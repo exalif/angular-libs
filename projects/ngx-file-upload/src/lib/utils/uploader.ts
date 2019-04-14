@@ -371,14 +371,4 @@ export class Uploader {
   private calculateChunksSize(chunksCount: number): void {
     this.chunkSize = Math.floor(this.size / chunksCount);
   }
-
-  private async calculateCheckSum(file: File): Promise<void> {
-    let checkSum = null;
-
-    if (!!this.options.checksumHashMethod) {
-      checkSum = <string>await this.options.checksumHashMethod(file);
-    }
-
-    return checkSum;
-  }
 }
