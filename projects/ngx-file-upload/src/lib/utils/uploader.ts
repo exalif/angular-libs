@@ -282,14 +282,15 @@ export class Uploader {
 
       if (offset >= 0 && offset < this.size) {
         let end = this.chunkSize ? Math.min(offset + this.chunkSize, this.size) : this.size;
+        let progressEnd = end;
 
-        if (this.useChunksIndexes && this.size === this.chunkSize * this.chunksCount) {
+        if (this.isIndexChunkingWithNoRest()) {
           end++;
         }
 
         body = this.file.slice(offset, end);
 
-        xhr.upload.onprogress = this.setupProgressEvent(offset, end);
+        xhr.upload.onprogress = this.setupProgressEvent(offset, progressEnd);
         xhr.setRequestHeader('Content-Range', `bytes ${offset}-${end - 1}/${this.size}`);
         xhr.setRequestHeader('Content-Type', 'application/octet-stream');
       } else {
@@ -388,5 +389,9 @@ export class Uploader {
 
   private calculateChunksSize(chunksCount: number): void {
     this.chunkSize = Math.floor(this.size / chunksCount);
+  }
+
+  private isIndexChunkingWithNoRest(): boolean {
+    return this.useChunksIndexes && this.size === this.chunkSize * this.chunksCount
   }
 }
