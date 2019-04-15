@@ -43,6 +43,7 @@ export class Uploader {
   private chunkSize;
   private useBackendUploadId: boolean;
   private useUploadIdAsUrlPath: boolean;
+  private forceOctetStreamMimeType: boolean;
   private maxRetryAttempts = 3;
   private stateChange: (evt: NgxFileUploadState) => void;
 
@@ -103,6 +104,7 @@ export class Uploader {
     this.endpoint = endpoint || this.options.endpoint;
     this.useBackendUploadId = this.options.useBackendUploadId || false;
     this.useUploadIdAsUrlPath = this.options.useUploadIdAsUrlPath || false;
+    this.forceOctetStreamMimeType = this.options.forceOctetStreamMimeType || false;
     this.chunkSize = this.options.chunkSize || this.calculateChunksSize(1);
     this.maxRetryAttempts = this.options.maxRetryAttempts || this.maxRetryAttempts;
     this.refreshToken(token);
@@ -279,6 +281,10 @@ export class Uploader {
         xhr.setRequestHeader('Content-Type', 'application/octet-stream');
       } else {
         xhr.setRequestHeader('Content-Range', `bytes */${this.size}`);
+
+        if (this.forceOctetStreamMimeType) {
+          xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+        }
       }
 
       xhr.send(body);

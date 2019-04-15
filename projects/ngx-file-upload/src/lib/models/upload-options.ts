@@ -76,6 +76,12 @@ export class NgxFileUploadOptions {
   maxRetryAttempts?: number;
 
   /**
+   * Use octet-stream mimeType even on unchunked uploads (entire file as a chunk)
+   * @defaultValue false
+   */
+  forceOctetStreamMimeType?: boolean;
+
+  /**
    * Checksum Hash method
    */
   checksumHashMethod?: (file: File) => Promise<string>
