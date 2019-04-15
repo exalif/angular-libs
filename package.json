@@ -10,9 +10,9 @@
     "build:ngx-test-utils": "ng build ngx-test-utils",
     "build:ngx-file-upload": "ng build ngx-file-upload",
     "build:ngx-k-code": "ng build ngx-k-code",
-    "test": "jest --clearCache && jest --colors  --coverage",
+    "test": "jest --colors  --coverage",
     "test:ci": "jest --colors --coverage --silent",
-    "test:watch": "jest --clearCache && jest --watch --colors --verbose false",
+    "test:watch": "jest --watch --colors --verbose false",
     "lint": "ng lint",
     "upload-server": "node ./server/index.js",
     "upload-server:dev": "cd ./server && NODE_ENV=development nodemon ."
