@@ -40,10 +40,13 @@ export class Uploader {
   private statusType: number;
   private _token: string;
   private _xhr_: XMLHttpRequest;
-  private chunkSize;
+  private chunkSize: number;
+  private chunksCount: number;
   private useBackendUploadId: boolean;
   private useUploadIdAsUrlPath: boolean;
   private forceOctetStreamMimeType: boolean;
+  private useChunksIndexes: boolean = false;
+  private currentChunkIndex: number;
   private maxRetryAttempts = 3;
   private stateChange: (evt: NgxFileUploadState) => void;
 
@@ -105,7 +108,7 @@ export class Uploader {
     this.useBackendUploadId = this.options.useBackendUploadId || false;
     this.useUploadIdAsUrlPath = this.options.useUploadIdAsUrlPath || false;
     this.forceOctetStreamMimeType = this.options.forceOctetStreamMimeType || false;
-    this.chunkSize = this.options.chunkSize || this.calculateChunksSize(1);
+    this.chunkSize = this.options.chunkSize;
     this.maxRetryAttempts = this.options.maxRetryAttempts || this.maxRetryAttempts;
     this.refreshToken(token);
     this.headers = { ...this.headers, ...unfunc(headers, this.file) };
@@ -234,6 +237,9 @@ export class Uploader {
           } else {
             if (!!chunksCount) {
               this.calculateChunksSize(chunksCount);
+              this.useChunksIndexes = true;
+              this.currentChunkIndex = 0;
+              this.chunksCount = chunksCount;
             }
 
             if (this.useBackendUploadId) {
@@ -272,8 +278,15 @@ export class Uploader {
       this.setupXHR(xhr);
       this.setupEvents(xhr);
 
+      offset = this.useChunksIndexes ? this.currentChunkIndex * this.chunkSize : offset;
+
       if (offset >= 0 && offset < this.size) {
-        const end = this.chunkSize ? Math.min(offset + this.chunkSize, this.size) : this.size;
+        let end = this.chunkSize ? Math.min(offset + this.chunkSize, this.size) : this.size;
+
+        if (this.useChunksIndexes && this.size === this.chunkSize * this.chunksCount) {
+          end++;
+        }
+
         body = this.file.slice(offset, end);
 
         xhr.upload.onprogress = this.setupProgressEvent(offset, end);
