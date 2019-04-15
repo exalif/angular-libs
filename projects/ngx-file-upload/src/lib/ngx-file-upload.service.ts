@@ -96,7 +96,7 @@ export class NgxFileUploadService {
     for (let i = 0; i < fileList.length; i++) {
       let checkSum: string = null;
 
-      if (!!this.options.checksumHashMethod) {
+      if (this.options.checksumHashMethod) {
         checkSum = await this.options.checksumHashMethod(fileList.item(i));
       }
 
