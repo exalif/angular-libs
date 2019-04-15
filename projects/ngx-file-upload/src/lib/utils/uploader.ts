@@ -232,7 +232,7 @@ export class Uploader {
             this.statusType = 400;
             reject();
           } else {
-            if (!this.chunkSize && !!chunksCount) {
+            if (!!chunksCount) {
               this.calculateChunksSize(chunksCount);
             }
 
