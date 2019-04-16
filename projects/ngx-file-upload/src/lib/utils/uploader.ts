@@ -335,7 +335,7 @@ export class Uploader {
       this.processResponse(xhr);
       const offset = this.statusType === 300 && this.getNextChunkOffset(xhr);
 
-      if (typeof offset === 'number' || (this.useChunksIndexes && this.currentChunkIndex + 1 <= this.chunksCount)) {
+      if (typeof offset === 'number' || this.canGoToNextIndexChunk()) {
         //  next chunk
         if (this.useChunksIndexes) {
           this.currentChunkIndex++;
@@ -373,6 +373,10 @@ export class Uploader {
     const str = getKeyFromResponse(xhr, 'Range');
     const [match] = str && str.match(/(-1|\d+)$/g);
     return match && +match + 1;
+  }
+
+  private canGoToNextIndexChunk(): boolean {
+    return this.useChunksIndexes && this.currentChunkIndex + 1 <= this.chunksCount;
   }
 
   private setupXHR(xhr: XMLHttpRequest): void {
