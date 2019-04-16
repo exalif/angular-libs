@@ -335,8 +335,12 @@ export class Uploader {
       this.processResponse(xhr);
       const offset = this.statusType === 300 && this.getNextChunkOffset(xhr);
 
-      if (typeof offset === 'number') {
+      if (typeof offset === 'number' || (this.useChunksIndexes && this.currentChunkIndex + 1 <= this.chunksCount)) {
         //  next chunk
+        if (this.useChunksIndexes) {
+          this.currentChunkIndex++;
+        }
+
         this.retry.reset();
         this.sendChunk(offset);
       } else if (this.statusType === 200) {
