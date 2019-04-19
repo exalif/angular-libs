@@ -42,6 +42,7 @@ export class Uploader {
   private _xhr_: XMLHttpRequest;
   private chunkSize: number;
   private chunksCount: number;
+  private useDataFromPostResponseBody: boolean;
   private useBackendUploadId: boolean;
   private useUploadIdAsUrlPath: boolean;
   private forceOctetStreamMimeType: boolean;
@@ -105,6 +106,7 @@ export class Uploader {
       ...unfunc(metadata || this.metadata, this.file)
     };
     this.endpoint = endpoint || this.options.endpoint;
+    this.useDataFromPostResponseBody = this.options.useDataFromPostResponseBody || false;
     this.useBackendUploadId = this.options.useBackendUploadId || false;
     this.useUploadIdAsUrlPath = this.options.useUploadIdAsUrlPath || false;
     this.forceOctetStreamMimeType = this.options.forceOctetStreamMimeType || false;
@@ -222,8 +224,8 @@ export class Uploader {
         xhr.onload = () => {
           this.processResponse(xhr);
           const location: string = getKeyFromResponse(xhr, 'location');
-          const uploadId: string = getKeyFromResponse(xhr, 'uploadId');
-          const chunksCount: number = +getKeyFromResponse(xhr, 'chunksCount');
+          const uploadId: string = getKeyFromResponse(xhr, 'uploadId', this.useDataFromPostResponseBody);
+          const chunksCount: number = +getKeyFromResponse(xhr, 'chunksCount', this.useDataFromPostResponseBody);
 
           const shouldReturnError = this.statusType !== 200
             || (!location && !this.useUploadIdAsUrlPath)

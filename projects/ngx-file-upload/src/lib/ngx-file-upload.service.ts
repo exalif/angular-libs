@@ -51,6 +51,10 @@ export class NgxFileUploadService {
       chunkSize: this.options.chunkSize,
       withCredentials: this.options.withCredentials,
       maxRetryAttempts: this.options.maxRetryAttempts,
+      useDataFromPostResponseBody: this.options.useDataFromPostResponseBody,
+      useBackendUploadId: this.options.useBackendUploadId,
+      useUploadIdAsUrlPath: this.options.useUploadIdAsUrlPath,
+      forceOctetStreamMimeType: this.options.forceOctetStreamMimeType,
       stateChange: this.stateChange
     };
   }

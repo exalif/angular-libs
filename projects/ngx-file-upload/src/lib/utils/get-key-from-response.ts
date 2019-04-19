@@ -1,10 +1,12 @@
 import { parseJson } from './parse-json';
 
-export function getKeyFromResponse(xhr: XMLHttpRequest, key: string): string {
-  const fromHeader = xhr.getResponseHeader(key);
+export function getKeyFromResponse(xhr: XMLHttpRequest, key: string, bypassHeaderCheck: boolean = false): string {
+  if (!bypassHeaderCheck) {
+    const fromHeader = xhr.getResponseHeader(key);
 
-  if (fromHeader) {
-    return fromHeader;
+    if (fromHeader) {
+      return fromHeader;
+    }
   }
 
   const response = parseJson(xhr) || {};
