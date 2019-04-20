@@ -2,9 +2,10 @@ import { resolveUrl } from './resolve-url';
 
 const _URL = window.URL;
 const base = 'http://www.example.com/upload';
-const rel = '/upload?upload_id=12345';
+const rel = '/upload?upload_id=456789';
 const abs = 'http://www.example.com/upload?upload_id=12345';
 const path = 'files?upload_id=12345';
+const relWithSubPath = '/upload/12345';
 
 describe('resolveUrl', () => {
   it('absolute', () => {
@@ -16,13 +17,19 @@ describe('resolveUrl', () => {
   it('relative', () => {
     const resolved = resolveUrl(rel, base);
 
-    expect(resolved).toBe('http://www.example.com/upload?upload_id=12345');
+    expect(resolved).toBe('http://www.example.com/upload?upload_id=456789');
   });
 
   it('path', () => {
     const resolved = resolveUrl(path, base);
 
     expect(resolved).toBe('http://www.example.com/files?upload_id=12345');
+  });
+
+  it('relWithSubPath', () => {
+    const resolved = resolveUrl(relWithSubPath, base);
+
+    expect(resolved).toBe('http://www.example.com/upload/12345');
   });
 });
 
@@ -31,7 +38,7 @@ describe('resolveUrl polyfill', () => {
     window.URL = undefined;
     const resolved = resolveUrl(rel, base);
 
-    expect(resolved).toBe('http://www.example.com/upload?upload_id=12345');
+    expect(resolved).toBe('http://www.example.com/upload?upload_id=456789');
   });
 
   it('path', () => {

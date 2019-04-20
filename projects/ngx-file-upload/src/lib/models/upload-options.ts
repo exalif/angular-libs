@@ -74,4 +74,34 @@ export class NgxFileUploadOptions {
    * @defaultValue 3
    */
   maxRetryAttempts?: number;
+
+  /**
+   * Use data from "create" POST response body to determine uploadId and chunksCount instead of looking into headers
+   * @defaultValue false
+   */
+  useDataFromPostResponseBody?: boolean;
+
+  /**
+   * Use backend provided upload id. If set to false, the frontend will generate the upload id
+   * @defaultValue false
+   */
+  useBackendUploadId?: boolean;
+
+  /**
+   * Append upload id to endpoint to get the upload endpoint path
+   * e.g. with `uploadId = 'someid'` the upload endpoint will become `endpoint/someId`
+   * @defaultValue false
+   */
+  useUploadIdAsUrlPath?: boolean;
+
+  /**
+   * Use octet-stream mimeType even on unchunked uploads (entire file as a chunk)
+   * @defaultValue false
+   */
+  forceOctetStreamMimeType?: boolean;
+
+  /**
+   * Checksum Hash method
+   */
+  checksumHashMethod?: (file: File) => Promise<string>
 }
