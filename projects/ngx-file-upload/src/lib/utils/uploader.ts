@@ -293,6 +293,11 @@ export class Uploader {
         body = this.file.slice(offset, end);
 
         xhr.upload.onprogress = this.setupProgressEvent(offset, progressEnd);
+
+        if (this.useChunksIndexes) {
+          xhr.setRequestHeader('X-Upload-Chunk-Index', this.currentChunkIndex.toString());
+        }
+
         xhr.setRequestHeader('Content-Range', `bytes ${offset}-${end - 1}/${this.size}`);
         xhr.setRequestHeader('Content-Type', 'application/octet-stream');
       } else {
