@@ -54,15 +54,30 @@ describe('when parse json returns valid value', () => {
     });
 
     describe('when key exists in headers', () => {
-      beforeEach(() => {
-        xhr = { getResponseHeader: jest.fn().mockReturnValue(HEADER_VALUE) } as any;
+      describe('when bypassHeaderCheck option is set to false', () => {
+        beforeEach(() => {
+          xhr = { getResponseHeader: jest.fn().mockReturnValue(HEADER_VALUE) } as any;
 
-        result = getKeyFromResponse(xhr, KEY);
+          result = getKeyFromResponse(xhr, KEY);
+        });
+
+        it('should retrieve key from header', () => {
+          expect(xhr.getResponseHeader).toHaveBeenCalledWith(KEY);
+          expect(result).toEqual(HEADER_VALUE);
+        });
       });
 
-      it('should retrieve key from header', () => {
-        expect(xhr.getResponseHeader).toHaveBeenCalledWith(KEY);
-        expect(result).toEqual(HEADER_VALUE);
+      describe('when bypassHeaderCheck option is set to true', () => {
+        beforeEach(() => {
+          xhr = { getResponseHeader: jest.fn().mockReturnValue(HEADER_VALUE) } as any;
+
+          result = getKeyFromResponse(xhr, KEY, true);
+        });
+
+        it('should NOT retrieve key from header', () => {
+          expect(xhr.getResponseHeader).not.toHaveBeenCalledWith(KEY);
+          expect(result).not.toEqual(HEADER_VALUE);
+        });
       });
     });
 
