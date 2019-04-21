@@ -70,7 +70,8 @@ export class NgxFileUploadOptions {
   withCredentials?: boolean;
 
   /**
-   * Max status 4xx retries
+   * Max status >= 4xx retries
+   * If set to 0, triggers unlimited retries
    * @defaultValue 3
    */
   maxRetryAttempts?: number;
@@ -99,6 +100,12 @@ export class NgxFileUploadOptions {
    * @defaultValue false
    */
   forceOctetStreamMimeType?: boolean;
+
+  /**
+   * A backend error code which breaks the retry chain and force an immediate error
+   * @defaultValue null
+   */
+  breakRetryErrorCode?: number;
 
   /**
    * Checksum Hash method
