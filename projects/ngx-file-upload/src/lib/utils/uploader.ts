@@ -19,6 +19,7 @@ import { NgxFileUploaderOptions } from '../models/uploader-options';
 export class Uploader {
   public headers: { [key: string]: string } | null;
   public metadata: { [key: string]: any };
+  public extraMetadata: { [key: string]: any };
   public endpoint: string;
   public progress: number;
   public remaining: number;
@@ -75,12 +76,13 @@ export class Uploader {
   /**
    * Creates an instance of Uploader.
    */
-  constructor(private readonly file: File, public options: NgxFileUploaderOptions, checkSum: string = null) {
+  constructor(private readonly file: File, public options: NgxFileUploaderOptions, checkSum: string = null, extraMetadata: { [key: string]: any } = {}) {
     this.name = file.name;
     this.size = file.size;
     this.checkSum = checkSum;
     this.mimeType = file.type || 'application/octet-stream';
     this.stateChange = options.stateChange || noop;
+    this.extraMetadata = extraMetadata;
 
     this.configure(options);
   }
@@ -97,11 +99,14 @@ export class Uploader {
         .substring(2, 15);
     }
 
+    const { uploadType } = this.extraMetadata;
+
     this.metadata = {
       name: this.name,
       checksum: this.checkSum,
       mimeType: this.mimeType,
       size: this.file.size,
+      uploadType,
       lastModified: this.file.lastModified,
       ...unfunc(metadata || this.metadata, this.file)
     };

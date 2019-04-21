@@ -96,7 +96,7 @@ export class NgxFileUploadService {
    *
    * Create Uploader and add to the queue
    */
-  public async handleFileList(fileList: FileList) {
+  public async handleFileList(fileList: FileList, extraMedatata?: { [key: string]: any }) {
     for (let i = 0; i < fileList.length; i++) {
       let checkSum: string = null;
 
@@ -104,7 +104,7 @@ export class NgxFileUploadService {
         checkSum = await this.options.checksumHashMethod(fileList.item(i));
       }
 
-      const uploader: Uploader = new Uploader(fileList.item(i), this.uploaderOptions, checkSum);
+      const uploader: Uploader = new Uploader(fileList.item(i), this.uploaderOptions, checkSum, extraMedatata);
       this.queue.push(uploader);
       uploader.status = 'added';
     }
@@ -115,8 +115,14 @@ export class NgxFileUploadService {
   /**
    * Create Uploader for the file and add to the queue
    */
-  public handleFile(file: File): void {
-    const uploader: Uploader = new Uploader(file, this.uploaderOptions);
+  public async handleFile(file: File, extraMedatata?: { [key: string]: any }) {
+    let checkSum: string = null;
+
+    if (this.options.checksumHashMethod) {
+      checkSum = await this.options.checksumHashMethod(file);
+    }
+
+    const uploader: Uploader = new Uploader(file, this.uploaderOptions, checkSum, extraMedatata);
     this.queue.push(uploader);
     uploader.status = 'added';
 
