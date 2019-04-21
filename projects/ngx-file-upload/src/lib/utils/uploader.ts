@@ -25,6 +25,7 @@ export class Uploader {
   public remaining: number;
   public response: any;
   public responseStatus: number;
+  public responseStatusText: any;
   public speed: number;
   public URI: string;
   public uploadId: string;
@@ -183,6 +184,7 @@ export class Uploader {
       remaining: this.remaining,
       response: this.response,
       responseStatus: this.responseStatus,
+      responseStatusText: this.responseStatusText,
       size: this.size,
       speed: this.speed,
       status: this._status,
@@ -195,6 +197,7 @@ export class Uploader {
 
   private processResponse(xhr: XMLHttpRequest): void {
     this.responseStatus = xhr.status;
+    this.responseStatusText = xhr.statusText
     this.response = parseJson(xhr);
     this.statusType = xhr.status - (xhr.status % 100);
   }
