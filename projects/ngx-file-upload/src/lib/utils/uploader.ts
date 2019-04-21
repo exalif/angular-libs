@@ -50,7 +50,8 @@ export class Uploader {
   private forceOctetStreamMimeType: boolean;
   private useChunksIndexes: boolean = false;
   private currentChunkIndex: number;
-  private maxRetryAttempts = 3;
+  private maxRetryAttempts: number = 3;
+  private breakRetryErrorCode: number;
   private stateChange: (evt: NgxFileUploadState) => void;
 
   set status(status: NgxFileUploadStatus) {
@@ -116,6 +117,7 @@ export class Uploader {
     this.useBackendUploadId = this.options.useBackendUploadId || false;
     this.useUploadIdAsUrlPath = this.options.useUploadIdAsUrlPath || false;
     this.forceOctetStreamMimeType = this.options.forceOctetStreamMimeType || false;
+    this.breakRetryErrorCode = this.options.breakRetryErrorCode || null;
     this.chunkSize = this.options.chunkSize;
     this.maxRetryAttempts = this.options.maxRetryAttempts || this.maxRetryAttempts;
     this.refreshToken(token);
@@ -147,7 +149,7 @@ export class Uploader {
       this.startTime = new Date().getTime();
       this.sendChunk(this.progress ? undefined : 0);
     } catch (e) {
-      if (this.maxAttemptsReached()) {
+      if (this.maxAttemptsReached() || (!!this.breakRetryErrorCode && !!e && this.breakRetryErrorCode === e)) {
         this.status = 'error';
       } else {
         this.status = 'retry';
@@ -203,7 +205,8 @@ export class Uploader {
   }
 
   private maxAttemptsReached(): boolean | never {
-    if (this.retry.retryAttempts === this.maxRetryAttempts && this.statusType === 400) {
+    if (this.maxRetryAttempts !== 0 && this.retry.retryAttempts === this.maxRetryAttempts && this.statusType
+      >= 400) {
       this.retry.reset();
       console.error(
         `Error: Maximum number of retry attempts reached:
@@ -268,7 +271,7 @@ export class Uploader {
           }
         };
 
-        xhr.onerror = () => reject();
+        xhr.onerror = () => reject(xhr.status);
         xhr.send(JSON.stringify(this.metadata));
       } else {
         resolve();
@@ -322,7 +325,7 @@ export class Uploader {
 
   private setupEvents(xhr: XMLHttpRequest): void {
     const onError = async () => {
-      if (this.maxAttemptsReached()) {
+      if (this.maxAttemptsReached() || (!!this.breakRetryErrorCode && xhr.status === this.breakRetryErrorCode)) {
         this.status = 'error';
         return;
       }

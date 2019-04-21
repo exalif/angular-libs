@@ -55,6 +55,7 @@ export class NgxFileUploadService {
       useBackendUploadId: this.options.useBackendUploadId,
       useUploadIdAsUrlPath: this.options.useUploadIdAsUrlPath,
       forceOctetStreamMimeType: this.options.forceOctetStreamMimeType,
+      breakRetryErrorCode: this.options.breakRetryErrorCode,
       stateChange: this.stateChange
     };
   }
