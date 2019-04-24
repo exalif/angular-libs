@@ -96,10 +96,17 @@ export class NgxFileUploadOptions {
   useUploadIdAsUrlPath?: boolean;
 
   /**
-   * Use octet-stream mimeType even on unchunked uploads (entire file as a chunk)
+   * Send file using formData instead of raw body.
+   * Setting this to false will send a application/octet-stream Content-Type Header
    * @defaultValue false
    */
-  forceOctetStreamMimeType?: boolean;
+  useFormData?: boolean;
+
+  /**
+   * The name of the file's FormData key
+   * @defaultValue `file`
+   */
+  formDataFileKey?: string;
 
   /**
    * A backend error code which breaks the retry chain and force an immediate error

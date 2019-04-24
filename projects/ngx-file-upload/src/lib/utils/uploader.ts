@@ -47,7 +47,8 @@ export class Uploader {
   private useDataFromPostResponseBody: boolean;
   private useBackendUploadId: boolean;
   private useUploadIdAsUrlPath: boolean;
-  private forceOctetStreamMimeType: boolean;
+  private useFormData: boolean;
+  private formDataFileKey: string;
   private useChunksIndexes: boolean = false;
   private currentChunkIndex: number;
   private maxRetryAttempts: number = 3;
@@ -116,7 +117,8 @@ export class Uploader {
     this.useDataFromPostResponseBody = this.options.useDataFromPostResponseBody || false;
     this.useBackendUploadId = this.options.useBackendUploadId || false;
     this.useUploadIdAsUrlPath = this.options.useUploadIdAsUrlPath || false;
-    this.forceOctetStreamMimeType = this.options.forceOctetStreamMimeType || false;
+    this.useFormData = this.options.useFormData || false;
+    this.formDataFileKey = this.options.formDataFileKey || 'file';
     this.breakRetryErrorCode = this.options.breakRetryErrorCode || null;
     this.chunkSize = this.options.chunkSize;
     this.maxRetryAttempts = this.options.maxRetryAttempts || this.maxRetryAttempts;
@@ -301,7 +303,15 @@ export class Uploader {
           end++;
         }
 
-        body = this.file.slice(offset, end);
+        body = (!!this.chunksCount && this.chunksCount === 1) || (offset === 0 && end === this.size + 1)
+          ? this.file
+          : this.file.slice(offset, end);
+
+        if (this.useFormData) {
+          const formData = new FormData();
+          formData.append(this.formDataFileKey, body, this.name);
+          body = formData;
+        }
 
         xhr.upload.onprogress = this.setupProgressEvent(offset, progressEnd);
 
@@ -309,14 +319,13 @@ export class Uploader {
           xhr.setRequestHeader('X-Upload-Chunk-Index', this.currentChunkIndex.toString());
         }
 
-        xhr.setRequestHeader('Content-Range', `bytes ${offset}-${end - 1}/${this.size}`);
-        xhr.setRequestHeader('Content-Type', 'application/octet-stream');
-      } else {
-        xhr.setRequestHeader('Content-Range', `bytes */${this.size}`);
-
-        if (this.forceOctetStreamMimeType) {
+        if (!this.useFormData) {
           xhr.setRequestHeader('Content-Type', 'application/octet-stream');
         }
+
+        xhr.setRequestHeader('Content-Range', `bytes ${offset}-${end - 1}/${this.size}`);
+      } else {
+        xhr.setRequestHeader('Content-Range', `bytes */${this.size}`);
       }
 
       xhr.send(body);
@@ -353,7 +362,7 @@ export class Uploader {
       this.processResponse(xhr);
       const offset = this.statusType === 300 && this.getNextChunkOffset(xhr);
 
-      if (typeof offset === 'number' || this.canGoToNextIndexChunk()) {
+      if (typeof offset === 'number' || (this.statusType === 300 && this.canGoToNextIndexChunk())) {
         //  next chunk
         if (this.useChunksIndexes) {
           this.currentChunkIndex++;
