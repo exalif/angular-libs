@@ -7,8 +7,9 @@ export interface NgxFileUploaderOptions extends NgxFileUploadItem {
   useDataFromPostResponseBody?: boolean;
   useBackendUploadId?: boolean;
   useUploadIdAsUrlPath?: boolean;
-  forceOctetStreamMimeType?: boolean;
+  useFormData?: boolean;
   breakRetryErrorCode?: number;
+  formDataFileKey?: string;
 
   readonly stateChange?: any;
 }
