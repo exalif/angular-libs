@@ -64,12 +64,6 @@ export class NgxFileUploadOptions {
   url?: string;
 
   /**
-   * Retry upload on 404 instead of reque whole request
-   * @defaultValue false
-   */
-  noRequeueOn404?: boolean;
-
-  /**
    * Use withCredentials xhr option?
    * @defaultValue false
    */
@@ -115,13 +109,14 @@ export class NgxFileUploadOptions {
   formDataFileKey?: string;
 
   /**
-   * A backend error code which breaks the retry chain and force an immediate error
-   * @defaultValue null
+   * A backend error codes array
+   * if an error code matching an array element occurs, it will not retry and set an error state
+   * @defaultValue []
    */
-  breakRetryErrorCode?: number;
+  breakRetryErrorCodes?: number[];
 
   /**
    * Checksum Hash method
    */
-  checksumHashMethod?: (file: File) => Promise<string>
+  checksumHashMethod?: (file: File) => Promise<string>;
 }
