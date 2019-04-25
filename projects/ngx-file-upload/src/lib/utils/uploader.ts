@@ -44,7 +44,8 @@ export class Uploader {
   private _xhr_: XMLHttpRequest;
   private chunkSize: number;
   private chunksCount: number;
-  private noRequeueOn404: boolean;
+  private retryOn404: boolean;
+  private requeueOn404: boolean;
   private useDataFromPostResponseBody: boolean;
   private useBackendUploadId: boolean;
   private useUploadIdAsUrlPath: boolean;
@@ -53,7 +54,7 @@ export class Uploader {
   private useChunksIndexes: boolean = false;
   private currentChunkIndex: number;
   private maxRetryAttempts: number = 3;
-  private breakRetryErrorCode: number;
+  private breakRetryErrorCodes: number[];
   private stateChange: (evt: NgxFileUploadState) => void;
 
   set status(status: NgxFileUploadStatus) {
@@ -80,7 +81,12 @@ export class Uploader {
   /**
    * Creates an instance of Uploader.
    */
-  constructor(private readonly file: File, public options: NgxFileUploaderOptions, checkSum: string = null, extraMetadata: { [key: string]: any } = {}) {
+  constructor(
+    private readonly file: File,
+    public options: NgxFileUploaderOptions,
+    checkSum: string = null,
+    extraMetadata: { [key: string]: any } = {}
+  ) {
     this.name = file.name;
     this.size = file.size;
     this.checkSum = checkSum;
@@ -120,10 +126,9 @@ export class Uploader {
     this.useUploadIdAsUrlPath = this.options.useUploadIdAsUrlPath || false;
     this.useFormData = this.options.useFormData || false;
     this.formDataFileKey = this.options.formDataFileKey || 'file';
-    this.breakRetryErrorCode = this.options.breakRetryErrorCode || null;
+    this.breakRetryErrorCodes = this.options.breakRetryErrorCodes || [];
     this.chunkSize = this.options.chunkSize;
     this.maxRetryAttempts = this.options.maxRetryAttempts || this.maxRetryAttempts;
-    this.noRequeueOn404 = this.options.noRequeueOn404 || false;
     this.refreshToken(token);
     this.headers = { ...this.headers, ...unfunc(headers, this.file) };
   }
@@ -153,7 +158,7 @@ export class Uploader {
       this.startTime = new Date().getTime();
       this.sendChunk(this.progress ? undefined : 0);
     } catch (e) {
-      if (this.maxAttemptsReached() || (!!this.breakRetryErrorCode && !!e && this.breakRetryErrorCode === e)) {
+      if (this.maxAttemptsReached() || this.shouldBreakRetry(e)) {
         this.status = 'error';
       } else {
         this.status = 'retry';
@@ -203,7 +208,7 @@ export class Uploader {
 
   private processResponse(xhr: XMLHttpRequest): void {
     this.responseStatus = xhr.status;
-    this.responseStatusText = xhr.statusText
+    this.responseStatusText = xhr.statusText;
     this.response = parseJson(xhr);
     this.statusType = xhr.status - (xhr.status % 100);
   }
@@ -299,7 +304,7 @@ export class Uploader {
 
       if (offset >= 0 && offset < this.size) {
         let end = this.chunkSize ? Math.min(offset + this.chunkSize, this.size) : this.size;
-        let progressEnd = end;
+        const progressEnd = end;
 
         if (this.isIndexChunkingWithNoRest()) {
           end++;
@@ -336,22 +341,13 @@ export class Uploader {
 
   private setupEvents(xhr: XMLHttpRequest): void {
     const onError = async () => {
-      if (this.maxAttemptsReached() || (!!this.breakRetryErrorCode && xhr.status === this.breakRetryErrorCode)) {
+      if (this.maxAttemptsReached() || this.shouldBreakRetry(xhr.status)) {
         this.status = 'error';
         return;
       }
 
       this.status = 'retry';
       await this.retry.wait(xhr.status);
-
-      if (xhr.status === 404 && this.noRequeueOn404) {
-        this.status = 'uploading';
-      }
-
-      if (xhr.status === 404 && !this.noRequeueOn404) {
-        this.status = 'queue';
-        return;
-      }
 
       if (xhr.status === 413) {
         this.chunkSize /= 2;
@@ -433,6 +429,12 @@ export class Uploader {
   }
 
   private isIndexChunkingWithNoRest(): boolean {
-    return this.useChunksIndexes && this.size === this.chunkSize * this.chunksCount
+    return this.useChunksIndexes && this.size === this.chunkSize * this.chunksCount;
+  }
+
+  private shouldBreakRetry(errorCode: number) {
+    return typeof errorCode === 'number'
+      && this.breakRetryErrorCodes.length > 0
+      && this.breakRetryErrorCodes.includes(errorCode);
   }
 }

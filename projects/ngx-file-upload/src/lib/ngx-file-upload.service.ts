@@ -49,7 +49,6 @@ export class NgxFileUploadService {
       metadata: this.options.metadata,
       token: this.options.token,
       chunkSize: this.options.chunkSize,
-      noRequeueOn404: this.options.noRequeueOn404,
       withCredentials: this.options.withCredentials,
       maxRetryAttempts: this.options.maxRetryAttempts,
       useDataFromPostResponseBody: this.options.useDataFromPostResponseBody,
@@ -57,7 +56,7 @@ export class NgxFileUploadService {
       useUploadIdAsUrlPath: this.options.useUploadIdAsUrlPath,
       useFormData: this.options.useFormData,
       formDataFileKey: this.options.formDataFileKey || 'file',
-      breakRetryErrorCode: this.options.breakRetryErrorCode,
+      breakRetryErrorCodes: this.options.breakRetryErrorCodes,
       stateChange: this.stateChange,
     };
   }
