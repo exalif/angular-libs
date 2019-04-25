@@ -44,6 +44,7 @@ export class Uploader {
   private _xhr_: XMLHttpRequest;
   private chunkSize: number;
   private chunksCount: number;
+  private noRequeueOn404: boolean;
   private useDataFromPostResponseBody: boolean;
   private useBackendUploadId: boolean;
   private useUploadIdAsUrlPath: boolean;
@@ -122,6 +123,7 @@ export class Uploader {
     this.breakRetryErrorCode = this.options.breakRetryErrorCode || null;
     this.chunkSize = this.options.chunkSize;
     this.maxRetryAttempts = this.options.maxRetryAttempts || this.maxRetryAttempts;
+    this.noRequeueOn404 = this.options.noRequeueOn404 || false;
     this.refreshToken(token);
     this.headers = { ...this.headers, ...unfunc(headers, this.file) };
   }
@@ -342,7 +344,11 @@ export class Uploader {
       this.status = 'retry';
       await this.retry.wait(xhr.status);
 
-      if (xhr.status === 404) {
+      if (xhr.status === 404 && this.noRequeueOn404) {
+        this.status = 'uploading';
+      }
+
+      if (xhr.status === 404 && !this.noRequeueOn404) {
         this.status = 'queue';
         return;
       }
