@@ -64,6 +64,12 @@ export class NgxFileUploadOptions {
   url?: string;
 
   /**
+   * Retry upload on 404 instead of reque whole request
+   * @defaultValue false
+   */
+  noRequeueOn404?: boolean;
+
+  /**
    * Use withCredentials xhr option?
    * @defaultValue false
    */
