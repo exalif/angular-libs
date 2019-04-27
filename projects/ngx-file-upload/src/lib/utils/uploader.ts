@@ -430,7 +430,7 @@ export class Uploader {
   }
 
   private calculateChunksSize(chunksCount: number): void {
-    this.chunkSize = Math.floor(this.size / chunksCount);
+    this.chunkSize = Math.ceil(this.size / chunksCount);
   }
 
   private isIndexChunkingWithNoRest(): boolean {
