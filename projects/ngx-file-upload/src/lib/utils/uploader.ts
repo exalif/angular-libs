@@ -399,8 +399,13 @@ export class Uploader {
   }
 
   private getNextChunkOffset(xhr: XMLHttpRequest): number {
+    if (this.useChunksIndexes) {
+      return this.chunkSize * (this.currentChunkIndex + 1);
+    }
+
     const str = getKeyFromResponse(xhr, 'Range');
     const [match] = str && str.match(/(-1|\d+)$/g);
+
     return match && +match + 1;
   }
 
