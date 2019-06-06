@@ -19,7 +19,7 @@
     "konami-code"
   ],
   "peerDependencies": {
-    "@angular/common": ">= 6.0.0 < 8.0.0",
-    "@angular/core": ">= 6.0.0 < 8.0.0"
+    "@angular/common": ">= 6.0.0 < 9.0.0",
+    "@angular/core": ">= 6.0.0 < 9.0.0"
   }
 }
