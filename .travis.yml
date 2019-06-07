@@ -17,14 +17,15 @@ branches:
 jobs:
   include:
     - stage: test
-      script: npm run test:ci
+      script: yarn test:ci
+      after_script: cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
     - stage: build
-      script: npm run build:ngx-breadcrumbs
+      script: yarn build:ngx-breadcrumbs
     - stage: build
-      script: npm run build:ngx-test-utils
+      script: yarn build:ngx-test-utils
     - stage: build
-      script: npm run build:ngx-file-upload
+      script: yarn build:ngx-file-upload
     - stage: build
-      script: npm run build:ngx-k-code
+      script: yarn build:ngx-k-code
     - stage: build
-      script: npm run build:demo
+      script: yarn build:demo
