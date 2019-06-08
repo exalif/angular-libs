@@ -32,7 +32,7 @@ module.exports = {
   transformIgnorePatterns: [
     'node_modules/(?!@ngrx|@ngx-translate)'
   ],
-  coverageReporters: ['html', 'text-summary', 'text'],
+  coverageReporters: ['html', 'text-summary', 'text', 'lcov'],
   collectCoverageFrom: [
     'projects/ngx-breadcrumbs/src/**/*.ts',
     'projects/ngx-test-utils/src/**/*.ts',
