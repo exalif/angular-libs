@@ -1,7 +1,7 @@
 sudo: required
 language: node_js
 node_js:
-  - "10"
+  - "12"
 cache:
   - yarn
   - npm
@@ -16,7 +16,6 @@ branches:
 
 jobs:
   include:
-    - after_script: cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
     - stage: test
       script: yarn test:ci
       after_script: cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
