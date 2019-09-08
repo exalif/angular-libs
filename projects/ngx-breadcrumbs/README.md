@@ -216,7 +216,7 @@ export interface MyBreadcrumb extends Breadcrumb {
 }
 
 @Injectable()
-export class MyBreadcrumbsResolver inherits BreadcrumbsResolver {
+export class MyBreadcrumbsResolver extends BreadcrumbsResolver {
 
   // Optional: inject any required dependencies
   constructor(private myService: MyService) {}
