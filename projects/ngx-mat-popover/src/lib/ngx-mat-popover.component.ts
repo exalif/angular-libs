@@ -2,7 +2,7 @@ import { Component, Input, ViewChild, TemplateRef, ChangeDetectionStrategy } fro
 import { MenuPositionX, MenuPositionY, MatMenuTrigger } from '@angular/material';
 
 @Component({
-  selector: 'mat-popover',
+  selector: 'ngx-mat-popover',
   template: `
     <mat-menu #popover="matMenu" [xPosition]="xPosition" [yPosition]="yPosition" class="mat-popover-container">
       <ng-template matMenuContent>
