@@ -1,0 +1,5 @@
+{
+  "entry": "./projects/ngx-mat-popover/src/lib/ngx-mat-popover.theme.scss",
+  "dest": "./dist/ngx-mat-popover/ngx-mat-popover.theme.scss",
+  "ignoredImports": ["~@angular/.*"]
+}

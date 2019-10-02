@@ -198,6 +198,41 @@
           }
         }
       }
+    },
+    "ngx-mat-popover": {
+      "projectType": "library",
+      "root": "projects/ngx-mat-popover",
+      "sourceRoot": "projects/ngx-mat-popover/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-mat-popover/tsconfig.lib.json",
+            "project": "projects/ngx-mat-popover/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-mat-popover/src/test.ts",
+            "tsConfig": "projects/ngx-mat-popover/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-mat-popover/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-mat-popover/tsconfig.lib.json",
+              "projects/ngx-mat-popover/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular-libs-demo"
