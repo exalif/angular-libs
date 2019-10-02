@@ -42,6 +42,12 @@
       ],
       "@exalif/ngx-k-code/*": [
         "dist/ngx-k-code/*"
+      ],
+      "ngx-mat-popover": [
+        "dist/ngx-mat-popover"
+      ],
+      "ngx-mat-popover/*": [
+        "dist/ngx-mat-popover/*"
       ]
     }
   }

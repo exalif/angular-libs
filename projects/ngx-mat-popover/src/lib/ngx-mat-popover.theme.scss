@@ -1,0 +1,34 @@
+@import '~@angular/material/theming';
+
+$mat-content-padding: 1rem !default;
+
+@mixin ngx-mat-popover($typography-config: mat-typography-config()) {
+  .mat-popover-container {
+    .mat-menu-item {
+      height: auto;
+      white-space: normal;
+      line-height: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: $mat-content-padding;
+
+      &.cdk-program-focused:not([disabled]),
+      &:hover:not([disabled]) {
+        background: inherit;
+      }
+    }
+
+    .mat-menu-content {
+      padding: 0;
+    }
+  }
+}
+
+@mixin ngx-mat-popover-theme($theme) {
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+}

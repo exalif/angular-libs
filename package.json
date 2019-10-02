@@ -10,6 +10,7 @@
     "build:ngx-test-utils": "ng build ngx-test-utils",
     "build:ngx-file-upload": "ng build ngx-file-upload",
     "build:ngx-k-code": "ng build ngx-k-code",
+    "build:ngx-mat-popover": "ng build ngx-mat-popover && scss-bundle -c projects/ngx-mat-popover/scss-bundle.config.json",
     "test": "jest --colors  --coverage",
     "test:ci": "jest --colors --coverage --silent",
     "test:watch": "jest --watch --colors --verbose false",
@@ -23,11 +24,15 @@
     "@angular/compiler": "8.2.8",
     "@angular/core": "8.2.8",
     "@angular/forms": "8.2.8",
+    "@angular/material": "8.2.2",
+    "@angular/cdk": "8.2.2",
+    "@angular/cdk-experimental": "8.2.2",
     "@angular/platform-browser": "8.2.8",
     "@angular/platform-browser-dynamic": "8.2.8",
     "@angular/router": "8.2.8",
-    "core-js": "2.6.5",
+    "core-js": "2.6.8",
     "rxjs": "6.5.3",
+    "tslib": "1.10.0",
     "zone.js": "0.9.1"
   },
   "devDependencies": {
@@ -57,9 +62,9 @@
     "ng-packagr": "5.5.1",
     "nodemon": "1.19.3",
     "node-uploadx": "1.2.8",
+    "scss-bundle": "2.5.1",
     "ts-node": "8.4.1",
     "tsickle": "0.35.0",
-    "tslib": "1.10.0",
     "tslint": "5.20.0",
     "typescript": "3.4.5"
   }
