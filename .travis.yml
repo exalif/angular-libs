@@ -28,4 +28,6 @@ jobs:
     - stage: build
       script: yarn build:ngx-k-code
     - stage: build
+      script: yarn build:ngx-mat-popover
+    - stage: build
       script: yarn build:demo
