@@ -104,33 +104,6 @@
         }
       }
     },
-    "ngx-test-utils": {
-      "root": "projects/ngx-test-utils",
-      "sourceRoot": "projects/ngx-test-utils/src",
-      "projectType": "library",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/ngx-test-utils/tsconfig.lib.json",
-            "project": "projects/ngx-test-utils/ng-package.json"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-test-utils/tsconfig.lib.json",
-              "projects/ngx-test-utils/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "ngx-file-upload": {
       "root": "projects/ngx-file-upload",
       "sourceRoot": "projects/ngx-file-upload/src",
@@ -230,6 +203,21 @@
             "exclude": [
               "**/node_modules/**"
             ]
+          }
+        }
+      }
+    },
+    "ngx-skeleton-loader": {
+      "projectType": "library",
+      "root": "projects/ngx-skeleton-loader",
+      "sourceRoot": "projects/ngx-skeleton-loader/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-skeleton-loader/tsconfig.lib.json",
+            "project": "projects/ngx-skeleton-loader/ng-package.json"
           }
         }
       }
