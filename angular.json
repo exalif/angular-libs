@@ -219,9 +219,29 @@
             "tsConfig": "projects/ngx-skeleton-loader/tsconfig.lib.json",
             "project": "projects/ngx-skeleton-loader/ng-package.json"
           }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-skeleton-loader/src/test.ts",
+            "tsConfig": "projects/ngx-skeleton-loader/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-skeleton-loader/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-skeleton-loader/tsconfig.lib.json",
+              "projects/ngx-skeleton-loader/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
         }
       }
-    }
+    },
   },
   "defaultProject": "angular-libs-demo"
 }
