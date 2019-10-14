@@ -1,2 +1,0 @@
-# @exalif/ngx-test-utils
-
