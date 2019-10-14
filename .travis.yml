@@ -22,7 +22,7 @@ jobs:
     - stage: build
       script: yarn build:ngx-breadcrumbs
     - stage: build
-      script: yarn build:ngx-test-utils
+      script: yarn build:ngx-skeleton-loader
     - stage: build
       script: yarn build:ngx-file-upload
     - stage: build

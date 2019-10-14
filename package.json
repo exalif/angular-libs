@@ -7,7 +7,7 @@
     "start:all": "concurrently --kill-others -s \"first\" \"npm run upload-server:dev\" \"npm run start\"",
     "build:demo": "ng build angular-libs-demo --prod",
     "build:ngx-breadcrumbs": "ng build ngx-breadcrumbs",
-    "build:ngx-test-utils": "ng build ngx-test-utils",
+    "build:ngx-skeleton-loader": "ng build ngx-skeleton-loader",
     "build:ngx-file-upload": "ng build ngx-file-upload",
     "build:ngx-k-code": "ng build ngx-k-code",
     "build:ngx-mat-popover": "ng build ngx-mat-popover && scss-bundle -c projects/ngx-mat-popover/scss-bundle.config.json",
