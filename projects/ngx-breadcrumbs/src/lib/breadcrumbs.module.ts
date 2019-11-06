@@ -15,7 +15,7 @@ import { BreadcrumbsComponent } from './component/breadcrumbs.component';
   exports: [BreadcrumbsComponent]
 })
 export class BreadcrumbsModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<BreadcrumbsModule> {
     return {
       ngModule: BreadcrumbsModule,
       providers: [
@@ -25,7 +25,7 @@ export class BreadcrumbsModule {
     };
   }
 
-  public static forChild(): ModuleWithProviders {
+  public static forChild(): ModuleWithProviders<BreadcrumbsModule> {
     return {
       ngModule: BreadcrumbsModule
     };

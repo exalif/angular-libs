@@ -22,7 +22,7 @@ export class NgxMatPopoverComponent {
   @Input() yPosition: MenuPositionY = 'below';
   @Input() popoverContent: TemplateRef<any>;
 
-  @ViewChild(MatMenuTrigger, { static: false }) private matMenuTrigger: MatMenuTrigger;
+  @ViewChild(MatMenuTrigger) private matMenuTrigger: MatMenuTrigger;
 
   public open(): void {
     this.matMenuTrigger.openMenu();
