@@ -1,6 +1,6 @@
 {
   "name": "@exalif/ngx-breadcrumbs",
-  "version": "8.0.0-rc.0",
+  "version": "8.0.0",
   "license": "MIT",
   "description": "Angular 4+ breadcrumbs on top of native Angular router",
   "author": {
@@ -15,7 +15,10 @@
   "keywords": [
     "angular",
     "angular7",
+    "angular8",
+    "angular9",
     "breadcrumbs",
+    "bgx-breadcrumbs",
     "routing"
   ],
   "peerDependencies": {

@@ -24,10 +24,4 @@ export class BreadcrumbsModule {
       ]
     };
   }
-
-  public static forChild(): ModuleWithProviders<BreadcrumbsModule> {
-    return {
-      ngModule: BreadcrumbsModule
-    };
-  }
 }
