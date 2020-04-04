@@ -15,19 +15,13 @@ import { BreadcrumbsComponent } from './component/breadcrumbs.component';
   exports: [BreadcrumbsComponent]
 })
 export class BreadcrumbsModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<BreadcrumbsModule> {
     return {
       ngModule: BreadcrumbsModule,
       providers: [
         BreadcrumbsConfig,
         BreadcrumbsService
       ]
-    };
-  }
-
-  public static forChild(): ModuleWithProviders {
-    return {
-      ngModule: BreadcrumbsModule
     };
   }
 }

@@ -5,6 +5,12 @@ This package is a modified fork of original [ngx-breadcrumbs](https://github.com
 
 ## Requirements
 
+ - `lodash.template`: you must install lodash.template as a dependency in your project as it was moved to peer dependency on 8.0.0 version of this library.
+
+**Caution**: Version **>=8.0.0** requires:
+ - `rxjs` **>=6.3.0**
+ - `@angular`  **>=9.0.0**
+
 **Caution**: Version **>=7.0.0** requires:
  - `rxjs` **>=6.3.0**
  - `@angular`  **>=7.0.0**

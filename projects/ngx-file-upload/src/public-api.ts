@@ -6,5 +6,6 @@ export { NgxFileUploadItem } from './lib/models/upload-item';
 export { NgxFileUploadOptions } from './lib/models/upload-options';
 
 export { NgxFileUploadService } from './lib/ngx-file-upload.service';
+export { NgxFileUploadDirective } from './lib/ngx-file-upload.directive';
 
 export { Uploader } from './lib/utils/uploader';

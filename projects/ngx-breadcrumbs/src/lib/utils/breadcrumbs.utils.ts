@@ -1,5 +1,3 @@
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-
 import { Observable, of, from } from 'rxjs';
 
 import * as template from 'lodash.template';

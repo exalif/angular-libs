@@ -14,6 +14,11 @@
           "options": {
             "tsConfig": "projects/ngx-breadcrumbs/tsconfig.lib.json",
             "project": "projects/ngx-breadcrumbs/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-breadcrumbs/tsconfig.lib.prod.json"
+            }
           }
         },
         "lint": {
@@ -39,6 +44,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/angular-libs-demo",
             "index": "projects/angular-libs-demo/src/index.html",
             "main": "projects/angular-libs-demo/src/main.ts",
@@ -75,6 +81,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -115,21 +125,18 @@
           "options": {
             "tsConfig": "projects/ngx-file-upload/tsconfig.lib.json",
             "project": "projects/ngx-file-upload/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/ngx-file-upload/src/test.ts",
-            "tsConfig": "projects/ngx-file-upload/tsconfig.spec.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-file-upload/tsconfig.lib.prod.json"
+            }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ngx-file-upload/tsconfig.lib.json",
-              "projects/ngx-file-upload/tsconfig.spec.json"
+              "projects/ngx-file-upload/tsconfig.lib.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -149,21 +156,18 @@
           "options": {
             "tsConfig": "projects/ngx-k-code/tsconfig.lib.json",
             "project": "projects/ngx-k-code/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/ngx-k-code/src/test.ts",
-            "tsConfig": "projects/ngx-k-code/tsconfig.spec.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-k-code/tsconfig.lib.prod.json"
+            }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ngx-k-code/tsconfig.lib.json",
-              "projects/ngx-k-code/tsconfig.spec.json"
+              "projects/ngx-k-code/tsconfig.lib.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -183,22 +187,18 @@
           "options": {
             "tsConfig": "projects/ngx-mat-popover/tsconfig.lib.json",
             "project": "projects/ngx-mat-popover/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/ngx-mat-popover/src/test.ts",
-            "tsConfig": "projects/ngx-mat-popover/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-mat-popover/karma.conf.js"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-mat-popover/tsconfig.lib.prod.json"
+            }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ngx-mat-popover/tsconfig.lib.json",
-              "projects/ngx-mat-popover/tsconfig.spec.json"
+              "projects/ngx-mat-popover/tsconfig.lib.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -218,22 +218,18 @@
           "options": {
             "tsConfig": "projects/ngx-skeleton-loader/tsconfig.lib.json",
             "project": "projects/ngx-skeleton-loader/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/ngx-skeleton-loader/src/test.ts",
-            "tsConfig": "projects/ngx-skeleton-loader/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-skeleton-loader/karma.conf.js"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-skeleton-loader/tsconfig.lib.prod.json"
+            }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ngx-skeleton-loader/tsconfig.lib.json",
-              "projects/ngx-skeleton-loader/tsconfig.spec.json"
+              "projects/ngx-skeleton-loader/tsconfig.lib.json"
             ],
             "exclude": [
               "**/node_modules/**"
