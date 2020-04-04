@@ -2,16 +2,24 @@
 
 $mat-content-padding: 1rem !default;
 
-@mixin ngx-mat-popover($typography-config: mat-typography-config()) {
+@mixin ngx-mat-popover(
+  $typography-config: mat-typography-config(),
+  $padding: $mat-content-padding,
+  $content-padding: 0,
+  $display: flex,
+  $flex-direction: column,
+  $align-items: center,
+  $height: auto,
+) {
   .mat-popover-container {
     .mat-menu-item {
-      height: auto;
+      height: $height;
       white-space: normal;
       line-height: inherit;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: $mat-content-padding;
+      display: $display;
+      flex-direction: $flex-direction;
+      align-items: $align-items;
+      padding: $padding;
 
       &.cdk-program-focused:not([disabled]),
       &:hover:not([disabled]) {
@@ -20,7 +28,7 @@ $mat-content-padding: 1rem !default;
     }
 
     .mat-menu-content {
-      padding: 0;
+      padding: $content-padding;
     }
   }
 }

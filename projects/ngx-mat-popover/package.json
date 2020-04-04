@@ -1,6 +1,6 @@
 {
   "name": "@exalif/ngx-mat-popover",
-  "version": "2.0.0-rc.0",
+  "version": "2.0.0",
   "license": "MIT",
   "description": "Angular 8+ material popover component using material menu",
   "author": {
@@ -15,6 +15,7 @@
   "keywords": [
     "angular",
     "angular8",
+    "angular9",
     "popover",
     "confirm",
     "material"
