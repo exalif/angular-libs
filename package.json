@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
     "start": "ng serve",
     "start:all": "concurrently --kill-others -s \"first\" \"npm run upload-server:dev\" \"npm run start\"",
     "build:demo": "ng build angular-libs-demo --prod",
