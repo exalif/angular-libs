@@ -238,6 +238,38 @@
         }
       }
     },
+    "ngx-signature-pad": {
+      "projectType": "library",
+      "root": "projects/ngx-signature-pad",
+      "sourceRoot": "projects/ngx-signature-pad/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-signature-pad/tsconfig.lib.json",
+            "project": "projects/ngx-signature-pad/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-signature-pad/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-signature-pad/tsconfig.lib.json",
+              "projects/ngx-signature-pad/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
   },
   "defaultProject": "angular-libs-demo"
 }

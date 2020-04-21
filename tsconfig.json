@@ -48,6 +48,10 @@
       ],
       "ngx-mat-popover/*": [
         "dist/ngx-mat-popover/*"
+      ],
+      "ngx-signature-pad": [
+        "dist/ngx-signature-pad/ngx-signature-pad",
+        "dist/ngx-signature-pad"
       ]
     }
   }
