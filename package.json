@@ -34,6 +34,7 @@
     "core-js": "2.6.8",
     "lodash.template": "4.5.0",
     "rxjs": "6.5.5",
+    "signature_pad": "3.0.0-beta.3",
     "tslib": "1.11.1",
     "zone.js": "0.10.3"
   },
@@ -45,6 +46,7 @@
     "@angular/language-service": "9.1.0",
     "@types/jest": "24.0.18",
     "@types/node": "^12.11.1",
+    "@types/signature_pad": "2.3.0",
     "body-parser": "1.19.0",
     "bytes": "3.1.0",
     "codelyzer": "5.2.2",

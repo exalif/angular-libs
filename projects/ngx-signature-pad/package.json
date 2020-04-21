@@ -23,6 +23,7 @@
   "peerDependencies": {
     "@angular/common": ">= 8.0.0 < 10.0.0",
     "@angular/core": ">= 8.0.0 < 10.0.0",
-    "@angular/router": ">= 8.0.0 < 10.0.0"
+    "@angular/router": ">= 8.0.0 < 10.0.0",
+    "signature_pad": ">= 3.0.0-beta.3"
   }
 }

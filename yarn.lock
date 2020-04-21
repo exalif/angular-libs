@@ -1448,6 +1448,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/signature_pad@2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@types/signature_pad/-/signature_pad-2.3.0.tgz#0040aa8eb82063dbb50653047eb5cb7227b7a103"
+  integrity sha512-3g03oFi6Xy7oA1foIP80X9Np+psq1CDGsGIRIEgvEuFzJZsS5oRGGqgl9K5ONlfLlnYU+Ei8vMszWKlIlMA/cA==
+
 "@types/source-list-map@*":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@types/source-list-map/-/source-list-map-0.1.2.tgz#0078836063ffaf17412349bba364087e0ac02ec9"
@@ -9092,6 +9097,11 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.3.tgz#a1410c2edd8f077b08b4e253c8eacfcaf057461c"
   integrity sha512-VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==
+
+signature_pad@3.0.0-beta.3:
+  version "3.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/signature_pad/-/signature_pad-3.0.0-beta.3.tgz#04bfc4403a9431edfbddacd9ab704f04dc7721fb"
+  integrity sha512-qBFUr24eH3twi3rNwLPW7XRSZs8l76r4C/ndh5Yby97x8v0wtYs4HPbbIRwuPwEIcZ01QTPKbizc/OumdisEBQ==
 
 simple-swizzle@^0.2.2:
   version "0.2.2"
