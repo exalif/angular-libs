@@ -19,7 +19,7 @@ import { NgxSignaturePadOptions } from './models/signature-pad-options';
 export class NgxSignaturePadComponent implements AfterContentInit, OnDestroy {
   @Input() public options: NgxSignaturePadOptions;
 
-  @ViewChild('signatureCanvas') public canvas: ElementRef<HTMLCanvasElement>;
+  @ViewChild('signatureCanvas', { static: false }) public canvas: ElementRef<HTMLCanvasElement>;
 
   @Output() public begin: EventEmitter<boolean> = new EventEmitter();
   @Output() public end: EventEmitter<boolean> = new EventEmitter();
