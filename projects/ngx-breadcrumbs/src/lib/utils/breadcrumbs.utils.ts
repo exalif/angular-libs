@@ -1,19 +1,25 @@
 import { Observable, of, from } from 'rxjs';
 
-import * as template from 'lodash.template';
-import * as templateSettings from 'lodash.templatesettings';
-
-const _ = {
-  template: template,
-  templateSettings: templateSettings
-};
-_.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
-
 export abstract class BreadcrumbsUtils {
-  public static stringFormat(rawTemplate: string, binding: any): string {
-    const compiled = _.template(rawTemplate);
+  public static stringFormat(rawTemplate: string, data: any): string {
+    const templateRegex = new RegExp('{{[\\s]*[a-zA-Z.]+?[\\s]*}}', 'g');
 
-    return compiled(binding);
+    return rawTemplate.replace(templateRegex, (match) => {
+      const keyRegex = new RegExp('([a-zA-Z.]+)', 'g');
+      const key = match.match(keyRegex);
+
+      if (!key || !key.length) {
+        return match;
+      }
+
+      const value = BreadcrumbsUtils.leaf(data, key[0]);
+
+      if (!value) {
+        return key[0];
+      }
+
+      return value;
+    });
   }
 
   public static wrapIntoObservable<T>(value: T | Promise<T> | Observable<T>): Observable<T> {
@@ -30,5 +36,41 @@ export abstract class BreadcrumbsUtils {
 
   private static isPromise(value: any): boolean {
     return value && (typeof value.then === 'function');
+  }
+
+  /**
+  * Access object nested value by giving a path
+  *
+  * @param obj The object you want to access value from
+  * @param path The value path. e.g: `bar.baz`
+  * @example
+  *   const obj = { foo: { bar: 'Baz' } };
+  *   const path = 'foo.bar';
+  *   leaf(obj, path) // 'Baz'
+  */
+  public static leaf(obj: any, path: string) {
+    const result = path.split('.').reduce((value, el) => value[el] || {}, obj);
+
+    return BreadcrumbsUtils.isEmptyObject(result) ? null : result;
+  };
+
+  /**
+  * checks whether an object is empty or not
+  *
+  * @param object object to extract values from
+  * @returns boolean
+  */
+  public static isEmptyObject(obj): boolean {
+    if (typeof obj === 'object' && Object.prototype.toString.call(obj) === '[object Object]') {
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    return false;
   }
 }
