@@ -1,58 +1,32 @@
+/*
+  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
+  It is not intended to be used to perform a compilation.
+
+  To learn more about this file see: https://angular.io/config/solution-tsconfig.
+*/
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "downlevelIteration": true,
-    "module": "esnext",
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
-    "paths": {
-      "@exalif/ngx-breadcrumbs": [
-        "dist/ngx-breadcrumbs"
-      ],
-      "@exalif/ngx-breadcrumbs/*": [
-        "dist/ngx-breadcrumbs/*"
-      ],
-      "@exalif/ngx-test-utils": [
-        "dist/ngx-test-utils"
-      ],
-      "@exalif/ngx-test-utils/*": [
-        "dist/ngx-test-utils/*"
-      ],
-      "@exalif/ngx-file-upload": [
-        "dist/ngx-file-upload"
-      ],
-      "@exalif/ngx-file-upload/*": [
-        "dist/ngx-file-upload/*"
-      ],
-      "@exalif/ngx-k-code": [
-        "dist/ngx-k-code"
-      ],
-      "@exalif/ngx-k-code/*": [
-        "dist/ngx-k-code/*"
-      ],
-      "ngx-mat-popover": [
-        "dist/ngx-mat-popover"
-      ],
-      "ngx-mat-popover/*": [
-        "dist/ngx-mat-popover/*"
-      ],
-      "ngx-signature-pad": [
-        "dist/ngx-signature-pad/ngx-signature-pad",
-        "dist/ngx-signature-pad"
-      ]
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/ngx-breadcrumbs/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/angular-libs-demo/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/ngx-file-upload/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ngx-k-code/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ngx-mat-popover/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ngx-skeleton-loader/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ngx-signature-pad/tsconfig.lib.json"
     }
-  }
+  ]
 }
