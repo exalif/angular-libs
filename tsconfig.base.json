@@ -1,0 +1,58 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "downlevelIteration": true,
+    "module": "esnext",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "paths": {
+      "@exalif/ngx-breadcrumbs": [
+        "dist/ngx-breadcrumbs"
+      ],
+      "@exalif/ngx-breadcrumbs/*": [
+        "dist/ngx-breadcrumbs/*"
+      ],
+      "@exalif/ngx-test-utils": [
+        "dist/ngx-test-utils"
+      ],
+      "@exalif/ngx-test-utils/*": [
+        "dist/ngx-test-utils/*"
+      ],
+      "@exalif/ngx-file-upload": [
+        "dist/ngx-file-upload"
+      ],
+      "@exalif/ngx-file-upload/*": [
+        "dist/ngx-file-upload/*"
+      ],
+      "@exalif/ngx-k-code": [
+        "dist/ngx-k-code"
+      ],
+      "@exalif/ngx-k-code/*": [
+        "dist/ngx-k-code/*"
+      ],
+      "ngx-mat-popover": [
+        "dist/ngx-mat-popover"
+      ],
+      "ngx-mat-popover/*": [
+        "dist/ngx-mat-popover/*"
+      ],
+      "ngx-signature-pad": [
+        "dist/ngx-signature-pad/ngx-signature-pad",
+        "dist/ngx-signature-pad"
+      ]
+    }
+  }
+}
