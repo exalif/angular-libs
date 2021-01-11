@@ -2,7 +2,7 @@ import { Observable, of, from } from 'rxjs';
 
 export abstract class BreadcrumbsUtils {
   public static stringFormat(rawTemplate: string, data: any): string {
-    const templateRegex = new RegExp('{{[\\s]*[a-zA-Z.]+?[\\s]*}}', 'g');
+    const templateRegex = new RegExp('{{[\\s]*[a-zA-Z._]+?[\\s]*}}', 'g');
 
     return rawTemplate.replace(templateRegex, (match) => {
       const keyRegex = new RegExp('([a-zA-Z.]+)', 'g');
