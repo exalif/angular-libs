@@ -1,6 +1,6 @@
 {
   "name": "@exalif/ngx-breadcrumbs",
-  "version": "9.0.0",
+  "version": "9.0.1",
   "license": "MIT",
   "description": "Angular 4+ breadcrumbs on top of native Angular router",
   "author": {
