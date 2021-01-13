@@ -5,7 +5,7 @@ export abstract class BreadcrumbsUtils {
     const templateRegex = new RegExp('{{[\\s]*[a-zA-Z._]+?[\\s]*}}', 'g');
 
     return rawTemplate.replace(templateRegex, (match) => {
-      const keyRegex = new RegExp('([a-zA-Z.]+)', 'g');
+      const keyRegex = new RegExp('([a-zA-Z._]+)', 'g');
       const key = match.match(keyRegex);
 
       if (!key || !key.length) {
