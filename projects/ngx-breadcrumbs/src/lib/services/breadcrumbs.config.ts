@@ -14,7 +14,7 @@ export class BreadcrumbsConfig {
   public postProcess: PostProcessFunction | null = null;
   public applyDistinctOn: DistinctKey | null = 'text';
 
-  constructor(options: Partial<BreadcrumbsConfig> = {
+  constructor(options: BreadcrumbsConfig = {
     postProcess: null,
     applyDistinctOn: 'text',
   }) {

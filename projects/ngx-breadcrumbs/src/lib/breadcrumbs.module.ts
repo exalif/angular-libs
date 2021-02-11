@@ -6,6 +6,7 @@ import { BreadcrumbsConfig } from './services/breadcrumbs.config';
 import { BreadcrumbsService } from './services/breadcrumbs.service';
 import { BreadcrumbsComponent } from './component/breadcrumbs.component';
 
+// @dynamic
 @NgModule({
   imports: [
     CommonModule,
@@ -15,7 +16,7 @@ import { BreadcrumbsComponent } from './component/breadcrumbs.component';
   exports: [BreadcrumbsComponent],
 })
 export class BreadcrumbsModule {
-  public static forRoot(config?: Partial<BreadcrumbsConfig>): ModuleWithProviders<BreadcrumbsModule> {
+  public static forRoot(config?: BreadcrumbsConfig): ModuleWithProviders<BreadcrumbsModule> {
     return {
       ngModule: BreadcrumbsModule,
       providers: [
