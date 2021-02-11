@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import { BreadcrumbsService } from '../services/breadcrumbs.service';
 import { Breadcrumb } from '../models/breadcrumb';
+import { distinct, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'lib-breadcrumbs',

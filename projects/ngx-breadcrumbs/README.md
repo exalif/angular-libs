@@ -37,7 +37,9 @@ $ yarn add @exalif/ngx-breadcrumbs
 ## Usage
 
 Import the `BreadcrumbsModule` in your root module (`app.module.ts`) after 
-importing the _router_ module. 
+importing the _router_ module.
+
+You can provide an initial `BreadcrumbsConfig` as `forRoot` argument. By default, if no config is provided, the applied config will correspond to the one provided in the following example:
 
 ```typescript
 import { RouterModule } from '@angular/router';
@@ -46,7 +48,10 @@ import { BreadcrumbsModule } from '@exalif/ngx-breadcrumbs';
 @NgModule({
   imports: [
     RouterModule.forRoot(myRoutes),
-    BreadcrumbsModule.forRoot()
+    BreadcrumbsModule.forRoot({
+      postProcess: null,
+      applyDistinctOn: 'text',
+    }),
   ],  
 })
 export class AppModule {}
@@ -296,4 +301,31 @@ export class AppModule {
     };
   }
 }
+```
+
+**applyDistinctOn**
+
+By default, `distinct` rxjs operator is applied on `text` key of `Breadcrumb`, not to add crumbs with same text in the breadcrumbs array. If this is not correct behavior in your app, you can change `applyDistinctOn` key to another `Breadcrumb` key or to `null` to disable this behavior. 
+
+Signature:
+
+```typescript
+applyDistinctOn: DistinctKey | null = 'text';
+```
+
+Usage example to remove `distinct` behavior:
+
+```typescript
+import { RouterModule } from '@angular/router';
+import { BreadcrumbsModule } from '@exalif/ngx-breadcrumbs';
+
+@NgModule({
+  imports: [
+    RouterModule.forRoot(myRoutes),
+    BreadcrumbsModule.forRoot({
+      applyDistinctOn: null,
+    }),
+  ],  
+})
+export class AppModule {}
 ```

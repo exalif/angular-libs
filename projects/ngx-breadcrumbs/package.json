@@ -1,6 +1,6 @@
 {
   "name": "@exalif/ngx-breadcrumbs",
-  "version": "9.0.2",
+  "version": "9.1.0",
   "license": "MIT",
   "description": "Angular 4+ breadcrumbs on top of native Angular router",
   "author": {
@@ -23,9 +23,9 @@
     "routing"
   ],
   "peerDependencies": {
-    "@angular/common": ">= 10.0.0 < 11.0.0",
-    "@angular/core": ">= 10.0.0 < 11.0.0",
-    "@angular/router": ">= 10.0.0 < 11.0.0",
+    "@angular/common": ">= 9.0.0 < 11.0.0",
+    "@angular/core": ">= 9.0.0 < 11.0.0",
+    "@angular/router": ">= 9.0.0 < 11.0.0",
     "rxjs": "^6.3.0"
   },
   "dependencies": {
