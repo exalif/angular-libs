@@ -3,7 +3,7 @@ import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router } from '@
 
 import { Observable, of, BehaviorSubject, concat } from 'rxjs';
 
-import { filter, flatMap, distinct, toArray, first } from 'rxjs/operators';
+import { filter, flatMap, distinct, toArray, first, tap } from 'rxjs/operators';
 
 import { BreadcrumbsConfig } from './breadcrumbs.config';
 import { BreadcrumbsResolver } from './breadcrumbs.resolver';
@@ -24,12 +24,14 @@ export class BreadcrumbsService {
   ) {
 
     this.router.events.pipe(filter((x) => x instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
+      .subscribe((_: NavigationEnd) => {
         const routeRoot = router.routerState.snapshot.root;
 
         this.resolveCrumbs(routeRoot).pipe(
           flatMap((crumbs: Breadcrumb[]) => crumbs),
-          distinct((crumb: Breadcrumb) => crumb.text),
+          this.config.applyDistinctOn
+            ? distinct((crumb: Breadcrumb) => crumb[this.config.applyDistinctOn])
+            : tap(),
           toArray(),
           flatMap((crumbs: Breadcrumb[]) => {
             if (this.config.postProcess) {

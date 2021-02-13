@@ -6,22 +6,23 @@ import { BreadcrumbsConfig } from './services/breadcrumbs.config';
 import { BreadcrumbsService } from './services/breadcrumbs.service';
 import { BreadcrumbsComponent } from './component/breadcrumbs.component';
 
+// @dynamic
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
   ],
   declarations: [BreadcrumbsComponent],
-  exports: [BreadcrumbsComponent]
+  exports: [BreadcrumbsComponent],
 })
 export class BreadcrumbsModule {
-  public static forRoot(): ModuleWithProviders<BreadcrumbsModule> {
+  public static forRoot(config?: BreadcrumbsConfig): ModuleWithProviders<BreadcrumbsModule> {
     return {
       ngModule: BreadcrumbsModule,
       providers: [
-        BreadcrumbsConfig,
-        BreadcrumbsService
-      ]
+        { provide: BreadcrumbsConfig, useFactory: () => new BreadcrumbsConfig(config) },
+        BreadcrumbsService,
+      ],
     };
   }
 }
