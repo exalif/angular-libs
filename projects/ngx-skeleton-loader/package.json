@@ -17,13 +17,14 @@
     "angular8",
     "angular9",
     "angular10",
+    "angular11",
     "skeleton",
     "loader",
     "ghost"
   ],
   "peerDependencies": {
-    "@angular/common": ">= 10.0.0 < 11.0.0",
-    "@angular/core": ">= 10.0.0 < 11.0.0"
+    "@angular/common": ">= 10.0.0 < 12.0.0",
+    "@angular/core": ">= 10.0.0 < 12.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"
