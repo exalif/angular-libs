@@ -10,7 +10,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ngx-breadcrumbs/tsconfig.lib.json",
             "project": "projects/ngx-breadcrumbs/ng-package.json"
@@ -34,86 +34,6 @@
         }
       }
     },
-    "angular-libs-demo": {
-      "root": "projects/angular-libs-demo/",
-      "sourceRoot": "projects/angular-libs-demo/src",
-      "projectType": "application",
-      "prefix": "app",
-      "schematics": {},
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "aot": true,
-            "outputPath": "dist/angular-libs-demo",
-            "index": "projects/angular-libs-demo/src/index.html",
-            "main": "projects/angular-libs-demo/src/main.ts",
-            "polyfills": "projects/angular-libs-demo/src/polyfills.ts",
-            "tsConfig": "projects/angular-libs-demo/tsconfig.app.json",
-            "assets": [
-              "projects/angular-libs-demo/src/favicon.ico",
-              "projects/angular-libs-demo/src/assets"
-            ],
-            "styles": [
-              "projects/angular-libs-demo/src/styles.scss"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/angular-libs-demo/src/environments/environment.ts",
-                  "with": "projects/angular-libs-demo/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "angular-libs-demo:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "angular-libs-demo:build:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/angular-libs-demo/tsconfig.app.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "ngx-file-upload": {
       "root": "projects/ngx-file-upload",
       "sourceRoot": "projects/ngx-file-upload/src",
@@ -121,7 +41,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ngx-file-upload/tsconfig.lib.json",
             "project": "projects/ngx-file-upload/ng-package.json"
@@ -152,7 +72,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ngx-k-code/tsconfig.lib.json",
             "project": "projects/ngx-k-code/ng-package.json"
@@ -183,7 +103,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ngx-mat-popover/tsconfig.lib.json",
             "project": "projects/ngx-mat-popover/ng-package.json"
@@ -214,7 +134,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ngx-skeleton-loader/tsconfig.lib.json",
             "project": "projects/ngx-skeleton-loader/ng-package.json"
@@ -245,7 +165,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ngx-signature-pad/tsconfig.lib.json",
             "project": "projects/ngx-signature-pad/ng-package.json"
@@ -270,6 +190,5 @@
         }
       }
     }
-  },
-  "defaultProject": "angular-libs-demo"
+  }
 }

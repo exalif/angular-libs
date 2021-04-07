@@ -2,9 +2,13 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/setupJest.ts'],
   globals: {
     'ts-jest': {
-      tsConfig: '<rootDir>/tsconfig.spec.json',
+      tsconfig: '<rootDir>/tsconfig.spec.json',
       stringifyContentPathRegex: '\\.html$',
-      astTransformers: [require.resolve('jest-preset-angular/InlineHtmlStripStylesTransformer')],
+      astTransformers: {
+        before: [
+          'jest-preset-angular/build/StripStylesTransformer',
+        ],
+      },
     },
   },
   transform: {
@@ -12,8 +16,8 @@ module.exports = {
   },
   testEnvironment: 'jest-environment-jsdom-thirteen',
   snapshotSerializers: [
-    'jest-preset-angular/AngularSnapshotSerializer.js',
-    'jest-preset-angular/HTMLCommentSerializer.js',
+    'jest-preset-angular/build/serializers/ng-snapshot',
+    'jest-preset-angular/build/serializers/html-comment',
   ],
   testMatch: [
     '**/__tests__/**/*.+(ts|js)?(x)',
@@ -37,7 +41,6 @@ module.exports = {
     'projects/ngx-breadcrumbs/src/**/*.ts',
     'projects/ngx-test-utils/src/**/*.ts',
     'projects/ngx-file-upload/src/**/*.ts',
-    'projects/angular-libs-demo/src/app/**/*.ts',
 
     // Exclusions
     '!tests/**/*.ts',
