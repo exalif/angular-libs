@@ -37,7 +37,6 @@ module.exports = {
     'projects/ngx-breadcrumbs/src/**/*.ts',
     'projects/ngx-test-utils/src/**/*.ts',
     'projects/ngx-file-upload/src/**/*.ts',
-    'projects/angular-libs-demo/src/app/**/*.ts',
 
     // Exclusions
     '!tests/**/*.ts',
