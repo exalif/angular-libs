@@ -15,9 +15,7 @@
     "test": "jest --colors  --coverage",
     "test:ci": "jest --colors --coverage --silent",
     "test:watch": "jest --watch --colors --verbose false",
-    "lint": "ng lint",
-    "upload-server": "node ./server/index.js",
-    "upload-server:dev": "cd ./server && NODE_ENV=development nodemon ."
+    "lint": "ng lint"
   },
   "dependencies": {
     "@angular/animations": "13.3.0",

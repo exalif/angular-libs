@@ -31,5 +31,3 @@ jobs:
       script: yarn build:ngx-mat-popover
     - stage: build
       script: yarn build:ngx-signature-pad
-    - stage: build
-      script: yarn build:demo
