@@ -175,7 +175,7 @@ export class Uploader {
       this.setupXHR(xhr);
       xhr.onload = () => {
         this.processResponse(xhr);
-        resolve();
+        resolve(null);
       };
       xhr.onerror = () => reject();
       const body = payload ? JSON.stringify(payload) : null;

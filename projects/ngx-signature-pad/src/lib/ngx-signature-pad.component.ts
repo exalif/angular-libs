@@ -8,7 +8,7 @@ import { Component,
   ViewChild,
 } from '@angular/core';
 
-import SignaturePad, { IPointGroup } from 'signature_pad';
+import SignaturePad, { PointGroup } from 'signature_pad';
 
 import { NgxSignaturePadOptions } from './models/signature-pad-options';
 
@@ -48,8 +48,13 @@ export class NgxSignaturePadComponent implements AfterContentInit, OnDestroy {
     }
 
     this.signaturePad = new SignaturePad(this.canvas.nativeElement, this.options);
-    this.signaturePad.onBegin = this.onBegin.bind(this);
-    this.signaturePad.onEnd = this.onEnd.bind(this);
+    this.signaturePad.addEventListener('beginStroke', () => {
+      this.onBegin();
+    }, { once: true });
+
+    this.signaturePad.addEventListener('endStroke', () => {
+      this.onEnd();
+    }, { once: true });
   }
 
   public ngOnDestroy(): void {
@@ -73,7 +78,7 @@ export class NgxSignaturePadComponent implements AfterContentInit, OnDestroy {
   }
 
   // Returns signature image as an array of point groups
-  public toData(): IPointGroup[] {
+  public toData(): PointGroup[] {
     if (this.signaturePad) {
       return this.signaturePad.toData();
     } else {
@@ -82,7 +87,7 @@ export class NgxSignaturePadComponent implements AfterContentInit, OnDestroy {
   }
 
   // Draws signature image from an array of point groups
-  public fromData(points: IPointGroup[]): void {
+  public fromData(points: PointGroup[]): void {
     this.signaturePad.fromData(points);
   }
 
