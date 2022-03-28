@@ -1,32 +1,11 @@
 module.exports = {
+  preset: 'jest-preset-angular',
   setupFilesAfterEnv: ['<rootDir>/setupJest.ts'],
-  globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.spec.json',
-      stringifyContentPathRegex: '\\.html$',
-      astTransformers: {
-        before: [
-          'jest-preset-angular/build/StripStylesTransformer',
-        ],
-      },
-    },
-  },
-  transform: {
-    '^.+\\.(ts|js|html)$': 'ts-jest',
-  },
-  testEnvironment: 'jest-environment-jsdom-thirteen',
+  globalSetup: 'jest-preset-angular/global-setup',
   snapshotSerializers: [
-    'jest-preset-angular/build/serializers/ng-snapshot',
-    'jest-preset-angular/build/serializers/html-comment',
-  ],
-  testMatch: [
-    '**/__tests__/**/*.+(ts|js)?(x)',
-    '**/+(*.)+(spec).+(ts|js)?(x)'
-  ],
-  moduleFileExtensions: [
-    'ts',
-    'js',
-    'html'
+    'jest-preset-angular/build/serializers/ng-snapshot.js',
+    'jest-preset-angular/build/serializers/html-comment.js',
+    'jest-preset-angular/build/serializers/no-ng-attributes.js',
   ],
   moduleNameMapper: {
     '@exalif/ngx-breadcrumbs/(.*)': '<rootDir>/dist/ngx-breadcrumbs/$1',
@@ -59,5 +38,4 @@ module.exports = {
     '<rootDir>/.idea/',
     '<rootDir>/scripts/',
   ],
-  testURL: 'http://localhost'
 };

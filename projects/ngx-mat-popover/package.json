@@ -1,6 +1,6 @@
 {
   "name": "@exalif/ngx-mat-popover",
-  "version": "3.1.0",
+  "version": "13.0.0",
   "license": "MIT",
   "description": "Angular 8+ material popover component using material menu",
   "author": {
@@ -18,15 +18,17 @@
     "angular9",
     "angular10",
     "angular11",
+    "angular12",
+    "angular13",
     "popover",
     "confirm",
     "material"
   ],
   "peerDependencies": {
-    "@angular/common": ">= 10.0.0 < 12.0.0",
-    "@angular/core": ">= 10.0.0 < 12.0.0",
-    "@angular/material": ">= 10.0.0 < 12.0.0",
-    "@angular/cdk": ">= 10.0.0 < 12.0.0"
+    "@angular/common": ">= 11.0.0 < 14.0.0",
+    "@angular/core": ">= 11.0.0 < 14.0.0",
+    "@angular/material": ">= 11.0.0 < 14.0.0",
+    "@angular/cdk": ">= 11.0.0 < 14.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"

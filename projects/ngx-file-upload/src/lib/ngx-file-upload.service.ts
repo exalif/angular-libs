@@ -36,7 +36,7 @@ export class NgxFileUploadService {
   }
 
   public stateChange = (evt: NgxFileUploadState): void => {
-    timer().subscribe(() => {
+    timer(100).subscribe(() => {
       this.eventsStream.next(evt);
     });
   }
