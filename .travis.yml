@@ -20,7 +20,7 @@ before_install:
   - yarn set version 3.2.0
   - yarn --version
 
-install: yarn
+install: CI=true yarn
 
 jobs:
   include:
