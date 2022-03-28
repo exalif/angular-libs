@@ -8,8 +8,7 @@ cache:
     - ./.yarn/cache
 
 env:
-  - CI=true
-  - YARN_ENABLE_IMMUTABLE_INSTALLS=false
+  - CI=true YARN_ENABLE_IMMUTABLE_INSTALLS=false
 
 stages:
   - test
@@ -24,7 +23,7 @@ before_install:
   - yarn set version 3.2.0
   - yarn --version
 
-install: CI=true yarn
+install: yarn
 
 jobs:
   include:
