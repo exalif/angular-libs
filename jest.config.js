@@ -2,6 +2,14 @@ module.exports = {
   preset: 'jest-preset-angular',
   setupFilesAfterEnv: ['<rootDir>/setupJest.ts'],
   globalSetup: 'jest-preset-angular/global-setup',
+  transform: {
+    '^.+\\.ts?$': 'ts-jest',
+  },
+  globals: {
+    'ts-jest': {
+      tsConfig: 'tsconfig.test.json'
+    }
+  },
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/ng-snapshot.js',
     'jest-preset-angular/build/serializers/html-comment.js',
@@ -13,7 +21,7 @@ module.exports = {
     '@exalif/ngx-file-upload/(.*)': '<rootDir>/dist/ngx-file-upload/$1',
   },
   transformIgnorePatterns: [
-    'node_modules/(?!@ngrx|@ngx-translate)'
+    'node_modules/(?!@angular|@ngrx|@ngx-translate)'
   ],
   coverageReporters: ['html', 'text-summary', 'text', 'lcov'],
   collectCoverageFrom: [

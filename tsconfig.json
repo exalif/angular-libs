@@ -11,9 +11,6 @@
       "path": "./projects/ngx-breadcrumbs/tsconfig.lib.json"
     },
     {
-      "path": "./projects/angular-libs-demo/tsconfig.app.json"
-    },
-    {
       "path": "./projects/ngx-file-upload/tsconfig.lib.json"
     },
     {
