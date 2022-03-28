@@ -19,7 +19,7 @@ import { NgxFileUploadModule } from 'projects/ngx-file-upload/src/lib/ngx-file-u
     ServiceCodeWayComponent,
     OnPushComponent
   ],
-  imports: [RouterModule.forRoot(AppRoutes), BrowserModule, NgxFileUploadModule],
+  imports: [RouterModule.forRoot(AppRoutes, { relativeLinkResolution: 'legacy' }), BrowserModule, NgxFileUploadModule],
   providers: [],
   bootstrap: [AppComponent]
 })
