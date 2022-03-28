@@ -10,7 +10,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ngx-breadcrumbs/tsconfig.lib.json",
             "project": "projects/ngx-breadcrumbs/ng-package.json"
@@ -86,11 +86,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-libs-demo:build"
+            "browserTarget": "angular-libs-demo:ng-packagr"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-libs-demo:build:production"
+              "browserTarget": "angular-libs-demo:ng-packagr:production"
             }
           }
         }
@@ -103,7 +103,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ngx-file-upload/tsconfig.lib.json",
             "project": "projects/ngx-file-upload/ng-package.json"
@@ -123,7 +123,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ngx-k-code/tsconfig.lib.json",
             "project": "projects/ngx-k-code/ng-package.json"
@@ -143,7 +143,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ngx-mat-popover/tsconfig.lib.json",
             "project": "projects/ngx-mat-popover/ng-package.json"
@@ -163,7 +163,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ngx-skeleton-loader/tsconfig.lib.json",
             "project": "projects/ngx-skeleton-loader/ng-package.json"
@@ -183,7 +183,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ngx-signature-pad/tsconfig.lib.json",
             "project": "projects/ngx-signature-pad/ng-package.json"

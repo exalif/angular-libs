@@ -45,7 +45,7 @@
     "@angular/language-service": "13.3.0",
     "@types/jest": "24.0.18",
     "@types/node": "12.11.1",
-    "@types/signature_pad": "2.3.0",
+    "@types/signature_pad": "2.3.2",
     "body-parser": "1.19.2",
     "bytes": "3.1.2",
     "codelyzer": "6.0.2",

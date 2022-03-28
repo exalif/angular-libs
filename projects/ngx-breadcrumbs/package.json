@@ -31,6 +31,9 @@
     "@angular/router": ">= 11.0.0 < 14.0.0",
     "rxjs": ">= 6.3.0"
   },
+  "allowedNonPeerDependencies": [
+    "tslib", "lodash.template"
+  ],
   "dependencies": {
     "tslib": "^2.0.0"
   }
