@@ -1,7 +1,7 @@
 sudo: required
 language: node_js
 node_js:
-  - "12"
+  - "16"
 cache:
   - yarn
   - npm
@@ -13,6 +13,10 @@ stages:
 branches:
   only:
   - master
+
+before_install:
+  - corepack enable
+  - yarn set version stable
 
 jobs:
   include:
