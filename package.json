@@ -12,7 +12,14 @@
     "test": "jest --colors  --coverage",
     "test:ci": "jest --colors --coverage --silent",
     "test:watch": "jest --watch --colors --verbose false",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "publish:ngx-breadcrumbs": "cd dist/ngx-breadcrumbs && npm publish . && cd ../..",
+    "publish:ngx-skeleton-loader": "cd dist/ngx-skeleton-loader && npm publish . && cd ../..",
+    "publish:ngx-file-upload": "cd dist/ngx-file-upload && npm publish . && cd ../..",
+    "publish:ngx-signature-pad": "cd dist/ngx-signature-pad && npm publish . && cd ../..",
+    "publish:ngx-k-code": "cd dist/ngx-k-code && npm publish . && cd ../..",
+    "publish:ngx-mat-popover": "cd dist/ngx-mat-popover && npm publish . && cd ../..",
+    "puslish:all": "yarn publish:ngx-breadcrumbs && yarn publish:ngx-skeleton-loader && yarn publish:ngx-file-upload && yarn publish:ngx-signature-pad && yarn publish:ngx-k-code && yarn publish:ngx-mat-popover"
   },
   "dependencies": {
     "@angular/animations": "14.0.0",
