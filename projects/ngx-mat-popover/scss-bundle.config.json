@@ -3,6 +3,8 @@
     "entryFile": "./projects/ngx-mat-popover/src/lib/ngx-mat-popover.theme.scss",
     "outFile": "./dist/ngx-mat-popover/ngx-mat-popover.theme.scss",
     "project": "../../",
-    "ignoreImports": ["~@angular/.*"]
+    "ignoreImports": [
+      "@angular/.*"
+    ]
   }
 }
