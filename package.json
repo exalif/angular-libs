@@ -19,7 +19,7 @@
     "publish:ngx-signature-pad": "cd dist/ngx-signature-pad && npm publish . && cd ../..",
     "publish:ngx-k-code": "cd dist/ngx-k-code && npm publish . && cd ../..",
     "publish:ngx-mat-popover": "cd dist/ngx-mat-popover && npm publish . && cd ../..",
-    "puslish:all": "yarn publish:ngx-breadcrumbs && yarn publish:ngx-skeleton-loader && yarn publish:ngx-file-upload && yarn publish:ngx-signature-pad && yarn publish:ngx-k-code && yarn publish:ngx-mat-popover"
+    "publish:all": "yarn publish:ngx-breadcrumbs && yarn publish:ngx-skeleton-loader && yarn publish:ngx-file-upload && yarn publish:ngx-k-code && yarn publish:ngx-mat-popover && yarn publish:ngx-signature-pad"
   },
   "dependencies": {
     "@angular/animations": "14.0.0",
