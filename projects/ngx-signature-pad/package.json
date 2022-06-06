@@ -1,6 +1,6 @@
 {
   "name": "@exalif/ngx-signature-pad",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "license": "MIT",
   "description": "Angular 8+ signature pad based on szimek/signature_pad",
   "author": {
@@ -18,14 +18,17 @@
     "angular9",
     "angular10",
     "angular11",
+    "angular12",
+    "angular13",
+    "angular14",
     "signature",
     "signature-pad",
     "sign-pad"
   ],
   "peerDependencies": {
-    "@angular/common": ">= 11.0.0 < 14.0.0",
-    "@angular/core": ">= 11.0.0 < 14.0.0",
-    "@angular/router": ">= 11.0.0 < 14.0.0",
+    "@angular/common": ">= 11.0.0 < 15.0.0",
+    "@angular/core": ">= 11.0.0 < 15.0.0",
+    "@angular/router": ">= 11.0.0 < 15.0.0",
     "signature_pad": ">= 4.0.0"
   },
   "dependencies": {

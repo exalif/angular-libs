@@ -1,6 +1,6 @@
 {
   "name": "@exalif/ngx-k-code",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "license": "MIT",
   "description": "Angular 6+ konami code directive",
   "author": {
@@ -19,8 +19,8 @@
     "konami-code"
   ],
   "peerDependencies": {
-    "@angular/common": ">= 11.0.0 < 14.0.0",
-    "@angular/core": ">= 11.0.0 < 14.0.0"
+    "@angular/common": ">= 11.0.0 < 15.0.0",
+    "@angular/core": ">= 11.0.0 < 15.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"

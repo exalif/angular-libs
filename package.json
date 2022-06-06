@@ -8,6 +8,7 @@
     "build:ngx-signature-pad": "ng build ngx-signature-pad --configuration production",
     "build:ngx-k-code": "ng build ngx-k-code --configuration production",
     "build:ngx-mat-popover": "ng build ngx-mat-popover --configuration production && scss-bundle -c projects/ngx-mat-popover/scss-bundle.config.json",
+    "build:all": "yarn build:ngx-breadcrumbs && yarn build:ngx-skeleton-loader && yarn build:ngx-file-upload && yarn build:ngx-signature-pad && yarn build:ngx-k-code && yarn build:ngx-mat-popover",
     "test": "jest --colors  --coverage",
     "test:ci": "jest --colors --coverage --silent",
     "test:watch": "jest --watch --colors --verbose false",
