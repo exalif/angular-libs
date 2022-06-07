@@ -1,6 +1,6 @@
 {
   "name": "@exalif/ngx-breadcrumbs",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "license": "MIT",
   "description": "Angular 4+ breadcrumbs on top of native Angular router",
   "author": {
@@ -21,18 +21,20 @@
     "angular11",
     "angular12",
     "angular13",
+    "angular14",
     "breadcrumbs",
     "bgx-breadcrumbs",
     "routing"
   ],
   "peerDependencies": {
-    "@angular/common": ">= 11.0.0 < 14.0.0",
-    "@angular/core": ">= 11.0.0 < 14.0.0",
-    "@angular/router": ">= 11.0.0 < 14.0.0",
+    "@angular/common": ">= 11.0.0 < 15.0.0",
+    "@angular/core": ">= 11.0.0 < 15.0.0",
+    "@angular/router": ">= 11.0.0 < 15.0.0",
     "rxjs": ">= 6.3.0"
   },
   "allowedNonPeerDependencies": [
-    "tslib", "lodash.template"
+    "tslib",
+    "lodash.template"
   ],
   "dependencies": {
     "tslib": "^2.0.0"

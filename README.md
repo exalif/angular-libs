@@ -9,3 +9,9 @@ Monorepo for various libs:
  - [@exalif/ngx-skeleton-loader](projects/ngx-skeleton-loader): skeleton/ghost loader
  - [@exalif/ngx-file-upload](projects/ngx-file-upload): file upload module
  - [@exalif/ngx-k-code](projects/ngx-k-code): konami code module
+
+## Notes
+
+### @exalif/ngx-mat-popover
+
+***BREAKING CHANGE***: From version 14 and upwards, SASS `@use '@angular/material' as mat` is removed from the lib file. Therefore to ensure proper styling, please set material theming in your main project style files.

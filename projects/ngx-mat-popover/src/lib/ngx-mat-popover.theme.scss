@@ -1,9 +1,6 @@
-@import '~@angular/material/theming';
-
 $mat-content-padding: 1rem !default;
 
-@mixin ngx-mat-popover(
-  $typography-config: mat-typography-config(),
+@mixin ngx-mat-popover($typography-config: mat.define-typography-config(),
   $padding: $mat-content-padding,
   $content-padding: 0,
   $display: flex,
