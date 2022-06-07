@@ -20,7 +20,7 @@ branches:
 
 before_install:
   - corepack enable
-  - yarn set version 3.2.0
+  - yarn set version 3.2.1
   - yarn --version
 
 install: yarn
