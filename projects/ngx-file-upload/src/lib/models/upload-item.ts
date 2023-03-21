@@ -1,6 +1,7 @@
 export interface NgxFileUploadItem {
   /**
    * Upload API initial method
+   *
    * @defaultValue 'POST'
    */
   method?: string;
@@ -12,12 +13,14 @@ export interface NgxFileUploadItem {
 
   /**
    * Upload API URL
+   *
    * @defaultValue '/upload/'
    */
   endpoint?: string;
 
   /**
    * Upload API URL
+   *
    * @defaultValue '/upload/'
    * @deprecated Use {@link NgxFileUploadItem.endpoint} instead.
    */
@@ -30,6 +33,7 @@ export interface NgxFileUploadItem {
 
   /**
    * Upload meta
+   *
    * @defaultValue
    * { name: File.Filename, mimeType: File.type }
    */

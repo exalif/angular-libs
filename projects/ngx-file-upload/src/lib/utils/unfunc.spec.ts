@@ -2,9 +2,7 @@ import { unfunc } from './unfunc';
 
 const FILE = new File([], 'someName');
 
-const FUNC = (file: File) => {
-  return file;
-};
+const FUNC = (file: File) => file;
 
 const OBJ = {
   some: 'key'

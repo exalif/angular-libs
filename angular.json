@@ -22,13 +22,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/ngx-breadcrumbs/tsconfig.lib.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/ngx-breadcrumbs/**/*.ts",
+              "projects/ngx-breadcrumbs/**/*.html"
             ]
           }
         }
@@ -53,13 +51,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/ngx-file-upload/tsconfig.lib.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/ngx-file-upload/**/*.ts",
+              "projects/ngx-file-upload/**/*.html"
             ]
           }
         }
@@ -84,13 +80,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/ngx-k-code/tsconfig.lib.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/ngx-k-code/**/*.ts",
+              "projects/ngx-k-code/**/*.html"
             ]
           }
         }
@@ -115,13 +109,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/ngx-mat-popover/tsconfig.lib.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/ngx-mat-popover/**/*.ts",
+              "projects/ngx-mat-popover/**/*.html"
             ]
           }
         }
@@ -146,13 +138,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/ngx-skeleton-loader/tsconfig.lib.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/ngx-skeleton-loader/**/*.ts",
+              "projects/ngx-skeleton-loader/**/*.html"
             ]
           }
         }
@@ -177,18 +167,20 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/ngx-signature-pad/tsconfig.lib.json",
-              "projects/ngx-signature-pad/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/ngx-signature-pad/**/*.ts",
+              "projects/ngx-signature-pad/**/*.html"
             ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

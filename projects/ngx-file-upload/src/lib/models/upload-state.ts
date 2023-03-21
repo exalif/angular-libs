@@ -13,5 +13,7 @@ export interface NgxFileUploadState {
   speed: number;
   status: NgxFileUploadStatus;
   uploadId: string;
+
+  /* eslint-disable-next-line @typescript-eslint/naming-convention */
   URI: string;
 }

@@ -1,4 +1,5 @@
-import { Component,
+import {
+  Component,
   AfterContentInit,
   OnDestroy,
   Input,
@@ -22,6 +23,8 @@ export class NgxSignaturePadComponent implements AfterContentInit, OnDestroy {
   @ViewChild('signatureCanvas', { static: false }) public canvas: ElementRef<HTMLCanvasElement>;
 
   @Output() public begin: EventEmitter<boolean> = new EventEmitter();
+
+  /* eslint-disable-next-line @angular-eslint/no-output-native */
   @Output() public end: EventEmitter<boolean> = new EventEmitter();
 
   private signaturePad: SignaturePad;
@@ -73,7 +76,7 @@ export class NgxSignaturePadComponent implements AfterContentInit, OnDestroy {
     signaturePadCanvas.height = signaturePadCanvas.offsetHeight * ratio;
     signaturePadCanvas.getContext('2d').scale(ratio, ratio);
 
-     // otherwise isEmpty() might return incorrect value
+    // otherwise isEmpty() might return incorrect value
     this.signaturePad.clear();
   }
 

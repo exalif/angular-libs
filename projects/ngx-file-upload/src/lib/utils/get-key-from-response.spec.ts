@@ -9,11 +9,9 @@ const VALID_JSON_OBJECT = {
   anothervalidkey: ANOTHER_VALID_KEY
 };
 
-jest.mock('./parse-json', () => {
-  return {
+jest.mock('./parse-json', () => ({
     parseJson: () => null
-  };
-});
+  }));
 
 describe('when parse json returns no valid value', () => {
   describe('get key from response', () => {
@@ -38,11 +36,9 @@ describe('when parse json returns no valid value', () => {
 });
 
 jest.unmock('./parse-json');
-jest.mock('./parse-json', () => {
-  return {
+jest.mock('./parse-json', () => ({
     parseJson: () => VALID_JSON_OBJECT
-  };
-});
+  }));
 
 describe('when parse json returns valid value', () => {
   describe('get key from response', () => {

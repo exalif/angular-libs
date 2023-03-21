@@ -1,5 +1,6 @@
 /**
  * Implements XHR/CORS Resumable Upload
+ *
  * @see
  * https://developers.google.com/drive/v3/web/resumable-upload
  */
@@ -27,6 +28,8 @@ export class Uploader {
   public responseStatus: number;
   public responseStatusText: any;
   public speed: number;
+
+  /* eslint-disable-next-line @typescript-eslint/naming-convention */
   public URI: string;
   public uploadId: string;
   public token: string | (() => string);
@@ -200,6 +203,8 @@ export class Uploader {
       speed: this.speed,
       status: this._status,
       uploadId: this.uploadId,
+
+      /* eslint-disable-next-line @typescript-eslint/naming-convention */
       URI: this.URI
     };
 
@@ -425,7 +430,7 @@ export class Uploader {
     xhr.withCredentials = this.options.withCredentials;
     Object.keys(this.headers).forEach(key => xhr.setRequestHeader(key, this.headers[key]));
 
-    // tslint:disable-next-line: no-unused-expression
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     this._token && xhr.setRequestHeader('Authorization', `Bearer ${this._token}`);
   }
 

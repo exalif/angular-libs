@@ -39,7 +39,7 @@ export class NgxFileUploadService {
     timer(100).subscribe(() => {
       this.eventsStream.next(evt);
     });
-  }
+  };
 
   public get uploaderOptions(): NgxFileUploaderOptions {
     return {
@@ -63,6 +63,7 @@ export class NgxFileUploadService {
 
   /**
    * Initializes service
+   *
    * @param options global options
    * @returns Observable that emits a new value on progress or status changes
    */
@@ -76,6 +77,7 @@ export class NgxFileUploadService {
 
   /**
    * Initializes service
+   *
    * @param options global options
    * @returns Observable that emits the current queue
    */
@@ -133,6 +135,7 @@ export class NgxFileUploadService {
 
   /**
    * Get running processes number
+   *
    * @returns  number of active uploads
    */
 
@@ -144,6 +147,7 @@ export class NgxFileUploadService {
 
   /**
    * Auto upload the files if the flag is true
+   *
    * @internal
    */
   private autoUploadFiles(): void {
@@ -154,6 +158,7 @@ export class NgxFileUploadService {
 
   /**
    * Control uploads status
+   *
    * @example
    * this.uploadService.control({ action: 'pauseAll' });
    *
@@ -191,6 +196,7 @@ export class NgxFileUploadService {
 
   /**
    * Queue management
+   *
    * @internal
    */
   private processQueue(): void {

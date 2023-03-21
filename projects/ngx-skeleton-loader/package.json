@@ -2,7 +2,7 @@
   "name": "@exalif/ngx-skeleton-loader",
   "license": "MIT",
   "description": "Angular 8+ skeleton loader",
-  "version": "14.0.0",
+  "version": "15.0.0",
   "author": {
     "name": "Exalif",
     "email": "noreply@nowebsite.com"
@@ -21,13 +21,14 @@
     "angular12",
     "angular13",
     "angular14",
+    "angular15",
     "skeleton",
     "loader",
     "ghost"
   ],
   "peerDependencies": {
-    "@angular/common": ">= 11.0.0 < 15.0.0",
-    "@angular/core": ">= 11.0.0 < 15.0.0"
+    "@angular/common": ">= 11.0.0 < 16.0.0",
+    "@angular/core": ">= 11.0.0 < 16.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"
