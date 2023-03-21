@@ -1,6 +1,6 @@
 {
   "name": "@exalif/ngx-file-upload",
-  "version": "14.0.0",
+  "version": "15.0.0",
   "license": "MIT",
   "description": "Angular 7+ file uploader with resume and chunks",
   "author": {
