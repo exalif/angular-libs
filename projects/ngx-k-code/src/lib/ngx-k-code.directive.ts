@@ -4,10 +4,10 @@ import { Directive, EventEmitter, HostListener, Output } from '@angular/core';
   selector: '[ngx-k-code]'
 })
 export class NgxKCodeDirective {
+  @Output() public kCode: EventEmitter<void> = new EventEmitter();
+
   private sequence: string[];
   private konamiCode: string[];
-
-  @Output() public kCode: EventEmitter<void> = new EventEmitter();
 
   constructor() {
     this.sequence = [];

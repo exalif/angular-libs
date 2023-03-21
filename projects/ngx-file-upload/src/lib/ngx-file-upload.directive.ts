@@ -66,7 +66,7 @@ export class NgxFileUploadDirective implements OnInit, OnDestroy {
     if (this.elementRef.nativeElement.files) {
       this.uploadService.handleFileList(this.elementRef.nativeElement.files);
     }
-  }
+  };
 
   public ngOnDestroy(): void {
     if (this.listenerFn) {

@@ -6,8 +6,7 @@ import { Breadcrumb } from '../models/breadcrumb';
 import { BreadcrumbsUtils } from '../utils/breadcrumbs.utils';
 
 export class BreadcrumbsResolver implements Resolve<Breadcrumb[]> {
-  public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
-    : Observable<Breadcrumb[]> | Promise<Breadcrumb[]> | Breadcrumb[] {
+  public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Breadcrumb[]> | Promise<Breadcrumb[]> | Breadcrumb[] {
 
     const data = route.routeConfig.data;
     const path = this.getFullPath(route);

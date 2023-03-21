@@ -58,8 +58,7 @@ export class BreadcrumbsService {
     return this.crumbs$;
   }
 
-  private resolveCrumbs(route: ActivatedRouteSnapshot)
-    : Observable<Breadcrumb[]> {
+  private resolveCrumbs(route: ActivatedRouteSnapshot): Observable<Breadcrumb[]> {
 
     let crumbs$: Observable<Breadcrumb[]>;
 

@@ -39,15 +39,15 @@ export abstract class BreadcrumbsUtils {
   }
 
   /**
-  * Access object nested value by giving a path
-  *
-  * @param obj The object you want to access value from
-  * @param path The value path. e.g: `bar.baz`
-  * @example
-  *   const obj = { foo: { bar: 'Baz' } };
-  *   const path = 'foo.bar';
-  *   leaf(obj, path) // 'Baz'
-  */
+   * Access object nested value by giving a path
+   *
+   * @param obj The object you want to access value from
+   * @param path The value path. e.g: `bar.baz`
+   * @example
+   *   const obj = { foo: { bar: 'Baz' } };
+   *   const path = 'foo.bar';
+   *   leaf(obj, path) // 'Baz'
+   */
   public static leaf(obj: any, path: string) {
     const result = path.split('.').reduce((value, el) => value[el] || {}, obj);
 
@@ -55,11 +55,11 @@ export abstract class BreadcrumbsUtils {
   };
 
   /**
-  * checks whether an object is empty or not
-  *
-  * @param object object to extract values from
-  * @returns boolean
-  */
+   * checks whether an object is empty or not
+   *
+   * @param object object to extract values from
+   * @returns boolean
+   */
   public static isEmptyObject(obj): boolean {
     if (typeof obj === 'object' && Object.prototype.toString.call(obj) === '[object Object]') {
       for (const key in obj) {

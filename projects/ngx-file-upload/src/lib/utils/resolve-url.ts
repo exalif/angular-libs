@@ -1,4 +1,4 @@
-export function resolveUrl(url: string, baseURI: string): string {
+export const resolveUrl = (url: string, baseURI: string): string => {
   if (url.indexOf('//') * url.indexOf('https://') * url.indexOf('http://') === 0) {
     return url;
   }
@@ -19,4 +19,4 @@ export function resolveUrl(url: string, baseURI: string): string {
       return path + url;
     }
   }
-}
+};

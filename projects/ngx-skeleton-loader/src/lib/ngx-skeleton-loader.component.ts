@@ -10,7 +10,7 @@ import { NgxSkeleton } from './models/skeleton';
 })
 export class NgxSkeletonLoaderComponent implements OnInit {
   @Input() public count: number = 1;
-  @Input() public appearance: NgxSkeletonAppearance | NgxSkeletonAppearance[] = ''
+  @Input() public appearance: NgxSkeletonAppearance | NgxSkeletonAppearance[] = '';
   @Input() public theme: { [k: string]: string } | { [k: string]: string }[] = {};
 
   public skeletonItems: NgxSkeleton[] = [];
