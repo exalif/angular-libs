@@ -22,14 +22,15 @@
     "angular12",
     "angular13",
     "angular14",
+    "angular15",
     "upload",
     "file",
     "file-upload"
   ],
   "peerDependencies": {
-    "@angular/common": ">= 11.0.0 < 15.0.0",
-    "@angular/core": ">= 11.0.0 < 15.0.0",
-    "rxjs": ">= 6.0.0"
+    "@angular/common": ">= 11.0.0 < 16.0.0",
+    "@angular/core": ">= 11.0.0 < 16.0.0",
+    "rxjs": ">= 7.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"
