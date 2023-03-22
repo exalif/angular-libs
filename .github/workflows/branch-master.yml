@@ -35,7 +35,7 @@ jobs:
       - name: deps:install
         shell: bash
         run: |
-          yarn
+          yarn install --no-immutable
       - name: test:lint
         shell: bash
         run: |
