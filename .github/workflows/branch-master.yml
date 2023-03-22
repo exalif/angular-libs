@@ -35,7 +35,6 @@ jobs:
       - name: deps:install
         shell: bash
         run: |
-          yarn set version 3.5.0
           yarn
       - name: test:lint
         shell: bash
