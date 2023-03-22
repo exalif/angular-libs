@@ -35,8 +35,8 @@ jobs:
       - name: deps:install
         shell: bash
         run: |
-          yarn -v
-          yarn install --frozen-lockfile
+          yarn set version 3.5.0
+          yarn
       - name: test:lint
         shell: bash
         run: |
