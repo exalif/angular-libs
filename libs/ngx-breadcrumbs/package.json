@@ -1,0 +1,30 @@
+{
+  "name": "@exalif/ngx-breadcrumbs",
+  "version": "15.1.0",
+  "license": "MIT",
+  "description": "Angular breadcrumbs on top of native Angular router",
+  "homepage": "https://github.com/exalif/angular-libs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/exalif/angular-libs"
+  },
+  "keywords": [
+    "angular",
+    "breadcrumbs",
+    "ngx-breadcrumbs"
+  ],
+  "peerDependencies": {
+    "@angular/common": ">= 11.0.0 < 16.0.0",
+    "@angular/core": ">= 11.0.0 < 16.0.0",
+    "@angular/router": ">= 11.0.0 < 16.0.0",
+    "rxjs": ">= 7.0.0"
+  },
+  "allowedNonPeerDependencies": [
+    "tslib",
+    "lodash.template"
+  ],
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "sideEffects": false
+}

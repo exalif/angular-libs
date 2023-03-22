@@ -1,0 +1,26 @@
+{
+  "name": "@exalif/ngx-mat-popover",
+  "version": "15.1.0",
+  "license": "MIT",
+  "description": "Angular material popover component using material menu",
+  "homepage": "https://github.com/exalif/angular-libs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/exalif/angular-libs"
+  },
+  "keywords": [
+    "angular",
+    "popover",
+    "confirm",
+    "material"
+  ],
+  "peerDependencies": {
+    "@angular/common": ">= 11.0.0 < 16.0.0",
+    "@angular/core": ">= 11.0.0 < 16.0.0",
+    "@angular/material": ">= 11.0.0 < 16.0.0",
+    "@angular/cdk": ">= 11.0.0 < 16.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

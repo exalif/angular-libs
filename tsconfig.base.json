@@ -1,58 +1,40 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
-    "downlevelIteration": true,
-    "module": "esnext",
-    "outDir": "./dist/out-tsc",
+    "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "importHelpers": true,
+    "target": "es2020",
+    "module": "esnext",
     "lib": [
-      "es2017",
+      "es2022",
+      "esnext",
       "dom"
     ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
     "paths": {
       "@exalif/ngx-breadcrumbs": [
-        "dist/ngx-breadcrumbs"
-      ],
-      "@exalif/ngx-breadcrumbs/*": [
-        "dist/ngx-breadcrumbs/*"
-      ],
-      "@exalif/ngx-test-utils": [
-        "dist/ngx-test-utils"
-      ],
-      "@exalif/ngx-test-utils/*": [
-        "dist/ngx-test-utils/*"
-      ],
-      "@exalif/ngx-file-upload": [
-        "dist/ngx-file-upload"
-      ],
-      "@exalif/ngx-file-upload/*": [
-        "dist/ngx-file-upload/*"
+        "libs/ngx-breadcrumbs/src/index.ts"
       ],
       "@exalif/ngx-k-code": [
-        "dist/ngx-k-code"
+        "libs/ngx-k-code/src/index.ts"
       ],
-      "@exalif/ngx-k-code/*": [
-        "dist/ngx-k-code/*"
+      "@exalif/ngx-mat-popover": [
+        "libs/ngx-mat-popover/src/index.ts"
       ],
-      "ngx-mat-popover": [
-        "dist/ngx-mat-popover"
-      ],
-      "ngx-mat-popover/*": [
-        "dist/ngx-mat-popover/*"
-      ],
-      "ngx-signature-pad": [
-        "dist/ngx-signature-pad/ngx-signature-pad",
-        "dist/ngx-signature-pad"
+      "@exalif/ngx-skeleton-loader": [
+        "libs/ngx-skeleton-loader/src/index.ts"
       ]
     }
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
