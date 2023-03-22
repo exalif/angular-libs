@@ -1,0 +1,50 @@
+{
+  "name": "ngx-breadcrumbs",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/ngx-breadcrumbs/src",
+  "prefix": "exalif-angular-libs",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/ngx-breadcrumbs/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ngx-breadcrumbs/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ngx-breadcrumbs/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/ngx-breadcrumbs/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/ngx-breadcrumbs/**/*.ts",
+          "libs/ngx-breadcrumbs/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

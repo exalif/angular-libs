@@ -37,3 +37,10 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# NX
+.angular
+
+# yarn
+.yarn/cache
+.yarn/install-state.gz
