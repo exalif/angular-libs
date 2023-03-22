@@ -7,7 +7,8 @@
     "build": "nx run-many --target=build --all",
     "test": "nx run-many --target=test --all",
     "lint": "nx run-many --target=lint --all",
-    "verif:all": "yarn lint && yarn build && yarn test"
+    "verif:all": "yarn lint && yarn build && yarn test",
+    "merge-reports": "merge-coverage-reports"
   },
   "dependencies": {
     "@angular/animations": "15.2.3",
@@ -35,6 +36,7 @@
     "@angular/cli": "15.2.4",
     "@angular/compiler-cli": "15.2.3",
     "@angular/language-service": "15.2.3",
+    "@ngflex/merge-coverage-reports": "^1.0.0",
     "@nrwl/angular": "15.8.7",
     "@nrwl/eslint-plugin-nx": "15.8.7",
     "@nrwl/jest": "15.8.7",
