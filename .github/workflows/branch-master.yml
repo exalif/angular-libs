@@ -36,6 +36,7 @@ jobs:
         shell: bash
         run: |
           yarn install --no-immutable
+          yarn postinstall
       - name: test:lint
         shell: bash
         run: |

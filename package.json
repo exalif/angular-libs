@@ -1,9 +1,9 @@
 {
   "name": "exalif-angular-libs",
-  "version": "0.0.0",
+  "version": "15.1.0",
   "license": "MIT",
-  "private": true,
   "scripts": {
+    "postinstall": "node ./decorate-angular-cli.js",
     "build": "nx run-many --target=build --all",
     "test": "nx run-many --target=test --all",
     "lint": "nx run-many --target=lint --all",
