@@ -15,7 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@exalif/ngx-breadcrumbs": ["libs/ngx-breadcrumbs/src/index.ts"]
+      "@exalif/ngx-breadcrumbs": ["libs/ngx-breadcrumbs/src/index.ts"],
+      "@exalif/ngx-k-code": ["libs/ngx-k-code/src/index.ts"],
+      "@exalif/ngx-mat-popover": ["libs/ngx-mat-popover/src/index.ts"],
+      "@exalif/ngx-skeleton-loader": ["libs/ngx-skeleton-loader/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
