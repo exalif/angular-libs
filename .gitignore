@@ -40,6 +40,7 @@ Thumbs.db
 
 # NX
 .angular
+.nxcache
 
 # yarn
 .yarn/cache
