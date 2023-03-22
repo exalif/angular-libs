@@ -1,1 +1,1 @@
-export * from './lib/ngx-k-code.module';
+export * from './public-api';

@@ -8,18 +8,33 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "es2020",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2022",
+      "esnext",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@exalif/ngx-breadcrumbs": ["libs/ngx-breadcrumbs/src/index.ts"],
-      "@exalif/ngx-k-code": ["libs/ngx-k-code/src/index.ts"],
-      "@exalif/ngx-mat-popover": ["libs/ngx-mat-popover/src/index.ts"],
-      "@exalif/ngx-skeleton-loader": ["libs/ngx-skeleton-loader/src/index.ts"]
+      "@exalif/ngx-breadcrumbs": [
+        "libs/ngx-breadcrumbs/src/index.ts"
+      ],
+      "@exalif/ngx-k-code": [
+        "libs/ngx-k-code/src/index.ts"
+      ],
+      "@exalif/ngx-mat-popover": [
+        "libs/ngx-mat-popover/src/index.ts"
+      ],
+      "@exalif/ngx-skeleton-loader": [
+        "libs/ngx-skeleton-loader/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

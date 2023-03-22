@@ -1,7 +1,11 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/libs/ngx-mat-popover",
+  "dest": "../../dist/ngx-mat-popover",
   "lib": {
-    "entryFile": "src/index.ts"
+    "entryFile": "src/public-api.ts",
+    "styleIncludePaths": [
+      "../../node_modules",
+      "../../styles.scss"
+    ]
   }
 }

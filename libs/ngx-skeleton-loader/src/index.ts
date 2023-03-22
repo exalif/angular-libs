@@ -1,1 +1,1 @@
-export * from './lib/ngx-skeleton-loader.module';
+export * from './public-api';

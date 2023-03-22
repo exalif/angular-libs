@@ -1,1 +1,1 @@
-export * from './lib/ngx-mat-popover.module';
+export * from './public-api';
