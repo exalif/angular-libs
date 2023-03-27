@@ -51,6 +51,7 @@ export class Uploader {
   private requeueOn404: boolean;
   private useDataFromPostResponseBody: boolean;
   private useBackendUploadId: boolean;
+  private backendUploadIdName: string;
   private useUploadIdAsUrlPath: boolean;
   private useFormData: boolean;
   private formDataFileKey: string;
@@ -112,20 +113,19 @@ export class Uploader {
         .substring(2, 15);
     }
 
-    const { uploadType } = this.extraMetadata;
-
     this.metadata = {
+      ...(this.extraMetadata || {}),
       name: this.name,
       checksum: this.checkSum,
       mimeType: this.mimeType,
       size: this.file.size,
-      uploadType,
       lastModified: this.file.lastModified,
       ...unfunc(metadata || this.metadata, this.file)
     };
     this.endpoint = endpoint || this.options.endpoint;
     this.useDataFromPostResponseBody = this.options.useDataFromPostResponseBody || false;
     this.useBackendUploadId = this.options.useBackendUploadId || false;
+    this.backendUploadIdName = this.options.backendUploadIdName || 'uploadId';
     this.useUploadIdAsUrlPath = this.options.useUploadIdAsUrlPath || false;
     this.useFormData = this.options.useFormData || false;
     this.formDataFileKey = this.options.formDataFileKey || 'file';
@@ -203,6 +203,7 @@ export class Uploader {
       speed: this.speed,
       status: this._status,
       uploadId: this.uploadId,
+      chunkCount: this.chunksCount,
 
       /* eslint-disable-next-line @typescript-eslint/naming-convention */
       URI: this.URI
@@ -249,7 +250,7 @@ export class Uploader {
         xhr.onload = () => {
           this.processResponse(xhr);
           const location: string = getKeyFromResponse(xhr, 'location');
-          const uploadId: string = getKeyFromResponse(xhr, 'uploadId', this.useDataFromPostResponseBody);
+          const uploadId: string = getKeyFromResponse(xhr, this.backendUploadIdName, this.useDataFromPostResponseBody);
           const chunksCount: number = +getKeyFromResponse(xhr, 'chunksCount', this.useDataFromPostResponseBody);
 
           const shouldReturnError = this.statusType !== 200
@@ -267,6 +268,12 @@ export class Uploader {
               this.useChunksIndexes = true;
               this.currentChunkIndex = 0;
               this.chunksCount = chunksCount;
+            }
+
+            if (!chunksCount && this.chunkSize) {
+              this.useChunksIndexes = true;
+              this.currentChunkIndex = 0;
+              this.calculateChunksCount();
             }
 
             if (this.useBackendUploadId) {
@@ -436,6 +443,10 @@ export class Uploader {
 
   private calculateChunksSize(chunksCount: number): void {
     this.chunkSize = Math.ceil(this.size / chunksCount);
+  }
+
+  private calculateChunksCount(): void {
+    this.chunksCount = Math.ceil(this.size / this.chunkSize);
   }
 
   private isIndexChunkingWithNoRest(): boolean {
