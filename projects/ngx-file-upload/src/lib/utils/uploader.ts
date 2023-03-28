@@ -51,6 +51,7 @@ export class Uploader {
   private requeueOn404: boolean;
   private useDataFromPostResponseBody: boolean;
   private useBackendUploadId: boolean;
+  private backendUploadIdName: string;
   private useUploadIdAsUrlPath: boolean;
   private useFormData: boolean;
   private formDataFileKey: string;
@@ -58,6 +59,7 @@ export class Uploader {
   private currentChunkIndex: number;
   private maxRetryAttempts: number = 3;
   private breakRetryErrorCodes: number[];
+  private chuckSuccessCodes: number[];
   private stateChange: (evt: NgxFileUploadState) => void;
 
   set status(status: NgxFileUploadStatus) {
@@ -112,24 +114,24 @@ export class Uploader {
         .substring(2, 15);
     }
 
-    const { uploadType } = this.extraMetadata;
-
     this.metadata = {
+      ...(this.extraMetadata || {}),
       name: this.name,
       checksum: this.checkSum,
       mimeType: this.mimeType,
       size: this.file.size,
-      uploadType,
       lastModified: this.file.lastModified,
       ...unfunc(metadata || this.metadata, this.file)
     };
     this.endpoint = endpoint || this.options.endpoint;
     this.useDataFromPostResponseBody = this.options.useDataFromPostResponseBody || false;
     this.useBackendUploadId = this.options.useBackendUploadId || false;
+    this.backendUploadIdName = this.options.backendUploadIdName || 'uploadId';
     this.useUploadIdAsUrlPath = this.options.useUploadIdAsUrlPath || false;
     this.useFormData = this.options.useFormData || false;
     this.formDataFileKey = this.options.formDataFileKey || 'file';
     this.breakRetryErrorCodes = this.options.breakRetryErrorCodes || [];
+    this.chuckSuccessCodes = this.options.chuckSuccessCodes || [300];
     this.chunkSize = this.options.chunkSize;
     this.maxRetryAttempts = this.options.maxRetryAttempts || this.maxRetryAttempts;
     this.refreshToken(token);
@@ -203,6 +205,7 @@ export class Uploader {
       speed: this.speed,
       status: this._status,
       uploadId: this.uploadId,
+      chunkCount: this.chunksCount,
 
       /* eslint-disable-next-line @typescript-eslint/naming-convention */
       URI: this.URI
@@ -248,8 +251,8 @@ export class Uploader {
 
         xhr.onload = () => {
           this.processResponse(xhr);
-          const location: string = getKeyFromResponse(xhr, 'location');
-          const uploadId: string = getKeyFromResponse(xhr, 'uploadId', this.useDataFromPostResponseBody);
+          const location: string = !this.useUploadIdAsUrlPath ? getKeyFromResponse(xhr, 'location') : null;
+          const uploadId: string = getKeyFromResponse(xhr, this.backendUploadIdName, this.useDataFromPostResponseBody);
           const chunksCount: number = +getKeyFromResponse(xhr, 'chunksCount', this.useDataFromPostResponseBody);
 
           const shouldReturnError = this.statusType !== 200
@@ -267,6 +270,12 @@ export class Uploader {
               this.useChunksIndexes = true;
               this.currentChunkIndex = 0;
               this.chunksCount = chunksCount;
+            }
+
+            if (!chunksCount && this.chunkSize) {
+              this.useChunksIndexes = true;
+              this.currentChunkIndex = 0;
+              this.calculateChunksCount();
             }
 
             if (this.useBackendUploadId) {
@@ -367,9 +376,12 @@ export class Uploader {
 
     const onSuccess = () => {
       this.processResponse(xhr);
-      const offset = this.statusType === 300 && this.getNextChunkOffset(xhr);
+      const offset = this.chuckSuccessCodes.includes(this.statusType) && this.getNextChunkOffset(xhr);
 
-      if (typeof offset === 'number' || (this.statusType === 300 && this.canGoToNextIndexChunk())) {
+      const allowRanges: boolean = !this.useChunksIndexes && typeof offset === 'number';
+      const allowChunk: boolean = this.canGoToNextIndexChunk() && typeof offset === 'number';
+
+      if (allowRanges || allowChunk) {
         //  next chunk
         if (this.useChunksIndexes) {
           this.currentChunkIndex++;
@@ -415,7 +427,7 @@ export class Uploader {
   }
 
   private canGoToNextIndexChunk(): boolean {
-    return this.useChunksIndexes && this.currentChunkIndex + 1 <= this.chunksCount;
+    return this.useChunksIndexes && (this.currentChunkIndex + 1 < this.chunksCount);
   }
 
   private setupXHR(xhr: XMLHttpRequest): void {
@@ -436,6 +448,10 @@ export class Uploader {
 
   private calculateChunksSize(chunksCount: number): void {
     this.chunkSize = Math.ceil(this.size / chunksCount);
+  }
+
+  private calculateChunksCount(): void {
+    this.chunksCount = Math.ceil(this.size / this.chunkSize);
   }
 
   private isIndexChunkingWithNoRest(): boolean {

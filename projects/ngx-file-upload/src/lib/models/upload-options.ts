@@ -101,6 +101,13 @@ export class NgxFileUploadOptions {
   useBackendUploadId?: boolean;
 
   /**
+   * Key name for backend provided upload id. Used only if useBackendUploadId option is enabled
+   *
+   * @defaultValue 'uploadId'
+   */
+  backendUploadIdName?: string;
+
+  /**
    * Append upload id to endpoint to get the upload endpoint path
    * e.g. with `uploadId = 'someid'` the upload endpoint will become `endpoint/someId`
    *
@@ -110,7 +117,7 @@ export class NgxFileUploadOptions {
 
   /**
    * Send file using formData instead of raw body.
-   * Setting this to false will send a application/octet-stream Content-Type Header
+   * Setting this to false will send an application/octet-stream Content-Type Header
    *
    * @defaultValue false
    */
@@ -130,6 +137,14 @@ export class NgxFileUploadOptions {
    * @defaultValue []
    */
   breakRetryErrorCodes?: number[];
+
+  /**
+   * A success codes array for chuck response
+   * if a code matching an array element occurs, it will pass to the next chunk
+   *
+   * @defaultValue [300]
+   */
+  chuckSuccessCodes?: number[];
 
   /**
    * Checksum Hash method
