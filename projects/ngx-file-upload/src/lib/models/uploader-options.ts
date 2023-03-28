@@ -10,6 +10,7 @@ export interface NgxFileUploaderOptions extends NgxFileUploadItem {
   useUploadIdAsUrlPath?: boolean;
   useFormData?: boolean;
   breakRetryErrorCodes?: number[];
+  chuckSuccessCodes?: number[];
   formDataFileKey?: string;
 
   readonly stateChange?: any;

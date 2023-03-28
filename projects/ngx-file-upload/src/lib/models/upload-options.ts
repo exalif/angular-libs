@@ -139,6 +139,14 @@ export class NgxFileUploadOptions {
   breakRetryErrorCodes?: number[];
 
   /**
+   * A success codes array for chuck response
+   * if a code matching an array element occurs, it will pass to the next chunk
+   *
+   * @defaultValue [300]
+   */
+  chuckSuccessCodes?: number[];
+
+  /**
    * Checksum Hash method
    */
   checksumHashMethod?: (file: File) => Promise<string>;

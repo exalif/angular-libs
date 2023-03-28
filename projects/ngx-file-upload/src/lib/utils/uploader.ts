@@ -59,6 +59,7 @@ export class Uploader {
   private currentChunkIndex: number;
   private maxRetryAttempts: number = 3;
   private breakRetryErrorCodes: number[];
+  private chuckSuccessCodes: number[];
   private stateChange: (evt: NgxFileUploadState) => void;
 
   set status(status: NgxFileUploadStatus) {
@@ -130,6 +131,7 @@ export class Uploader {
     this.useFormData = this.options.useFormData || false;
     this.formDataFileKey = this.options.formDataFileKey || 'file';
     this.breakRetryErrorCodes = this.options.breakRetryErrorCodes || [];
+    this.chuckSuccessCodes = this.options.chuckSuccessCodes || [300];
     this.chunkSize = this.options.chunkSize;
     this.maxRetryAttempts = this.options.maxRetryAttempts || this.maxRetryAttempts;
     this.refreshToken(token);
@@ -249,7 +251,7 @@ export class Uploader {
 
         xhr.onload = () => {
           this.processResponse(xhr);
-          const location: string = getKeyFromResponse(xhr, 'location');
+          const location: string = !this.useUploadIdAsUrlPath ? getKeyFromResponse(xhr, 'location') : null;
           const uploadId: string = getKeyFromResponse(xhr, this.backendUploadIdName, this.useDataFromPostResponseBody);
           const chunksCount: number = +getKeyFromResponse(xhr, 'chunksCount', this.useDataFromPostResponseBody);
 
@@ -373,10 +375,15 @@ export class Uploader {
     };
 
     const onSuccess = () => {
-      this.processResponse(xhr);
-      const offset = this.statusType === 300 && this.getNextChunkOffset(xhr);
+      const allowedResponseCodes: number[] = this.chuckSuccessCodes;
 
-      if (typeof offset === 'number' || (this.statusType === 300 && this.canGoToNextIndexChunk())) {
+      this.processResponse(xhr);
+      const offset = allowedResponseCodes.includes(this.statusType) && this.getNextChunkOffset(xhr);
+
+      const allowRanges: boolean = !this.useChunksIndexes && typeof offset === 'number';
+      const allowChunk: boolean = this.canGoToNextIndexChunk() && typeof offset === 'number';
+
+      if (allowRanges || allowChunk) {
         //  next chunk
         if (this.useChunksIndexes) {
           this.currentChunkIndex++;
@@ -422,7 +429,7 @@ export class Uploader {
   }
 
   private canGoToNextIndexChunk(): boolean {
-    return this.useChunksIndexes && this.currentChunkIndex + 1 <= this.chunksCount;
+    return this.useChunksIndexes && (this.currentChunkIndex + 1 < this.chunksCount);
   }
 
   private setupXHR(xhr: XMLHttpRequest): void {
