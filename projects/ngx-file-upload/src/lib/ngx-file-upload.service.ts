@@ -58,7 +58,7 @@ export class NgxFileUploadService {
       useFormData: this.options.useFormData,
       formDataFileKey: this.options.formDataFileKey || 'file',
       breakRetryErrorCodes: this.options.breakRetryErrorCodes,
-      chuckSuccessCodes: this.options.chuckSuccessCodes,
+      chuckSuccessCodes: this.options.chuckSuccessCodes || [300],
       stateChange: this.stateChange,
     };
   }

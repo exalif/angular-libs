@@ -375,10 +375,8 @@ export class Uploader {
     };
 
     const onSuccess = () => {
-      const allowedResponseCodes: number[] = this.chuckSuccessCodes;
-
       this.processResponse(xhr);
-      const offset = allowedResponseCodes.includes(this.statusType) && this.getNextChunkOffset(xhr);
+      const offset = this.chuckSuccessCodes.includes(this.statusType) && this.getNextChunkOffset(xhr);
 
       const allowRanges: boolean = !this.useChunksIndexes && typeof offset === 'number';
       const allowChunk: boolean = this.canGoToNextIndexChunk() && typeof offset === 'number';
