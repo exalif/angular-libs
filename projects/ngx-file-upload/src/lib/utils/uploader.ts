@@ -1,8 +1,7 @@
 /**
  * Implements XHR/CORS Resumable Upload
  *
- * @see
- * https://developers.google.com/drive/v3/web/resumable-upload
+ * @see https://developers.google.com/drive/v3/web/resumable-upload
  */
 
 import { resolveUrl } from './resolve-url';
@@ -47,8 +46,6 @@ export class Uploader {
   private _xhr_: XMLHttpRequest;
   private chunkSize: number;
   private chunksCount: number;
-  private retryOn404: boolean;
-  private requeueOn404: boolean;
   private useDataFromPostResponseBody: boolean;
   private useBackendUploadId: boolean;
   private backendUploadIdName: string;
@@ -63,17 +60,20 @@ export class Uploader {
   private stateChange: (evt: NgxFileUploadState) => void;
 
   set status(status: NgxFileUploadStatus) {
-    // Return if State is cancelled or complete (but allow cancel of an complete upload to remove from list and from server)
+    // Return if State is cancelled or complete (but allow cancel of a complete upload to remove from list and from server)
     if (this._status === 'cancelled' || (this._status === 'complete' && status !== 'cancelled')) {
       return;
     }
+
     if (status !== this._status) {
       if (this._xhr_ && (status === 'cancelled' || status === 'paused')) {
         this._xhr_.abort();
       }
+
       if (status === 'cancelled' && this.URI) {
         this.request('delete');
       }
+
       this._status = status;
       this.notifyState();
     }
@@ -254,6 +254,7 @@ export class Uploader {
           const location: string = !this.useUploadIdAsUrlPath ? getKeyFromResponse(xhr, 'location') : null;
           const uploadId: string = getKeyFromResponse(xhr, this.backendUploadIdName, this.useDataFromPostResponseBody);
           const chunksCount: number = +getKeyFromResponse(xhr, 'chunksCount', this.useDataFromPostResponseBody);
+          const chunkSize: number = +getKeyFromResponse(xhr, 'chunkSize', this.useDataFromPostResponseBody);
 
           const shouldReturnError = this.statusType !== 200
             || (!location && !this.useUploadIdAsUrlPath)
@@ -262,9 +263,11 @@ export class Uploader {
 
           if (shouldReturnError) {
             // limit attempts
-            this.statusType = 400;
-            reject();
+            this.statusType = this.statusType >= 400 ? this.statusType : 400;
+            reject(this.statusType);
           } else {
+            this.chunkSize = chunkSize ?? this.chunkSize;
+
             if (!!chunksCount) {
               this.calculateChunksSize(chunksCount);
               this.useChunksIndexes = true;
