@@ -1,10 +1,10 @@
 {
-  "name": "@ng-idle/keepalive",
+  "name": "@exalif/ngx-keepalive",
   "version": "12.0.0",
-  "description": "Module that works with @ng-idle/core to keep a user session alive while user is active.",
+  "description": "Module that keeps a user session alive while user is active.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moribvndvs/ng2-idle.git"
+    "url": "git+https://github.com/exalif/angular-libs.git"
   },
   "keywords": [
     "angular",
@@ -17,16 +17,15 @@
     "session",
     "keepalive"
   ],
-  "author": "Ng-Idle Team",
-  "license": "Apache-2.0",
+  "author": "Exalif and Ng-Idle Team",
+  "license": "MIT and Apache-2.0",
   "bugs": {
-    "url": "https://github.com/moribvndvs/ng2-idle.git/issues"
+    "url": "https://github.com/exalif/angular-libs/issues"
   },
-  "homepage": "https://github.com/moribvndvs/ng2-idle.git#readme",
+  "homepage": "https://github.com/exalif/angular-libs#readme",
   "peerDependencies": {
-    "@angular/common": ">=9.0.0",
-    "@angular/core": ">=9.0.0",
-    "@ng-idle/core": ">=0.0.0"
+    "@angular/common": ">=15.0.0",
+    "@angular/core": ">=15.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"
