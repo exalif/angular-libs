@@ -1,6 +1,7 @@
 import { EventEmitter, Injectable, NgZone, OnDestroy } from '@angular/core';
 import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
-import { KeepaliveSvc } from '@ng-idle/core';
+
+import { KeepaliveSvc } from './core';
 
 /**
  * An example of an injectable service.
