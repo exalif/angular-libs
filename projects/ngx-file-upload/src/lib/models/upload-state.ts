@@ -9,6 +9,7 @@ export interface NgxFileUploadState {
   response: any;
   responseStatus: number;
   responseStatusText: string;
+  uploaded: number;
   size: number;
   speed: number;
   status: NgxFileUploadStatus;
