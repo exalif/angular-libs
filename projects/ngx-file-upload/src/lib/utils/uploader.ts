@@ -27,6 +27,7 @@ export class Uploader {
   public responseStatus: number;
   public responseStatusText: any;
   public speed: number;
+  public uploaded: number;
 
   /* eslint-disable-next-line @typescript-eslint/naming-convention */
   public URI: string;
@@ -202,6 +203,7 @@ export class Uploader {
       responseStatus: this.responseStatus,
       responseStatusText: this.responseStatusText,
       size: this.size,
+      uploaded: this.uploaded,
       speed: this.speed,
       status: this._status,
       uploadId: this.uploadId,
@@ -394,6 +396,7 @@ export class Uploader {
         this.sendChunk(offset);
       } else if (this.statusType === 200) {
         this.progress = 100;
+        this.uploaded = this.size;
         this.status = 'complete';
       } else {
         onError();
@@ -413,6 +416,7 @@ export class Uploader {
       const now = new Date().getTime();
       this.speed = Math.round((uploaded / (now - this.startTime)) * 1000);
       this.remaining = Math.ceil((this.size - uploaded) / this.speed);
+      this.uploaded = uploaded;
 
       this.notifyState();
     };
