@@ -12,7 +12,7 @@ export * from './interruptsource';
 export * from './keepalivesvc';
 export * from './localstorage';
 export * from './localstorageexpiry';
-export * from './module';
+export * from './ng-idle-core.module';
 export * from './simpleexpiry';
 export * from './storageinterruptsource';
 export * from './windowinterruptsource';

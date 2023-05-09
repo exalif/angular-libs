@@ -5,7 +5,7 @@
 
 A module for responding to idle users in Angular applications. 
 
-This package is a cloned and modified version of original  [ng2-idle module](https://github.com/moribvndvs/ng2-idle).
+This package is a cloned and modified version of original  [ng2-idle module](https://github.com/moribvndvs/ng2-idle). For version of Angular < 15, see original package.
 
 ## Demo
 

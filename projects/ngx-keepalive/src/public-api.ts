@@ -3,7 +3,7 @@
  */
 
 export * from './lib/keepalive';
-export * from './lib/module';
+export * from './lib/ng-idle-keepalive.module';
 
 export * from './lib/core/idle';
 export * from './lib/core/interruptargs';
@@ -17,5 +17,5 @@ export * from './lib/core/idleexpiry';
 export * from './lib/core/simpleexpiry';
 export * from './lib/core/localstorage';
 export * from './lib/core/localstorageexpiry';
-export * from './lib/core/module';
+export * from './lib/core/ng-idle-core.module';
 export * from './lib/core/defaultinterruptsources';
