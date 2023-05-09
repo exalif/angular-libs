@@ -43,6 +43,12 @@
       "@exalif/ngx-k-code/*": [
         "dist/ngx-k-code/*"
       ],
+      "@exalif/keep-alive": [
+        "dist/ngx-keepalive"
+      ],
+      "@exalif/keep-alive/*": [
+        "dist/ngx-keepalive/*"
+      ],
       "ngx-mat-popover": [
         "dist/ngx-mat-popover"
       ],

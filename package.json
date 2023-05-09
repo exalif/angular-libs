@@ -7,6 +7,7 @@
     "build:ngx-file-upload": "ng build ngx-file-upload --configuration production",
     "build:ngx-signature-pad": "ng build ngx-signature-pad --configuration production",
     "build:ngx-k-code": "ng build ngx-k-code --configuration production",
+    "build:ngx-keepalive": "ng build ngx-keepalive --configuration production",
     "build:ngx-mat-popover": "ng build ngx-mat-popover --configuration production && scss-bundle -c projects/ngx-mat-popover/scss-bundle.config.json",
     "build:all": "yarn build:ngx-breadcrumbs && yarn build:ngx-skeleton-loader && yarn build:ngx-file-upload && yarn build:ngx-signature-pad && yarn build:ngx-k-code && yarn build:ngx-mat-popover",
     "test": "jest --colors  --coverage",
@@ -18,6 +19,7 @@
     "publish:ngx-file-upload": "cd dist/ngx-file-upload && npm publish . && cd ../..",
     "publish:ngx-signature-pad": "cd dist/ngx-signature-pad && npm publish . && cd ../..",
     "publish:ngx-k-code": "cd dist/ngx-k-code && npm publish . && cd ../..",
+    "publish:ngx-keepalive": "cd dist/ngx-keepalive && npm publish . && cd ../..",
     "publish:ngx-mat-popover": "cd dist/ngx-mat-popover && npm publish . && cd ../..",
     "publish:all": "yarn publish:ngx-breadcrumbs && yarn publish:ngx-skeleton-loader && yarn publish:ngx-file-upload && yarn publish:ngx-k-code && yarn publish:ngx-mat-popover && yarn publish:ngx-signature-pad"
   },
