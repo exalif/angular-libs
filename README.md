@@ -1,14 +1,14 @@
 # Exalif Angular Libs
 
-[![Build Status](https://travis-ci.org/exalif/angular-libs.svg?branch=master)](https://travis-ci.org/exalif/angular-libs)
+![Build Status](https://github.com/exalif/angular-libs/actions/workflows/branch-master.yml/badge.svg)
 
 Monorepo for various libs:
 
- - [@exalif/ngx-breadcrumbs](projects/ngx-breadcrumbs): breadcrumbs module
- - [@exalif/ngx-mat-popover](projects/ngx-mat-popover): angular material popover
- - [@exalif/ngx-skeleton-loader](projects/ngx-skeleton-loader): skeleton/ghost loader
- - [@exalif/ngx-file-upload](projects/ngx-file-upload): file upload module
- - [@exalif/ngx-k-code](projects/ngx-k-code): konami code module
+ - [@exalif/ngx-breadcrumbs](libs/ngx-breadcrumbs): breadcrumbs module
+ - [@exalif/ngx-mat-popover](libs/ngx-mat-popover): angular material popover
+ - [@exalif/ngx-skeleton-loader](libs/ngx-skeleton-loader): skeleton/ghost loader
+ - [@exalif/ngx-file-upload](libs/ngx-file-upload): file upload module
+ - [@exalif/ngx-k-code](libs/ngx-k-code): konami code module
 
 ## Notes
 

@@ -1,0 +1,37 @@
+{
+  "name": "@exalif/ngx-skeleton-loader",
+  "license": "MIT",
+  "description": "Angular 8+ skeleton loader",
+  "version": "16.0.0",
+  "author": {
+    "name": "Exalif",
+    "email": "noreply@nowebsite.com"
+  },
+  "homepage": "https://github.com/exalif/angular-libs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/exalif/angular-libs"
+  },
+  "keywords": [
+    "angular",
+    "angular8",
+    "angular9",
+    "angular10",
+    "angular11",
+    "angular12",
+    "angular13",
+    "angular14",
+    "angular15",
+    "angular16",
+    "skeleton",
+    "loader",
+    "ghost"
+  ],
+  "peerDependencies": {
+    "@angular/common": ">= 11.0.0 < 17.0.0",
+    "@angular/core": ">= 11.0.0 < 17.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

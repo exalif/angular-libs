@@ -1,0 +1,65 @@
+name: branch-master
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+env:
+  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+
+jobs:
+  test_and_build:
+    name: Test and Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: setup:checkout
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: setup:cache:node
+        uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: |
+            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            ${{ github.workspace }}/.angular
+            ${{ github.workspace }}/.nxcache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: deps:install
+        shell: bash
+        run: |
+          yarn install --no-immutable
+      - name: test:lint
+        shell: bash
+        run: |
+          yarn lint
+      - name: build:prod
+        shell: bash
+        run: |
+          yarn build:all
+      - name: test:unit
+        shell: bash
+        run: |
+          yarn test
+          yarn merge-reports
+      - name: test:coverage
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ${{ github.workspace }}/coverage/report/lcov.info
+      - name: build:upload:artifacts
+        if: github.base_ref == 0
+        uses: actions/upload-artifact@v3
+        with:
+          name: exalif-angular-libs-${{ github.sha }}
+          path: ${{ github.workspace }}/dist/libs/

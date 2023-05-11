@@ -10,6 +10,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "noImplicitAny": false,
     "target": "es2015",
     "typeRoots": [
       "node_modules/@types"
@@ -24,12 +25,6 @@
       ],
       "@exalif/ngx-breadcrumbs/*": [
         "dist/ngx-breadcrumbs/*"
-      ],
-      "@exalif/ngx-test-utils": [
-        "dist/ngx-test-utils"
-      ],
-      "@exalif/ngx-test-utils/*": [
-        "dist/ngx-test-utils/*"
       ],
       "@exalif/ngx-file-upload": [
         "dist/ngx-file-upload"
