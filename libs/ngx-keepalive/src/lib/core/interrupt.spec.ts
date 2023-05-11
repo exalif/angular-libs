@@ -6,7 +6,7 @@ import { Interrupt } from './interrupt';
 describe('core/Interrupt', () => {
   it('initializes the interrupt source during interrupt construction', () => {
     const source = new EventTargetInterruptSource(document.body, 'click');
-    spyOn(source, 'initialize').and.callThrough();
+    jest.spyOn(source, 'initialize');
     const instance = new Interrupt(source);
     expect(source.initialize).toHaveBeenCalledTimes(1);
     expect(instance).toBeInstanceOf(Interrupt);
@@ -14,7 +14,7 @@ describe('core/Interrupt', () => {
 
   it('initializes the interrupt source during interrupt construction and passes through the interrupt options', () => {
     const source = new EventTargetInterruptSource(document.body, 'click');
-    spyOn(source, 'initialize').and.callThrough();
+    jest.spyOn(source, 'initialize');
     const options = { platformId: 'browser' as unknown as object };
     const instance = new Interrupt(source, options);
     expect(source.initialize).toHaveBeenCalledTimes(1);

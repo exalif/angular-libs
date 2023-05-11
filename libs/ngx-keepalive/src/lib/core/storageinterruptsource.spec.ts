@@ -6,7 +6,7 @@ describe('core/StorageInterruptSource', () => {
   it('emits onInterrupt event when attached and event is fired', fakeAsync(() => {
     const source = new StorageInterruptSource();
     source.initialize();
-    spyOn(source.onInterrupt, 'emit').and.callThrough();
+    jest.spyOn(source.onInterrupt, 'emit');
     source.attach();
 
     const init: StorageEventInit = {
@@ -28,7 +28,7 @@ describe('core/StorageInterruptSource', () => {
   it('does not emit onInterrupt event when detached and event is fired', fakeAsync(() => {
     const source = new StorageInterruptSource();
     source.initialize();
-    spyOn(source.onInterrupt, 'emit').and.callThrough();
+    jest.spyOn(source.onInterrupt, 'emit');
     // make it interesting by attaching and detaching
     source.attach();
     source.detach();
@@ -42,7 +42,7 @@ describe('core/StorageInterruptSource', () => {
   it('does not emit onInterrupt event when attached and key is not ng2Idle.expiry and event is fired', fakeAsync(() => {
     const source = new StorageInterruptSource();
     source.initialize();
-    spyOn(source.onInterrupt, 'emit').and.callThrough();
+    jest.spyOn(source.onInterrupt, 'emit');
     source.attach();
 
     const init: StorageEventInit = {
@@ -65,7 +65,7 @@ describe('core/StorageInterruptSource', () => {
     const source = new StorageInterruptSource();
     const options = { platformId: 'server' as unknown as object };
     source.initialize(options);
-    spyOn(source.onInterrupt, 'emit').and.callThrough();
+    jest.spyOn(source.onInterrupt, 'emit');
 
     source.attach();
 

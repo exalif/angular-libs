@@ -5,7 +5,7 @@ describe('core/IdleExpiry', () => {
 
   it('now() returns current date', () => {
     const expected = Date.now();
-    jasmine.clock().mockDate(new Date(expected));
+    jest.useFakeTimers().setSystemTime(new Date(expected));
     const actual = instance.now();
     expect(actual.getTime()).toBe(expected);
   });
@@ -24,7 +24,7 @@ describe('core/IdleExpiry', () => {
 
   it('id() returns default value', () => {
     const expected = new Date();
-    jasmine.clock().mockDate(expected);
+    jest.useFakeTimers().setSystemTime(expected);
     instance = new MockExpiry();
     const actual = instance.id();
 

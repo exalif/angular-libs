@@ -93,7 +93,7 @@ describe('keepalive/Keepalive', () => {
     });
 
     it('ping() should emit onPing event', () => {
-      spyOn(instance.onPing, 'emit').and.callThrough();
+      jest.spyOn(instance.onPing, 'emit');
 
       instance.ping();
       expect(instance.onPing.emit).toHaveBeenCalled();
@@ -170,7 +170,7 @@ describe('keepalive/Keepalive', () => {
   describe('on an interval', () => {
     beforeEach(() => {
       instance.interval(5);
-      spyOn(instance, 'ping').and.callThrough();
+      jest.spyOn(instance, 'ping');
     });
 
     it('start() should schedule and ping at the specified interval', fakeAsync((): void => {
@@ -213,7 +213,7 @@ describe('keepalive/Keepalive', () => {
     }));
 
     it('ngOnDestroy() invokes stop()', fakeAsync((): void => {
-      spyOn(instance, 'stop').and.callThrough();
+      jest.spyOn(instance, 'stop');
 
       instance.start();
 

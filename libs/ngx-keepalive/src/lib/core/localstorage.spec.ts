@@ -73,17 +73,27 @@ describe('core/LocalStorage', () => {
 const testBedConfiguration = () => ({ providers: [LocalStorage] });
 
 const initSpyOnLocalStorage = (fakeNoLocalStorage: boolean) => {
-  spyOn(localStorage, 'getItem').and.callFake(
+  jest.spyOn(localStorage, 'setItem');
+  jest.spyOn(localStorage, 'getItem');
+  jest.spyOn(localStorage, 'removeItem');
+
+  localStorage.getItem = jest.fn();
+  localStorage.setItem = jest.fn();
+  localStorage.removeItem = jest.fn();
+
+  (localStorage.getItem as jest.Mock).mockImplementation(
     (key: string): string => {
       return mockLocalStorage[key] || null;
     }
   );
-  spyOn(localStorage, 'removeItem').and.callFake(
+
+  (localStorage.removeItem as jest.Mock).mockImplementation(
     (key: string): void => {
       delete mockLocalStorage[key];
     }
   );
-  spyOn(localStorage, 'setItem').and.callFake(
+
+  (localStorage.setItem as jest.Mock).mockImplementation(
     (key: string, value: string): string => {
       if (fakeNoLocalStorage) {
         throw new Error('QuotaExceededError');

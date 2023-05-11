@@ -44,16 +44,16 @@ jobs:
         shell: bash
         run: |
           yarn build:all
-      # - name: test:unit
-      #   shell: bash
-      #   run: |
-      #     yarn test
-      #     yarn merge-reports
-      # - name: test:coverage
-      #   uses: coverallsapp/github-action@master
-      #   with:
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     path-to-lcov: ${{ github.workspace }}/coverage/report/lcov.info
+      - name: test:unit
+        shell: bash
+        run: |
+          yarn test
+          yarn merge-reports
+      - name: test:coverage
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ${{ github.workspace }}/coverage/report/lcov.info
       - name: build:upload:artifacts
         if: github.base_ref == 0
         uses: actions/upload-artifact@v3

@@ -34,7 +34,7 @@ describe('core/InterruptSource', () => {
       }
     });
 
-    spyOn(source.onInterrupt, 'emit').and.callThrough();
+    jest.spyOn(source.onInterrupt, 'emit');
     source.onInterrupt.subscribe((args: InterruptArgs) => {
       expect(Zone.current.name).not.toBe('angular');
       expect(Zone.current.get('isAngularZone')).toBeFalsy();

@@ -7,7 +7,7 @@ describe('core/EventTargetInterruptSource', () => {
   it('emits onInterrupt event when attached and event is fired', fakeAsync(() => {
     const source = new EventTargetInterruptSource(document.body, 'click');
     source.initialize();
-    spyOn(source.onInterrupt, 'emit').and.callThrough();
+    jest.spyOn(source.onInterrupt, 'emit');
     source.attach();
 
     const expected = new Event('click');
@@ -21,7 +21,7 @@ describe('core/EventTargetInterruptSource', () => {
   it('emits onInterrupt event when multiple events are specified and one is triggered', fakeAsync(() => {
     const source = new EventTargetInterruptSource(document.body, 'click touch');
     source.initialize();
-    spyOn(source.onInterrupt, 'emit').and.callThrough();
+    jest.spyOn(source.onInterrupt, 'emit');
     source.attach();
 
     const expected = new Event('click');
@@ -35,7 +35,7 @@ describe('core/EventTargetInterruptSource', () => {
   it('does not emit onInterrupt event when detached and event is fired', fakeAsync(() => {
     const source = new EventTargetInterruptSource(document.body, 'click');
     source.initialize();
-    spyOn(source.onInterrupt, 'emit').and.callThrough();
+    jest.spyOn(source.onInterrupt, 'emit');
 
     // make it interesting by attaching and detaching
     source.attach();
@@ -51,7 +51,7 @@ describe('core/EventTargetInterruptSource', () => {
     const source = new EventTargetInterruptSource(document.body, 'click');
     const options = { platformId: 'server' as unknown as object };
     source.initialize(options);
-    spyOn(source.onInterrupt, 'emit').and.callThrough();
+    jest.spyOn(source.onInterrupt, 'emit');
 
     source.attach();
 
@@ -66,7 +66,7 @@ describe('core/EventTargetInterruptSource', () => {
   it('should use passive event listeners when passive is true', fakeAsync(() => {
     const source = new EventTargetInterruptSource(document.body, 'click', { passive: true });
     source.initialize();
-    spyOn(source.onInterrupt, 'emit').and.callThrough();
+    jest.spyOn(source.onInterrupt, 'emit');
     source.attach();
 
     const expected = new Event('click');
@@ -80,7 +80,7 @@ describe('core/EventTargetInterruptSource', () => {
   it('should throttle target events using the specified throttleDelay value', fakeAsync(() => {
     const source = new EventTargetInterruptSource(document.body, 'click', 500);
     source.initialize();
-    spyOn(source.onInterrupt, 'emit').and.callThrough();
+    jest.spyOn(source.onInterrupt, 'emit');
     source.attach();
 
     // two immediate calls should get throttled to only 1 call
@@ -113,7 +113,7 @@ describe('core/EventTargetInterruptSource', () => {
   it('should not throttle target events if throttleDelay is 0', fakeAsync(() => {
     const source = new EventTargetInterruptSource(document.body, 'click', 0);
     source.initialize();
-    spyOn(source.onInterrupt, 'emit').and.callThrough();
+    jest.spyOn(source.onInterrupt, 'emit');
     source.attach();
 
     document.body.dispatchEvent(new Event('click'));

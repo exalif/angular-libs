@@ -142,8 +142,8 @@ describe('core/Idle', () => {
 
       it('setInterrupts() should create interrupt subscriptions', () => {
         const source = new MockInterruptSource();
-        spyOn(source.onInterrupt, 'subscribe').and.callThrough();
-        spyOn(source, 'attach').and.callThrough();
+        jest.spyOn(source.onInterrupt, 'subscribe');
+        jest.spyOn(source, 'attach');
 
         const subs = instance.setInterrupts([source]);
 
@@ -168,7 +168,7 @@ describe('core/Idle', () => {
 
       it('clearInterrupts() should unsubscribe and clear all subscriptions', () => {
         const source = new MockInterruptSource();
-        spyOn(source, 'detach').and.callThrough();
+        jest.spyOn(source, 'detach');
 
         instance.setInterrupts([source]);
 
@@ -185,7 +185,7 @@ describe('core/Idle', () => {
       });
 
       it('stop() should clear timeouts and stop running', fakeAsync(() => {
-        spyOn(window, 'clearInterval').and.callThrough();
+        jest.spyOn(window, 'clearInterval');
 
         instance.watch();
         instance.stop();
@@ -202,7 +202,7 @@ describe('core/Idle', () => {
       });
 
       it('watch() should clear timeouts and start running', fakeAsync(() => {
-        spyOn(window, 'setInterval').and.callThrough();
+        jest.spyOn(window, 'setInterval');
 
         instance.watch();
 
@@ -356,7 +356,7 @@ describe('core/Idle', () => {
       }));
 
       it('emits an onIdleStart event when the user becomes idle', fakeAsync(() => {
-        spyOn(instance.onIdleStart, 'emit').and.callThrough();
+        jest.spyOn(instance.onIdleStart, 'emit');
 
         expiry.mockNow = new Date();
         instance.watch();
@@ -372,7 +372,7 @@ describe('core/Idle', () => {
       }));
 
       it('emits an onIdleStart event if there was no "last" expiry set.', fakeAsync(() => {
-        spyOn(instance.onIdleStart, 'emit').and.callThrough();
+        jest.spyOn(instance.onIdleStart, 'emit');
 
         expiry.mockNow = new Date();
         instance.watch();
@@ -389,7 +389,7 @@ describe('core/Idle', () => {
       }));
 
       it('emits an onIdleEnd event when the user returns from idle', fakeAsync(() => {
-        spyOn(instance.onIdleEnd, 'emit').and.callThrough();
+        jest.spyOn(instance.onIdleEnd, 'emit');
 
         expiry.mockNow = new Date();
         instance.watch();
@@ -407,8 +407,8 @@ describe('core/Idle', () => {
       }));
 
       it('emits an onTimeoutWarning every second during the timeout duration', fakeAsync(() => {
-        spyOn(instance.onTimeoutWarning, 'emit').and.callThrough();
-        spyOn(instance.onTimeout, 'emit').and.callThrough();
+        jest.spyOn(instance.onTimeoutWarning, 'emit');
+        jest.spyOn(instance.onTimeout, 'emit');
 
         instance.setTimeout(3);
         expiry.mockNow = new Date();
@@ -431,7 +431,7 @@ describe('core/Idle', () => {
       }));
 
       it('emits an onTimeout event when the countdown reaches 0', fakeAsync(() => {
-        spyOn(instance.onTimeout, 'emit').and.callThrough();
+        jest.spyOn(instance.onTimeout, 'emit');
 
         instance.setTimeout(3);
         expiry.mockNow = new Date();
@@ -453,7 +453,7 @@ describe('core/Idle', () => {
       }));
 
       it('emits an onInterrupt event when the countdown ticks and expiry last has been updated', fakeAsync(() => {
-        spyOn(instance.onInterrupt, 'emit').and.callThrough();
+        jest.spyOn(instance.onInterrupt, 'emit');
 
         instance.setTimeout(3);
         expiry.mockNow = new Date();
@@ -476,7 +476,7 @@ describe('core/Idle', () => {
       }));
 
       it('does not emit an onTimeoutWarning when timeout is disabled', fakeAsync(() => {
-        spyOn(instance.onTimeoutWarning, 'emit').and.callThrough();
+        jest.spyOn(instance.onTimeoutWarning, 'emit');
 
         instance.setTimeout(false);
         expiry.mockNow = new Date();
@@ -496,7 +496,7 @@ describe('core/Idle', () => {
       }));
 
       it('does not emit an onTimeoutWarning if idle state is changed between intervals', fakeAsync(() => {
-        spyOn(instance.onTimeoutWarning, 'emit').and.callThrough();
+        jest.spyOn(instance.onTimeoutWarning, 'emit');
 
         instance.setTimeout(3);
         expiry.mockNow = new Date();
@@ -522,7 +522,7 @@ describe('core/Idle', () => {
       }));
 
       it('does not emit an onTimeout event timeout is disabled', fakeAsync(() => {
-        spyOn(instance.onTimeout, 'emit').and.callThrough();
+        jest.spyOn(instance.onTimeout, 'emit');
 
         instance.setTimeout(false);
         expiry.mockNow = new Date();
@@ -542,8 +542,8 @@ describe('core/Idle', () => {
       }));
 
       it('interrupt() does not call watch() or emit onInterrupt if not running', () => {
-        spyOn(instance, 'watch').and.callThrough();
-        spyOn(instance.onInterrupt, 'emit').and.callThrough();
+        jest.spyOn(instance, 'watch');
+        jest.spyOn(instance.onInterrupt, 'emit');
 
         instance.interrupt();
 
@@ -553,7 +553,7 @@ describe('core/Idle', () => {
       });
 
       it('interrupt() emits onInterrupt event and include event arguments', () => {
-        spyOn(instance.onInterrupt, 'emit').and.callThrough();
+        jest.spyOn(instance.onInterrupt, 'emit');
         instance.watch();
 
         const expected = { test: true };
@@ -570,7 +570,7 @@ describe('core/Idle', () => {
         const now = new Date();
         expiry.mockNow = now;
         instance.watch();
-        spyOn(instance, 'watch').and.callThrough();
+        jest.spyOn(instance, 'watch');
 
         expiry.mockNow = new Date(
           expiry.now().getTime() + instance.getIdle() * 1000
@@ -593,7 +593,7 @@ describe('core/Idle', () => {
         const now = new Date();
         expiry.mockNow = now;
         instance.watch();
-        spyOn(instance, 'watch').and.callThrough();
+        jest.spyOn(instance, 'watch');
 
         expiry.mockNow = new Date(
           expiry.now().getTime() + instance.getIdle() * 1000
@@ -614,7 +614,7 @@ describe('core/Idle', () => {
         instance.setIdle(3);
 
         instance.watch();
-        spyOn(instance, 'watch').and.callThrough();
+        jest.spyOn(instance, 'watch');
         tick(2000);
 
         expect(instance.isIdling()).toBe(false);
@@ -633,7 +633,7 @@ describe('core/Idle', () => {
         const now = new Date();
         expiry.mockNow = now;
         instance.watch();
-        spyOn(instance, 'watch').and.callThrough();
+        jest.spyOn(instance, 'watch');
 
         expiry.mockNow = new Date(
           expiry.now().getTime() + instance.getIdle() * 1000
@@ -656,7 +656,7 @@ describe('core/Idle', () => {
         const now = new Date();
         expiry.mockNow = now;
         instance.watch();
-        spyOn(instance, 'watch').and.callThrough();
+        jest.spyOn(instance, 'watch');
 
         expiry.mockNow = new Date(
           expiry.now().getTime() + instance.getIdle() * 1000
@@ -678,7 +678,7 @@ describe('core/Idle', () => {
 
         expiry.mockNow = new Date();
         instance.watch();
-        spyOn(instance, 'watch').and.callThrough();
+        jest.spyOn(instance, 'watch');
 
         expiry.mockNow = new Date(
           expiry.now().getTime() + instance.getIdle() * 1000
@@ -698,7 +698,7 @@ describe('core/Idle', () => {
         instance.setTimeout(3);
         instance.setIdle(3);
         instance.watch();
-        spyOn(instance, 'watch').and.callThrough();
+        jest.spyOn(instance, 'watch');
 
         expiry.mockNow = new Date(expiry.last().getTime() + 7000);
 
@@ -710,7 +710,7 @@ describe('core/Idle', () => {
 
       it('interrupt(true) should call watch(true)', () => {
         instance.watch();
-        spyOn(instance, 'watch').and.callThrough();
+        jest.spyOn(instance, 'watch');
 
         instance.interrupt(true);
         expect(instance.watch).toHaveBeenCalledWith(true);
@@ -718,7 +718,7 @@ describe('core/Idle', () => {
       });
 
       it('triggering an interrupt source should call interrupt()', fakeAsync(() => {
-        spyOn(instance.onInterrupt, 'emit').and.callThrough();
+        jest.spyOn(instance.onInterrupt, 'emit');
 
         const source = new MockInterruptSource();
         instance.setInterrupts([source]);
@@ -735,8 +735,8 @@ describe('core/Idle', () => {
       }));
 
       it('ngOnDestroy calls stop() and clearInterrupts()', () => {
-        spyOn(instance, 'stop').and.callThrough();
-        spyOn(instance, 'clearInterrupts').and.callThrough();
+        jest.spyOn(instance, 'stop');
+        jest.spyOn(instance, 'clearInterrupts');
 
         instance.ngOnDestroy();
 
@@ -784,7 +784,7 @@ describe('core/Idle', () => {
       });
 
       it('setKeepaliveEnabled() should NOT stop the keepalive service when value is false', () => {
-        spyOn(svc, 'stop').and.callThrough();
+        jest.spyOn(svc, 'stop');
 
         instance.setKeepaliveEnabled(false);
 
@@ -847,7 +847,7 @@ describe('core/Idle', () => {
       }));
 
       it('should immediately ping and restart keepalive when user returns from idle', fakeAsync(() => {
-        spyOn(svc, 'ping').and.callThrough();
+        jest.spyOn(svc, 'ping');
         const now = new Date();
         expiry.mockNow = now;
         instance.watch();

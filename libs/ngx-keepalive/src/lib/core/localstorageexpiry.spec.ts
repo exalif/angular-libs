@@ -104,17 +104,17 @@ const testBedConfiguration = () => {
 };
 
 const initSpyOnLocalStorage = () => {
-  spyOn(localStorage, 'getItem').and.callFake(
+  jest.spyOn(localStorage, 'getItem').mockImplementation(
     (key: string): string => {
       return mockLocalStorage[key] || null;
     }
   );
-  spyOn(localStorage, 'removeItem').and.callFake(
+  jest.spyOn(localStorage, 'removeItem').mockImplementation(
     (key: string): void => {
       delete mockLocalStorage[key];
     }
   );
-  spyOn(localStorage, 'setItem').and.callFake(
+  jest.spyOn(localStorage, 'setItem').mockImplementation(
     (key: string, value: string): string => {
       return (mockLocalStorage[key] = value as string);
     }
