@@ -1,6 +1,6 @@
 # Exalif Angular Libs
 
-[![Build Status](https://travis-ci.org/exalif/angular-libs.svg?branch=master)](https://travis-ci.org/exalif/angular-libs)
+![Build Status](https://github.com/exalif/angular-libs/actions/workflows/branch-master.yml/badge.svg)
 
 Monorepo for various libs:
 
