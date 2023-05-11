@@ -90,6 +90,35 @@
         }
       }
     },
+    "ngx-keepalive": {
+      "root": "projects/ngx-keepalive",
+      "sourceRoot": "projects/ngx-keepalive/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/ngx-keepalive/tsconfig.lib.json",
+            "project": "projects/ngx-keepalive/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-keepalive/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/ngx-keepalive/**/*.ts",
+              "projects/ngx-keepalive/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ngx-mat-popover": {
       "projectType": "library",
       "root": "projects/ngx-mat-popover",

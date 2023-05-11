@@ -24,6 +24,9 @@
     },
     {
       "path": "./projects/ngx-signature-pad/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ngx-keepalive/tsconfig.lib.json"
     }
   ]
 }
