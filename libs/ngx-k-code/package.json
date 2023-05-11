@@ -1,6 +1,6 @@
 {
   "name": "@exalif/ngx-k-code",
-  "version": "16.0.0",
+  "version": "VERSION",
   "license": "MIT",
   "description": "Angular 6+ konami code directive",
   "author": {
