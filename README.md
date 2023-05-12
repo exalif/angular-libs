@@ -9,6 +9,7 @@ Monorepo for various libs:
  - [@exalif/ngx-skeleton-loader](libs/ngx-skeleton-loader): skeleton/ghost loader
  - [@exalif/ngx-file-upload](libs/ngx-file-upload): file upload module
  - [@exalif/ngx-k-code](libs/ngx-k-code): konami code module
+ - [@exalif/ngx-keepalive](libs/ngx-keepalive): a module for responding to idle users in Angular applications
 
 ## Notes
 
