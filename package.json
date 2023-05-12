@@ -1,18 +1,12 @@
 {
   "name": "angular-libs",
-  "version": "0.0.0",
+  "version": "16.0.0",
   "scripts": {
     "build:all": "nx run-many --target build --all --skip-nx-cache --configuration production && scss-bundle -c libs/ngx-mat-popover/scss-bundle.config.json",
     "lint": "nx run-many --target lint --all",
     "test": "nx run-many --target test --all --coverage",
     "merge-reports": "merge-coverage-reports",
-    "publish:ngx-breadcrumbs": "cd dist/libs/ngx-breadcrumbs && npm publish . && cd ../..",
-    "publish:ngx-skeleton-loader": "cd dist/libs/ngx-skeleton-loader && npm publish . && cd ../..",
-    "publish:ngx-file-upload": "cd dist/libs/ngx-file-upload && npm publish . && cd ../..",
-    "publish:ngx-signature-pad": "cd dist/libs/ngx-signature-pad && npm publish . && cd ../..",
-    "publish:ngx-k-code": "cd dist/libs/ngx-k-code && npm publish . && cd ../..",
-    "publish:ngx-mat-popover": "cd dist/libs/ngx-mat-popover && npm publish . && cd ../..",
-    "publish:all": "yarn publish:ngx-breadcrumbs && yarn publish:ngx-skeleton-loader && yarn publish:ngx-file-upload && yarn publish:ngx-k-code && yarn publish:ngx-mat-popover && yarn publish:ngx-signature-pad"
+    "publish:all": "yarn run-many --target publish --all --otp"
   },
   "dependencies": {
     "@angular/animations": "16.0.1",

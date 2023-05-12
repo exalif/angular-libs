@@ -10,6 +10,7 @@
       "outputs": [
         "{workspaceRoot}/dist/{projectRoot}"
       ],
+      "outputPath": "dist/libs/ngx-breadcrumbs",
       "options": {
         "project": "libs/ngx-breadcrumbs/ng-package.json"
       },
@@ -22,6 +23,15 @@
         }
       },
       "defaultConfiguration": "production"
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/scripts/publish.mjs ngx-breadcrumbs {args.tag} {args.otp}"
+      },
+      "dependsOn": [
+        "build"
+      ]
     },
     "test": {
       "executor": "@nx/jest:jest",

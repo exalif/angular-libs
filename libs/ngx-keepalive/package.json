@@ -1,6 +1,6 @@
 {
   "name": "@exalif/ngx-keepalive",
-  "version": "16.0.0",
+  "version": "VERSION",
   "description": "Module that keeps a user session alive while user is active.",
   "repository": {
     "type": "git",
