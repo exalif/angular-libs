@@ -27,7 +27,7 @@
     "publish": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node tools/scripts/publish.mjs ngx-breadcrumbs {args.tag} {args.otp}"
+        "command": "node tools/scripts/publish.mjs ngx-breadcrumbs useGlobalVersion {args.tag} {args.otp}"
       },
       "dependsOn": [
         "build"

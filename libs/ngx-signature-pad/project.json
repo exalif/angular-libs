@@ -10,6 +10,7 @@
       "outputs": [
         "{workspaceRoot}/dist/{projectRoot}"
       ],
+      "outputPath": "dist/libs/ngx-signature-pad",
       "options": {
         "project": "libs/ngx-signature-pad/ng-package.json"
       },
@@ -26,7 +27,7 @@
     "publish": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node tools/scripts/publish.mjs ngx-signature-pad {args.tag} {args.otp}"
+        "command": "node tools/scripts/publish.mjs ngx-signature-pad useGlobalVersion {args.tag} {args.otp}"
       },
       "dependsOn": [
         "build"
