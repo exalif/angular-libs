@@ -11,6 +11,7 @@
       "outputs": [
         "{workspaceRoot}/dist/{projectRoot}"
       ],
+      "outputPath": "dist/libs/ngx-keepalive",
       "options": {
         "project": "libs/ngx-keepalive/ng-package.json"
       },
@@ -27,7 +28,7 @@
     "publish": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node tools/scripts/publish.mjs ngx-keepalive {args.tag} {args.otp}"
+        "command": "node tools/scripts/publish.mjs ngx-keepalive useGlobalVersion {args.tag} {args.otp}"
       },
       "dependsOn": [
         "build"

@@ -10,6 +10,7 @@
 import { execSync } from 'child_process';
 import { readFileSync, writeFileSync } from 'fs';
 import chalk from 'chalk';
+import path from 'path';
 import devkit from '@nx/devkit';
 
 const { readCachedProjectGraph } = devkit;
@@ -68,8 +69,8 @@ const versionToUse = useGlobalVersion
 invariant(
   versionToUse && !invalidVersions.includes(versionToUse) && validVersion.test(versionToUse),
   `No target version provided or version did not match Semantic Versioning, expected: #.#.#-tag.# or #.#.#, got ${versionToUse} with tags
-    - useGlobalVersion: ${useGlobalVersion.toString()}
-    - usePackageJsonVersion: ${usePackageJsonVersion.toString()}`
+     - useGlobalVersion: ${useGlobalVersion.toString()}
+     - usePackageJsonVersion: ${usePackageJsonVersion.toString()}`
 );
 
 /**

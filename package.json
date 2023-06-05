@@ -6,7 +6,7 @@
     "lint": "nx run-many --target lint --all",
     "test": "nx run-many --target test --all --coverage",
     "merge-reports": "merge-coverage-reports",
-    "publish:all": "yarn run-many --target publish --all --otp",
+    "publish:all": "nx run-many --target publish --all --otp",
     "verif:all": "nx affected -t lint test build --base=origin/master --head=HEAD",
     "verif:force": "nx run-many -t lint test build --all"
   },

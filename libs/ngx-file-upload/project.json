@@ -10,6 +10,7 @@
       "outputs": [
         "{workspaceRoot}/dist/{projectRoot}"
       ],
+      "outputPath": "dist/libs/ngx-file-upload",
       "options": {
         "project": "libs/ngx-file-upload/ng-package.json"
       },
@@ -26,7 +27,7 @@
     "publish": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node tools/scripts/publish.mjs ngx-file-upload {args.tag} {args.otp}"
+        "command": "node tools/scripts/publish.mjs ngx-file-upload useGlobalVersion {args.tag} {args.otp}"
       },
       "dependsOn": [
         "build"
