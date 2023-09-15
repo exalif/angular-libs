@@ -16,15 +16,16 @@
   "namedInputs": {
     "sharedGlobals": [],
     "default": [
-      "{projectRoot}/**/*",
+      "{projectRoot}/src/**/*.ts",
+      "{projectRoot}/**/*.json",
       "sharedGlobals"
     ],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/**/*.spec.ts",
       "!{projectRoot}/tsconfig.spec.json",
-      "!{projectRoot}/jest.config.[jt]s"
+      "!{projectRoot}/jest.config.ts"
     ]
   },
   "targetDefaults": {
@@ -40,14 +41,19 @@
     "lint": {
       "inputs": [
         "default",
-        "{workspaceRoot}/.eslintrc.json"
+        "^production",
+        "{workspaceRoot}/.eslintrc.json",
+        "{projectRoot}/.eslintrc.json"
       ]
     },
     "test": {
       "inputs": [
         "default",
         "^production",
-        "{workspaceRoot}/jest.preset.js"
+        "{workspaceRoot}/jest.preset.js",
+        "{projectRoot}/jest.config.[jt]s",
+        "{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+        "{projectRoot}/tsconfig.spec.json"
       ]
     }
   },
