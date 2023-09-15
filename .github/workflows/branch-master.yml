@@ -33,10 +33,6 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/nx.json') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - name: Get cache
-        run: ls -lah
-      - name: Get cache
-        run: ls -lah .nxcache
       - name: deps:install
         shell: bash
         run: |
