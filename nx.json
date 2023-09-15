@@ -16,6 +16,8 @@
   "namedInputs": {
     "sharedGlobals": [],
     "default": [
+      "!{workspaceRoot}/dist",
+      "!{workspaceRoot}/tmp",
       "{projectRoot}/src/**/*.ts",
       "{projectRoot}/**/*.json",
       "sharedGlobals"
