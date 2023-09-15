@@ -20,6 +20,12 @@
       "dom"
     ],
     "paths": {
+      "@exalif/keepalive": [
+        "dist/ngx-keepalive"
+      ],
+      "@exalif/keepalive/*": [
+        "dist/ngx-keepalive/*"
+      ],
       "@exalif/ngx-breadcrumbs": [
         "dist/ngx-breadcrumbs"
       ],
@@ -37,12 +43,6 @@
       ],
       "@exalif/ngx-k-code/*": [
         "dist/ngx-k-code/*"
-      ],
-      "@exalif/keepalive": [
-        "dist/ngx-keepalive"
-      ],
-      "@exalif/keepalive/*": [
-        "dist/ngx-keepalive/*"
       ],
       "ngx-mat-popover": [
         "dist/ngx-mat-popover"

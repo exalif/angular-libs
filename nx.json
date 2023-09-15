@@ -14,20 +14,22 @@
   },
   "defaultBase": "main",
   "namedInputs": {
-    "sharedGlobals": [],
-    "default": [
+    "sharedGlobals": [
       "!{workspaceRoot}/dist",
-      "!{workspaceRoot}/tmp",
+      "!{workspaceRoot}/tmp"
+    ],
+    "default": [
+      "sharedGlobals",
       "{projectRoot}/src/**/*.ts",
-      "{projectRoot}/**/*.json",
-      "sharedGlobals"
+      "{projectRoot}/**/*.json"
     ],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
       "!{projectRoot}/**/*.spec.ts",
       "!{projectRoot}/tsconfig.spec.json",
-      "!{projectRoot}/jest.config.ts"
+      "!{projectRoot}/jest.config.ts",
+      "!{projectRoot}/src/test-setup.ts"
     ]
   },
   "targetDefaults": {
@@ -53,9 +55,10 @@
         "default",
         "^production",
         "{workspaceRoot}/jest.preset.js",
-        "{projectRoot}/jest.config.[jt]s",
-        "{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
-        "{projectRoot}/tsconfig.spec.json"
+        "{projectRoot}/jest.config.ts",
+        "{projectRoot}/src/*.spec.ts",
+        "{projectRoot}/tsconfig.spec.json",
+        "{projectRoot}/src/test-setup.ts"
       ]
     }
   },
