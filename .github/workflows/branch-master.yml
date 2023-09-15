@@ -21,15 +21,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
       - name: setup:cache:node
         uses: actions/cache@v3
         id: yarn-cache
         with:
           path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            ${{ github.workspace }}/.yarn/cache
+            ${{ github.workspace }}/.yarn/install-state.gz
             ${{ github.workspace }}/.angular
             ${{ github.workspace }}/.nxcache
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
