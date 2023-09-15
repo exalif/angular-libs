@@ -30,7 +30,7 @@ jobs:
             ${{ github.workspace }}/.yarn/install-state.gz
             ${{ github.workspace }}/.angular
             ${{ github.workspace }}/.nxcache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/nx.json') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: deps:install

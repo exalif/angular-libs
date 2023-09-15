@@ -44,12 +44,21 @@
     },
     "lint": {
       "inputs": [
-        "{projectRoot}/**/.ts"
+        "default",
+        "^production",
+        "{workspaceRoot}/.eslintrc.json",
+        "{projectRoot}/.eslintrc.json"
       ]
     },
     "test": {
       "inputs": [
-        "{projectRoot}/**/.ts"
+        "default",
+        "^production",
+        "{workspaceRoot}/jest.preset.js",
+        "{projectRoot}/jest.config.ts",
+        "{projectRoot}/src/*.spec.ts",
+        "{projectRoot}/tsconfig.spec.json",
+        "{projectRoot}/src/test-setup.ts"
       ]
     }
   },
