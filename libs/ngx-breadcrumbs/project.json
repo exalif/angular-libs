@@ -1,6 +1,6 @@
 {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "name": "ngx-breadcrumbs",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/ngx-breadcrumbs/src",
   "projectType": "library",
   "prefix": "lib",
@@ -12,7 +12,8 @@
       ],
       "outputPath": "dist/libs/ngx-breadcrumbs",
       "options": {
-        "project": "libs/ngx-breadcrumbs/ng-package.json"
+        "project": "libs/ngx-breadcrumbs/ng-package.json",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {

@@ -1,6 +1,6 @@
 {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "name": "ngx-file-upload",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/ngx-file-upload/src",
   "projectType": "library",
   "prefix": "lib",
@@ -12,7 +12,8 @@
       ],
       "outputPath": "dist/libs/ngx-file-upload",
       "options": {
-        "project": "libs/ngx-file-upload/ng-package.json"
+        "project": "libs/ngx-file-upload/ng-package.json",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {

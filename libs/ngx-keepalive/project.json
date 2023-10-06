@@ -13,7 +13,8 @@
       ],
       "outputPath": "dist/libs/ngx-keepalive",
       "options": {
-        "project": "libs/ngx-keepalive/ng-package.json"
+        "project": "libs/ngx-keepalive/ng-package.json",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {
