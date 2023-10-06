@@ -1,6 +1,6 @@
 {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "name": "ngx-mat-popover",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/ngx-mat-popover/src",
   "prefix": "lib",
@@ -12,7 +12,8 @@
       ],
       "outputPath": "dist/libs/ngx-mat-popover",
       "options": {
-        "project": "libs/ngx-mat-popover/ng-package.json"
+        "project": "libs/ngx-mat-popover/ng-package.json",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {

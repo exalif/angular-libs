@@ -1,6 +1,6 @@
 {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "name": "ngx-skeleton-loader",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/ngx-skeleton-loader/src",
   "prefix": "lib",
@@ -12,7 +12,8 @@
       ],
       "outputPath": "dist/libs/ngx-skeleton-loader",
       "options": {
-        "project": "libs/ngx-skeleton-loader/ng-package.json"
+        "project": "libs/ngx-skeleton-loader/ng-package.json",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {
