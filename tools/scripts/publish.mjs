@@ -44,11 +44,11 @@ invariant(
   `Could not find project "${name}" in the workspace. Is the project.json configured correctly?`
 );
 
-const outputPath = project.data?.targets?.build?.outputPath;
+const outputPath = project.data?.targets?.build?.outputPath || project.data?.targets?.build?.options?.outputPath;
 
 invariant(
   outputPath,
-  `Could not find "build.outputs" of project "${name}". Is project.json configured correctly?`
+  `Could not find "build.outputPath" or "build.options.outputPath" of project "${name}". Is project.json configured correctly?`
 );
 
 /** May be required for private repositories to have a yarnrc file with credentials in the dist dir of the package */
