@@ -75,7 +75,7 @@
     "node-uploadx": "1.2.8",
     "nx": "16.10.0",
     "nx-cloud": "16.4.0",
-    "postcss": "8.4.23",
+    "postcss": "8.4.31",
     "postcss-import": "15.1.0",
     "postcss-preset-env": "8.4.1",
     "postcss-url": "10.1.3",
