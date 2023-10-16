@@ -22,32 +22,32 @@ export class BreadcrumbsService {
     private config: BreadcrumbsConfig,
     private injector: Injector
   ) {
+    this.router.events.pipe(
+      filter((x) => x instanceof NavigationEnd || x['routerEvent'] instanceof NavigationEnd),
+    ).subscribe(() => {
+      const routeRoot = router.routerState.snapshot.root;
 
-    this.router.events.pipe(filter((x) => x instanceof NavigationEnd))
-      .subscribe((_: NavigationEnd) => {
-        const routeRoot = router.routerState.snapshot.root;
+      this.resolveCrumbs(routeRoot).pipe(
+        flatMap((crumbs: Breadcrumb[]) => crumbs),
+        this.config.applyDistinctOn
+          ? distinct((crumb: Breadcrumb) => crumb[this.config.applyDistinctOn])
+          : tap(),
+        toArray(),
+        flatMap((crumbs: Breadcrumb[]) => {
+          if (this.config.postProcess) {
+            const postProcessedCrumb = this.config.postProcess(crumbs);
 
-        this.resolveCrumbs(routeRoot).pipe(
-          flatMap((crumbs: Breadcrumb[]) => crumbs),
-          this.config.applyDistinctOn
-            ? distinct((crumb: Breadcrumb) => crumb[this.config.applyDistinctOn])
-            : tap(),
-          toArray(),
-          flatMap((crumbs: Breadcrumb[]) => {
-            if (this.config.postProcess) {
-              const postProcessedCrumb = this.config.postProcess(crumbs);
-              return BreadcrumbsUtils.wrapIntoObservable<Breadcrumb[]>(postProcessedCrumb).pipe(
-                first()
-              );
-            } else {
-              return of(crumbs);
-            }
-          })
-        )
-          .subscribe((crumbs: Breadcrumb[]) => {
-            this.breadcrumbs.next(crumbs);
-          });
+            return BreadcrumbsUtils.wrapIntoObservable<Breadcrumb[]>(postProcessedCrumb).pipe(
+              first()
+            );
+          } else {
+            return of(crumbs);
+          }
+        })
+      ).subscribe((crumbs: Breadcrumb[]) => {
+        this.breadcrumbs.next(crumbs);
       });
+    });
   }
 
   get crumbs$(): Observable<Breadcrumb[]> {
@@ -59,9 +59,7 @@ export class BreadcrumbsService {
   }
 
   private resolveCrumbs(route: ActivatedRouteSnapshot): Observable<Breadcrumb[]> {
-
     let crumbs$: Observable<Breadcrumb[]>;
-
     const data = route.routeConfig && route.routeConfig.data;
 
     if (data && data.breadcrumbs) {
@@ -74,10 +72,10 @@ export class BreadcrumbsService {
       }
 
       const result = resolver.resolve(route, this.router.routerState.snapshot);
+
       crumbs$ = BreadcrumbsUtils.wrapIntoObservable<Breadcrumb[]>(result).pipe(
         first()
       );
-
     } else {
       crumbs$ = of([]);
     }

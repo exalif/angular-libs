@@ -57,7 +57,7 @@ export abstract class BreadcrumbsUtils {
   /**
    * checks whether an object is empty or not
    *
-   * @param object object to extract values from
+   * @param obj object to extract values from
    * @returns boolean
    */
   public static isEmptyObject(obj): boolean {
