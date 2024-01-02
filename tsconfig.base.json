@@ -44,6 +44,12 @@
       "@exalif/ngx-k-code/*": [
         "dist/ngx-k-code/*"
       ],
+      "@exalif/ngx-material-dayjs-adapter": [
+        "libs/ngx-material-dayjs-adapter/"
+      ],
+      "@exalif/ngx-material-dayjs-adapter/*": [
+        "libs/ngx-material-dayjs-adapter/*"
+      ],
       "ngx-mat-popover": [
         "dist/ngx-mat-popover"
       ],

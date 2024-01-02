@@ -1,9 +1,10 @@
 {
   "name": "angular-libs",
-  "version": "16.0.1",
+  "version": "16.1.0",
   "scripts": {
-    "build:all": "nx run-many --target build --all --skip-nx-cache --configuration production && scss-bundle -c libs/ngx-mat-popover/scss-bundle.config.json",
     "lint": "nx run-many --target lint --all",
+    "build:all": "nx run-many --target build --all --configuration production",
+    "scss:bundle": "nx run-many --target bundle-scss --all",
     "test": "nx run-many --target test --all --coverage",
     "merge-reports": "merge-coverage-reports",
     "publish:all": "nx run-many --target publish --all --otp",
@@ -59,6 +60,7 @@
     "concurrently": "8.0.1",
     "cors": "2.8.5",
     "coveralls": "3.1.1",
+    "dayjs": "^1.11.10",
     "eslint": "8.46.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-import": "2.27.5",

@@ -1,0 +1,32 @@
+{
+  "name": "@exalif/ngx-material-dayjs-adapter",
+  "version": "VERSION",
+  "description": "A date adapter for material calendar using dayjs instead of moment",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exalif/angular-libs.git"
+  },
+  "keywords": [
+    "angular",
+    "material",
+    "adapter",
+    "date-adapter",
+    "material-date-adapter"
+  ],
+  "author": "Exalif",
+  "license": "MIT and MIT-Style",
+  "bugs": {
+    "url": "https://github.com/exalif/angular-libs/issues"
+  },
+  "homepage": "https://github.com/exalif/angular-libs#readme",
+  "peerDependencies": {
+    "@angular/common": "^16.2.0",
+    "@angular/core": "^16.2.0",
+    "@angular/material": "^16.2.0",
+    "dayjs": "^1.10.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}
