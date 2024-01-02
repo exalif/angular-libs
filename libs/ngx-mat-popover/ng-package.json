@@ -4,8 +4,7 @@
   "lib": {
     "entryFile": "src/public-api.ts",
     "styleIncludePaths": [
-      "../../node_modules",
-      "../../styles.scss"
+      "../../node_modules"
     ]
   }
 }

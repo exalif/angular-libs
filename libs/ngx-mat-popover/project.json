@@ -34,6 +34,18 @@
         "build"
       ]
     },
+    "bundle-scss": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "scss-bundle -c libs/ngx-mat-popover/scss-bundle.config.json"
+      },
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}/**/*.scss"
+      ],
+      "dependsOn": [
+        "build"
+      ]
+    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": [

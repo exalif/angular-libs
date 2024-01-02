@@ -47,6 +47,7 @@ jobs:
         shell: bash
         run: |
           yarn build:all
+          yarn scss:bundle
       - name: test:unit
         shell: bash
         run: |
