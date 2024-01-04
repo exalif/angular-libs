@@ -12,8 +12,8 @@
       ],
       "outputPath": "dist/libs/ngx-mat-popover",
       "options": {
-        "project": "libs/ngx-mat-popover/ng-package.json",
-        "updateBuildableProjectDepsInPackageJson": true
+        "tsConfig": "libs/ngx-mat-popover/tsconfig.lib.json",
+        "project": "libs/ngx-mat-popover/ng-package.json"
       },
       "configurations": {
         "production": {
@@ -52,27 +52,14 @@
         "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "libs/ngx-mat-popover/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "libs/ngx-mat-popover/jest.config.ts"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": [
         "{options.outputFile}"
-      ],
-      "options": {
-        "lintFilePatterns": [
-          "libs/ngx-mat-popover/**/*.ts",
-          "libs/ngx-mat-popover/**/*.html"
-        ]
-      }
+      ]
     }
   }
 }

@@ -1,18 +1,4 @@
 {
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx-cloud",
-      "options": {
-        "cacheDirectory": ".nxcache",
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "bundle-scss"
-        ]
-      }
-    }
-  },
   "defaultBase": "main",
   "namedInputs": {
     "sharedGlobals": [],
@@ -37,20 +23,35 @@
       "inputs": [
         "production",
         "^production"
-      ]
+      ],
+      "cache": true
     },
     "lint": {
       "inputs": [
         "default",
         "{workspaceRoot}/.eslintrc.json"
-      ]
+      ],
+      "cache": true
     },
-    "test": {
+    "bundle-scss": {
+      "cache": true
+    },
+    "@nx/jest:jest": {
       "inputs": [
         "default",
         "^production",
         "{workspaceRoot}/jest.preset.js"
-      ]
+      ],
+      "cache": true,
+      "options": {
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
     }
   },
   "generators": {
@@ -67,5 +68,6 @@
     "@nx/angular:component": {
       "style": "css"
     }
-  }
+  },
+  "cacheDirectory": ".nxcache"
 }

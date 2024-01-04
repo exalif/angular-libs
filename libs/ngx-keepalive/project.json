@@ -13,8 +13,8 @@
       ],
       "outputPath": "dist/libs/ngx-keepalive",
       "options": {
-        "project": "libs/ngx-keepalive/ng-package.json",
-        "updateBuildableProjectDepsInPackageJson": true
+        "tsConfig": "libs/ngx-keepalive/tsconfig.lib.json",
+        "project": "libs/ngx-keepalive/ng-package.json"
       },
       "configurations": {
         "production": {
@@ -41,27 +41,14 @@
         "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "libs/ngx-keepalive/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "libs/ngx-keepalive/jest.config.ts"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": [
         "{options.outputFile}"
-      ],
-      "options": {
-        "lintFilePatterns": [
-          "libs/ngx-keepalive/**/*.ts",
-          "libs/ngx-keepalive/**/*.html"
-        ]
-      }
+      ]
     }
   }
 }

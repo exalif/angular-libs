@@ -14,24 +14,13 @@
   },
   "keywords": [
     "angular",
-    "angular7",
-    "angular8",
-    "angular9",
-    "angular10",
-    "angular11",
-    "angular12",
-    "angular13",
-    "angular14",
-    "angular15",
-    "angular16",
     "breadcrumbs",
-    "bgx-breadcrumbs",
-    "routing"
+    "ngx-breadcrumbs"
   ],
   "peerDependencies": {
-    "@angular/common": ">= 11.0.0 < 17.0.0",
-    "@angular/core": ">= 11.0.0 < 17.0.0",
-    "@angular/router": ">= 11.0.0 < 17.0.0",
+    "@angular/common": ">= 11.0.0 < 18.0.0",
+    "@angular/core": ">= 11.0.0 < 18.0.0",
+    "@angular/router": ">= 11.0.0 < 18.0.0",
     "rxjs": ">= 7.0.0"
   },
   "allowedNonPeerDependencies": [

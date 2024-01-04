@@ -8,7 +8,6 @@
   },
   "keywords": [
     "angular",
-    "angular2",
     "ng2-idle",
     "ng-idle",
     "idle",
@@ -24,8 +23,8 @@
   },
   "homepage": "https://github.com/exalif/angular-libs#readme",
   "peerDependencies": {
-    "@angular/common": ">= 14.0.0 < 17.0.0",
-    "@angular/core": ">= 14.0.0 < 17.0.0"
+    "@angular/common": ">= 14.0.0 < 18.0.0",
+    "@angular/core": ">= 14.0.0 < 18.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"

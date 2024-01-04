@@ -12,8 +12,8 @@
       ],
       "outputPath": "dist/libs/ngx-signature-pad",
       "options": {
-        "project": "libs/ngx-signature-pad/ng-package.json",
-        "updateBuildableProjectDepsInPackageJson": true
+        "tsConfig": "libs/ngx-signature-pad/tsconfig.lib.json",
+        "project": "libs/ngx-signature-pad/ng-package.json"
       },
       "configurations": {
         "production": {
@@ -40,27 +40,14 @@
         "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "libs/ngx-signature-pad/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "libs/ngx-signature-pad/jest.config.ts"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": [
         "{options.outputFile}"
-      ],
-      "options": {
-        "lintFilePatterns": [
-          "libs/ngx-signature-pad/**/*.ts",
-          "libs/ngx-signature-pad/**/*.html"
-        ]
-      }
+      ]
     }
   }
 }
