@@ -28,10 +28,10 @@
     "publish": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node tools/scripts/publish.mjs ngx-mat-popover useGlobalVersion {args.tag} {args.otp}"
+        "command": "node tools/scripts/publish.mjs ngx-mat-popover useGlobalVersion latest {args.otp}"
       },
       "dependsOn": [
-        "build"
+        "bundle-scss"
       ]
     },
     "bundle-scss": {
