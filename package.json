@@ -1,6 +1,6 @@
 {
   "name": "angular-libs",
-  "version": "17.0.0",
+  "version": "17.0.1",
   "scripts": {
     "lint": "nx run-many --target lint --all",
     "build:all": "nx run-many --target build --all --configuration production",
