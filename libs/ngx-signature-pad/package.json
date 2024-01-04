@@ -14,23 +14,14 @@
   },
   "keywords": [
     "angular",
-    "angular8",
-    "angular9",
-    "angular10",
-    "angular11",
-    "angular12",
-    "angular13",
-    "angular14",
-    "angular15",
-    "angular16",
     "signature",
     "signature-pad",
     "sign-pad"
   ],
   "peerDependencies": {
-    "@angular/common": ">= 11.0.0 < 17.0.0",
-    "@angular/core": ">= 11.0.0 < 17.0.0",
-    "@angular/router": ">= 11.0.0 < 17.0.0",
+    "@angular/common": ">= 11.0.0 < 18.0.0",
+    "@angular/core": ">= 11.0.0 < 18.0.0",
+    "@angular/router": ">= 11.0.0 < 18.0.0",
     "signature_pad": ">= 4.0.0"
   },
   "dependencies": {

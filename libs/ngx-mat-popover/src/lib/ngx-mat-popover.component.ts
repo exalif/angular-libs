@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
-import { LegacyMenuPositionX as MenuPositionX, LegacyMenuPositionY as MenuPositionY, MatLegacyMenuTrigger as MatMenuTrigger } from '@angular/material/legacy-menu';
+import { MenuPositionX, MenuPositionY, MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'ngx-mat-popover',

@@ -12,8 +12,8 @@
       ],
       "outputPath": "dist/libs/ngx-breadcrumbs",
       "options": {
-        "project": "libs/ngx-breadcrumbs/ng-package.json",
-        "updateBuildableProjectDepsInPackageJson": true
+        "tsConfig": "libs/ngx-breadcrumbs/tsconfig.lib.json",
+        "project": "libs/ngx-breadcrumbs/ng-package.json"
       },
       "configurations": {
         "production": {
@@ -40,27 +40,14 @@
         "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "libs/ngx-breadcrumbs/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "libs/ngx-breadcrumbs/jest.config.ts"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": [
         "{options.outputFile}"
-      ],
-      "options": {
-        "lintFilePatterns": [
-          "libs/ngx-breadcrumbs/**/*.ts",
-          "libs/ngx-breadcrumbs/**/*.html"
-        ]
-      }
+      ]
     }
   }
 }

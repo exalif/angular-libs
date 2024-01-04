@@ -9,7 +9,7 @@ $mat-content-padding: 1rem !default;
   $height: auto,
 ) {
   .mat-popover-container {
-    .mat-menu-item {
+    .mat-mdc-menu-item {
       height: $height;
       white-space: normal;
       line-height: inherit;
@@ -24,7 +24,7 @@ $mat-content-padding: 1rem !default;
       }
     }
 
-    .mat-menu-content {
+    .mat-mdc-menu-content {
       padding: $content-padding;
     }
   }

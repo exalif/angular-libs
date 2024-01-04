@@ -14,7 +14,9 @@
         "@angular-eslint/directive-selector": 0,
         "@angular-eslint/component-selector": 0,
         "@typescript-eslint/no-this-alias": 1,
-        "no-case-declarations": 0
+        "no-case-declarations": 0,
+        "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/no-unused-vars": "warn"
       },
       "extends": [
         "plugin:@nx/angular",

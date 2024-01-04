@@ -13,6 +13,7 @@
       ],
       "outputPath": "dist/libs/ngx-material-dayjs-adapter",
       "options": {
+        "tsConfig": "libs/ngx-material-dayjs-adapter/tsconfig.lib.json",
         "project": "libs/ngx-material-dayjs-adapter/ng-package.json"
       },
       "configurations": {
@@ -31,14 +32,7 @@
         "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "libs/ngx-material-dayjs-adapter/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "libs/ngx-material-dayjs-adapter/jest.config.ts"
       }
     },
     "publish": {
@@ -51,16 +45,10 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": [
         "{options.outputFile}"
-      ],
-      "options": {
-        "lintFilePatterns": [
-          "libs/ngx-material-dayjs-adapter/**/*.ts",
-          "libs/ngx-material-dayjs-adapter/**/*.html"
-        ]
-      }
+      ]
     }
   }
 }
